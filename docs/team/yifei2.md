@@ -17,9 +17,9 @@ Given below are my contributions to the project.
     * Add delete meeting
   * Developer Guide:
     * Add use case for delete meeting
-    * Add Non-functional requirements 
+    * Add Non-functional requirements
 * **Contributions to team-based tasks**:
-  * 
+  *
 * **Review/mentoring contributions**:
   * PRs reviewed (with non-trivial review comments):
 * **Contributions beyond the project team**:
