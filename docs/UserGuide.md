@@ -157,7 +157,7 @@ Format: `exit`
 ### Saving the data
 
 AdresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after 
-any command that changes the data. It is saved as is saved as a JSON file `[JAR file location]/data/addressoc.json`There is no need to save manually.
+any command that changes the data. It is saved as a JSON file `[JAR file location]/data/addressoc.json`. There is no need to save manually.
 
 ### Editing the data file
 
