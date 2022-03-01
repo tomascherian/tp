@@ -49,10 +49,10 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add contact n/NAME`, `NAME` is a parameter which can be used as `add contact n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -185,11 +185,10 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]…​` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate`
-**Add Meeting** | ` add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]…​` <br> e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
-**Delete Contact** | `delete contact CONTACT_INDEX`<br> e.g., `delete contact 3`
-**Delete Meeting** | `delete meeting MEETING_INDEX`<br> e.g., `delete meeting 2`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Exit** | `exit`
