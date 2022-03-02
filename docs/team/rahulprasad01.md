@@ -18,8 +18,10 @@ Given below are my contributions to the project.
     * Developer Guide:
        * Use cases for add contact and delete contact features
 * **Contributions to team-based tasks**:
+  * 
 * **Review/mentoring contributions**:
     * PRs reviewed (with non-trivial review comments):
 * **Contributions beyond the project team**:
-  * 
+  *       
+
   
