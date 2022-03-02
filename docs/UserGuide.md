@@ -142,6 +142,34 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding a contact : `add contact`
+
+Adds the specified contact to the contact list.
+
+Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...`
+
+* Adds a person into the contact list with given email
+* Optionally phone number, telegram handle and tags can also be specified
+
+Examples:
+* `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email and tags
+* `add contact n/Bob Tan p/91234567` gives an error message as e/EMAIL is not optional
+
+### Deleting a contact : `delete contact`
+
+Removes the specified person from the contact list
+
+Format: delete contact CONTACT_INDEX
+
+* Deletes the person at the specified CONTACT_INDEX
+* The index refers to the index number shown in the displayed contact list
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples: 
+*`delete contact 2` deletes the 2nd person in the address book
+*`delete contact 0` returns an error for invalid input
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -184,6 +212,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add contact**  `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` 
+**Delete contact** `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
