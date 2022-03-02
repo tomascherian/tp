@@ -307,6 +307,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+  
+**Use case: Add a contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. AddresSoc shows a list of contacts
+3. User requests to add a new contact to the list
+4. AddresSoc adds the contact
+ 
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The contact specified by the user is invalid.
+
+   * 3a1. AddresSoc shows an error message.
+
+     Use case resumes at step 2.
+
 
 *{More to be added}*
 
