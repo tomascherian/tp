@@ -281,7 +281,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                                   | view all my contacts                                         | I can see my full list of contacts at once.                     |
 | `* * *`  | user who wants to contact a specific person            | view a single contact and its details                        |                                                                 |
 | `* * *`  | user who needs to meet my peers                        | schedule a meeting with specific contacts in my contact list | I can keep track of my meetings                                 |
-| `* *`    | careless user                                          | edit a contact or a meeting                                  | I can correct the wrong information I had keyed in.             |
+| `* *`    | careless user who keyed in wrong information for a  contact / meeting       | edit the contact / meeting              | I can correct the wrong information                             |
 | `* *`    | careless user                                          | undo my previous action(s)                                   | I can correct mistakes I made (eg. recover a deleted meeting).  |
 | `* *`    | user who wants to schedule meetings with various people| label meetings with specific types (e.g. lunch, project)     | I can keep track of what each meeting is for.                   |
 | `* *`    | user who has many contacts                             | add tags to each contact                                     | I can keep track of any notable information about the contact.  |
@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy user with many meetings                           | be reminded of meetings happening in the next few days       | I do not forget these meetings.                                 |
 | `* *`    | user who needs to manage a variety of contacts         | categorise my contacts into subgroups                        | I can keep track of what group each contact is from.            |
 | `*`      | long-term user of the app                              | archive contacts that may no longer be relevant              | my contact list is less cluttered.                              |
-| `*`      | user who has just joined a new module / CCA            | add many contacts at once                                    | I do not have to spend a long time adding each person's contact.|
+| `*`      | user who wants to add many new contacts quickly        | add many contacts at once                                    | I do not have to spend time adding them individually.           |
 | `*`      | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily                                    |
 | `*`      | new user who already has a contact list on another app | import all my contacts into AddresSoC                        | I do not have to spend time adding them individually.           |
 
