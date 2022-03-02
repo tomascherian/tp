@@ -24,8 +24,4 @@ Given below are my contributions to the project.
 * **Review/mentoring contributions**:
     * PRs reviewed (with non-trivial review comments):
 * **Contributions beyond the project team**:
-    *
-
-
-
-  
+    *            
