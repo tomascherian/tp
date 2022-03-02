@@ -14,11 +14,12 @@ Given below are my contributions to the project.
   *
 * **Documentation**:
   * User Guide:
-    * 
+    * Introduction, quick start & command format notes
+    * "Saving the data" and "Editing the data files" features
   * Developer Guide:
-    * 
+    * Target user profile, value proposition & user stories
 * **Contributions to team-based tasks**:
-  * 
+  * Setting up the GitHub team org
 * **Review/mentoring contributions**:
   * PRs reviewed (with non-trivial review comments):
 * **Contributions beyond the project team**:
