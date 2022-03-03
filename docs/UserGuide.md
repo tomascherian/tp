@@ -142,20 +142,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Deleting a meeting : `delete meeting`
-
-Deletes the specified meeting from the displayed meeting list
-
-Format: `delete meeting MEETING_INDEX`
-
-* Deletes the meeting at the specified `MEETING_INDEX`.
-* The index refers to the index number shown in the displayed meetings list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
-* `delete meeting -1` returns an error for invalid input.
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -180,6 +166,20 @@ Examples:
   Adds meeting "JAVA Workshop" with given date and time.
 * `add meeting n/Job Interview st/1500 et/1700` 
   Returns error message as d/DATE is missing.
+
+### Deleting a meeting : `delete meeting`
+
+Deletes the specified meeting from the displayed meeting list
+
+Format: `delete meeting MEETING_INDEX`
+
+* Deletes the meeting at the specified `MEETING_INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
+* `delete meeting -1` returns an error for invalid input.
   
 ### Exiting the program : `exit`
 
