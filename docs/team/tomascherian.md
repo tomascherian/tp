@@ -21,4 +21,3 @@ Given below are my contributions to the project.
     * PRs reviewed (with non-trivial review comments):
 * **Contributions beyond the project team**:
     *
-    
