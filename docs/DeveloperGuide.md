@@ -307,7 +307,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  AddresSoc shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  AddresSoc deletes the contact
     
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The contact specified by user is invalid.
+
+    * 3a1. AddresSoc shows an error message.
+
+      Use case resumes at step 2.
+
+*{More to be added}*
+
+
 **Use case: Add a meeting**
 
 **MSS**
@@ -316,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddresSoc shows a list of meetings
 3.  User requests to add a meeting in the list
 4.  AddresSoc deletes the person
-
+    
     Use case ends.
 
 **Extensions**
@@ -332,6 +358,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+
 
 ### Non-Functional Requirements
 
