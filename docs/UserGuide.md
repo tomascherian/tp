@@ -142,6 +142,20 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Deleting a meeting : `delete meeting`
+
+Deletes the specified meeting from the displayed meeting list
+
+Format: `delete meeting MEETING_INDEX`
+
+* Deletes the meeting at the specified `MEETING_INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
+* `delete meeting -1` returns an error for invalid input.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -186,6 +200,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Meeting** | `delete meeting MEETING_INDEX`<br> e.g., `delete meeting 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
