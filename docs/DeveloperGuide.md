@@ -1,4 +1,4 @@
-   ---
+---
 layout: page
 title: Developer Guide
 ---
@@ -255,29 +255,43 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: [NUS School of Computing](https://www.comp.nus.edu.sg/) students who:
 
-* has a need to manage a significant number of contacts
+* have a need to manage a significant number of student contacts and meetings
 * prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* can type fast and prefer typing to mouse interactions
+* are reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: AddresSoC helps the student to
+* keep track of the contacts of peers in the student's network, 
+* organize the contacts for easier lookup, and
+* manage the student's social and academic life by keeping track of their schedule.
+
+It completes these tasks faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                             | I can …​                                                  | So that …​                                                   |
+| -------- | ------------------------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------------------- |
+| `* * *`  | user                                                   | add a contact                                                | I can look it up if I need to find the contact.                 |
+| `* * *`  | user                                                   | delete a contact                                             | I can remove contacts I no longer need or had added wrongly.    |
+| `* * *`  | user                                                   | view all my contacts                                         | I can see my full list of contacts at once.                     |
+| `* * *`  | user who wants to contact a specific person            | view a single contact and its details                        |                                                                 |
+| `* * *`  | user who needs to meet my peers                        | schedule a meeting with specific contacts in my contact list | I can keep track of my meetings                                 |
+| `* *`    | careless user who keyed in wrong information for a  contact / meeting       | edit the contact / meeting              | I can correct the wrong information                             |
+| `* *`    | careless user                                          | undo my previous action(s)                                   | I can correct mistakes I made (eg. recover a deleted meeting).  |
+| `* *`    | user who wants to schedule meetings with various people| label meetings with specific types (e.g. lunch, project)     | I can keep track of what each meeting is for.                   |
+| `* *`    | user who has many contacts                             | add tags to each contact                                     | I can keep track of any notable information about the contact.  |
+| `* *`    | user who wants to contact a specific person            | search for that specific contact                             | I do not need to look through the entire list to find it.       |
+| `* *`    | busy user with many meetings                           | be reminded of meetings happening in the next few days       | I do not forget these meetings.                                 |
+| `* *`    | user who needs to manage a variety of contacts         | categorise my contacts into subgroups                        | I can keep track of what group each contact is from.            |
+| `*`      | long-term user of the app                              | archive contacts that may no longer be relevant              | my contact list is less cluttered.                              |
+| `*`      | user who wants to add many new contacts quickly        | add many contacts at once                                    | I do not have to spend time adding them individually.           |
+| `*`      | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily                                    |
+| `*`      | new user who already has a contact list on another app | import all my contacts into AddresSoC                        | I do not have to spend time adding them individually.           |
 
 *{More to be added}*
 
