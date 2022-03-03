@@ -159,7 +159,7 @@ Examples:
 
 Removes the specified person from the contact list
 
-Format: delete contact CONTACT_INDEX
+Format: `delete contact CONTACT_INDEX`
 
 * Deletes the person at the specified CONTACT_INDEX
 * The index refers to the index number shown in the displayed contact list
@@ -212,8 +212,8 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add contact**  `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` 
-**Delete contact** `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
+**Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` 
+**Delete contact** | `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
