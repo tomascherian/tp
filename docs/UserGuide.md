@@ -77,26 +77,78 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+### Adding a contact : `add contact`
+
+Adds the specified contact to the contact list.
+
+Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...`
+
+* Adds a person into the contact list with given email
+* Optionally phone number, telegram handle and tags can also be specified
+
+Examples:
+* `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email and tags
+* `add contact n/Bob Tan p/91234567` gives an error message as e/EMAIL is not optional
+
+### Deleting a contact : `delete contact`
+
+Removes the specified person from the contact list
+
+Format: `delete contact CONTACT_INDEX`
+
+* Deletes the person at the specified CONTACT_INDEX
+* The index refers to the index number shown in the displayed contact list
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+*`delete contact 2` deletes the 2nd person in the address book
+*`delete contact 0` returns an error for invalid input
+
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Adding a meeting : `add meeting`
+
+Adds a meeting to the meeting list.
+
+Format: `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...`
+
+* Schedules a meeting with a specified date, start time and end time to the address book.
+* Optionally, the people involved in the meeting can also be specified.
+* `DATE` requires the format **DD/MM/YYYY** e.g. 20/02/2022
+* `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
+
+Examples:
+* `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
+  Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
+* `add meeting n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
+  Adds meeting "JAVA Workshop" with given date and time.
+* `add meeting n/Job Interview st/1500 et/1700`
+  Returns error message as d/DATE is missing.
+
+### Deleting a meeting : `delete meeting`
+
+Deletes the specified meeting from the displayed meeting list
+
+Format: `delete meeting MEETING_INDEX`
+
+* Deletes the meeting at the specified `MEETING_INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
+* `delete meeting -1` returns an error for invalid input.
 
 ### Editing a person : `edit`
 
@@ -133,87 +185,6 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Adding a contact : `add contact`
-
-Adds the specified contact to the contact list.
-
-Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...`
-
-* Adds a person into the contact list with given email
-* Optionally phone number, telegram handle and tags can also be specified
-
-Examples:
-* `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email and tags
-* `add contact n/Bob Tan p/91234567` gives an error message as e/EMAIL is not optional
-
-### Deleting a contact : `delete contact`
-
-Removes the specified person from the contact list
-
-Format: `delete contact CONTACT_INDEX`
-
-* Deletes the person at the specified CONTACT_INDEX
-* The index refers to the index number shown in the displayed contact list
-* The index must be a positive integer 1, 2, 3, …​
-
-Examples: 
-*`delete contact 2` deletes the 2nd person in the address book
-*`delete contact 0` returns an error for invalid input
-
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Adding a meeting : `add meeting`
-
-Adds a meeting to the address book.
-
-Format: `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...`
-
-* Schedules a meeting with a specified date, start time and end time to the address book.
-* Optionally, the people involved in the meeting can also be specified.
-* `DATE` requires the format **DD/MM/YYYY** e.g. 20/02/2022
-* `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
-
-Examples:
-* `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
-  Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
-* `add meeting n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
-  Adds meeting "JAVA Workshop" with given date and time.
-* `add meeting n/Job Interview st/1500 et/1700` 
-  Returns error message as d/DATE is missing.
-
-### Deleting a meeting : `delete meeting`
-
-Deletes the specified meeting from the displayed meeting list
-
-Format: `delete meeting MEETING_INDEX`
-
-* Deletes the meeting at the specified `MEETING_INDEX`.
-* The index refers to the index number shown in the displayed meetings list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
-* `delete meeting -1` returns an error for invalid input.
-  
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -247,14 +218,12 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` 
 **Delete contact** | `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
 **Delete Meeting** | `delete meeting MEETING_INDEX`<br> e.g., `delete meeting 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
 **Help** | `help`
