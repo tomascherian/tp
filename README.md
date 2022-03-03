@@ -6,7 +6,7 @@
 
 AddresSoC is a CLI desktop application for School of Computing students to keep track of their network with other students and schedule meetings. It does not handle communication between students.
 
-###Basic Features
+### Basic Features
 
   * **Add contact**
   * **Delete contact**
