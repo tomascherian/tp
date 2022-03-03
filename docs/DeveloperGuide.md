@@ -307,8 +307,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Add a meeting**
 
-*{More to be added}*
+**MSS**
+
+1.  User requests to list meetings
+2.  AddresSoc shows a list of meetings
+3.  User requests to add a meeting in the list
+4.  AddresSoc deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The tags are invalid.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at 2.
+
+* 3b. The mandatory tags are missing.
+
+    * 3b1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
