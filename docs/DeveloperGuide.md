@@ -312,18 +312,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list contacts
-2. AddresSoc shows a list of contacts
-3. User requests to add a new contact to the list
-4. AddresSoc adds the contact
+1. User requests to add a new contact to the contact list
+2. AddresSoc adds the contact
  
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The contact list does not exist.
 
-  Use case ends.
+   * 2a1. AddresSoc creates a new list.
+
+   Use case resumes at step 2.
 
 * 3a. The contact specified by the user is invalid.
 
