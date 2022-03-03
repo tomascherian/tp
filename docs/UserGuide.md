@@ -144,7 +144,7 @@ Examples:
 
 ### Deleting a meeting : `delete meeting`
 
-Deletes the specified meeting from the address book.
+Deletes the specified meeting from the displayed meeting list
 
 Format: `delete meeting MEETING_INDEX`
 
@@ -153,7 +153,7 @@ Format: `delete meeting MEETING_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete meeting 3` deletes the 3rd meeting in the address book.
+* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
 * `delete meeting -1` returns an error for invalid input.
 
 ### Clearing all entries : `clear`
