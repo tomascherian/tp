@@ -79,7 +79,7 @@ Format: `help`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the contact list.
 
 Format: `list`
 
@@ -193,7 +193,7 @@ Format: `exit`
 
 ### Saving the data
 
-AdresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after 
+AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after 
 any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
