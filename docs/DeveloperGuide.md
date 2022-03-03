@@ -347,13 +347,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The tags are invalid.
+* 3a. The arguments passed are invalid.
 
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at 2.
 
-* 3b. The mandatory tags are missing.
+* 3b. The mandatory arguments are not passed.
 
     * 3b1. AddressBook shows an error message.
 
