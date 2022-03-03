@@ -30,7 +30,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`add contact`**` n/John Doe e/johnd@u.nus.edu th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
-   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs 
+   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs 
 
    * **`delete`**`contact 3` : Deletes the 3rd contact shown in the current contact list.
 
@@ -52,8 +52,9 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
   e.g. in `add contact n/NAME`, `NAME` is a parameter which can be used as `add contact n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`.
-
+  e.g. `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`, <br>
+  and `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
