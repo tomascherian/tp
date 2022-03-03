@@ -19,14 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead, Developer
 * Responsibilities: Documentation, UI
 
-### Johnny Doe
+### Rahul Prasad
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rahulprasad01.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/rahulprasad01)] [[portfolio](team/rahulprasad01.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Testing, Deliverables and deadlines, in charge of parser
 
 ### Thomas Cherian
 
