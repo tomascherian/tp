@@ -142,6 +142,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Adding a meeting : `add meeting`
+
+Adds a meeting to the address book.
+
+Format: `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...`
+
+* Schedules a meeting with a specified date, start time and end time to the address book.
+* Optionally, the people involved in the meeting can also be specified.
+* `DATE` requires the format **DD/MM/YYYY** e.g. 20/02/2022
+* `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
+
+Examples:
+* `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
+  Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
+* `add meeting n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
+  Adds meeting "JAVA Workshop" with given date and time.
+* `add meeting n/Job Interview st/1500 et/1700` 
+  Returns error message as d/DATE is missing.
+
 ### Deleting a meeting : `delete meeting`
 
 Deletes the specified meeting from the displayed meeting list
@@ -155,13 +180,7 @@ Format: `delete meeting MEETING_INDEX`
 Examples:
 * `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
 * `delete meeting -1` returns an error for invalid input.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
+  
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -204,4 +223,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
 **Help** | `help`
