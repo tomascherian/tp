@@ -13,7 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Address App" minWidth="900" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,29 +34,22 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" />
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+                   minHeight="100" prefHeight="100" maxHeight="100" />
 
-        <VBox fx:id="listsVertical" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <HBox fx:id="listsHorizontal" styleClass="pane-without-border" minWidth="340" prefWidth="340"
-                HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane styleClass="pane-with-shadow" fx:id="personListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-            <StackPane fx:id="meetingListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-          </HBox>
-        </VBox>
+        <SplitPane fx:id="listsSplitPane" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personListBox" styleClass="list-box" minWidth="340" prefWidth="450" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="personListPanelPlaceholder" styleClass="pane-with-shadow" VBox.vgrow="ALWAYS"
+                       minWidth="320" prefWidth="450"/>
+          </VBox>
+          <VBox fx:id="meetingListBox" styleClass="list-box" minWidth="340" prefWidth="450" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="meetingListPanelPlaceholder" styleClass="pane-with-shadow" VBox.vgrow="ALWAYS"
+                       minWidth="320" prefWidth="450"/>
+          </VBox>
+        </SplitPane>
+
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
