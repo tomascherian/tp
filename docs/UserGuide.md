@@ -54,7 +54,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`, <br>
   and `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-  
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
@@ -193,7 +193,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after 
+AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after
 any command that changes the data. There is no need to save manually.
 
 ### Editing the data file

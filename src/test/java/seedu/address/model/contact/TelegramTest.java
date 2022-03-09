@@ -30,7 +30,6 @@ public class TelegramTest {
         assertFalse(Telegram.isValidId("#"));    // Invalid arguments
         assertFalse(Telegram.isValidId("@#"));   // Invalid arguments
         assertFalse(Telegram.isValidId("@#$*")); // Invalid arguments
-       
 
          // Valid telegram ids
          assertTrue(Telegram.isValidId("@ral_01"));

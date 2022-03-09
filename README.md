@@ -14,7 +14,7 @@ AddresSoC is a CLI desktop application for School of Computing students to keep 
   * **Add meeting**
   * **Delete meeting**
 
-For the detailed documentation of this project, see the **[AddresSoc Product Website](https://ay2122s2-cs2103t-w12-3.github.io/tp/)**. 
+For the detailed documentation of this project, see the **[AddresSoc Product Website](https://ay2122s2-cs2103t-w12-3.github.io/tp/)**.
 
 ### Acknowledgment
 
