@@ -1,5 +1,5 @@
 package seedu.address.model;
-
+import java.util.*;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
-import java.util.*;
+
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.NameComparator;

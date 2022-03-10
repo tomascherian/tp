@@ -49,7 +49,7 @@ public class Contact {
         return email;
     }
 
-    public Telegram getTelegramId() {
+    public Telegram getTelegram() {
         return telegramUsername;
     }
 
@@ -74,7 +74,7 @@ public class Contact {
                 && otherContact.getName().equals(getName())
                 && otherContact.getEmail().equals(getEmail())
                 && otherContact.getPhone().equals(getPhone())
-                && otherContact.getTelegramId().equals(getTelegramId());
+                && otherContact.getTelegram().equals(getTelegram());
     }
 
     /**
@@ -95,7 +95,7 @@ public class Contact {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getTelegramId().equals(getTelegramId())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -115,7 +115,7 @@ public class Contact {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Telegram: ")
-                .append(getTelegramId())
+                .append(getTelegram())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

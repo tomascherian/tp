@@ -45,7 +45,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        id = personToCopy.getTelegramId();
+        id = personToCopy.getTelegram();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
