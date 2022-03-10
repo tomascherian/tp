@@ -26,14 +26,14 @@ public class TelegramTest {
 
         // invalid phone numbers
         assertFalse(Telegram.isValidId("")); // empty string
-        assertFalse(Telegram.isValidId(" "));  // empty string
-        assertFalse(Telegram.isValidId("#"));    // Invalid arguments
-        assertFalse(Telegram.isValidId("@#"));   // Invalid arguments
+        assertFalse(Telegram.isValidId(" ")); // empty string
+        assertFalse(Telegram.isValidId("#")); // Invalid arguments
+        assertFalse(Telegram.isValidId("@#")); // Invalid arguments
         assertFalse(Telegram.isValidId("@#$*")); // Invalid arguments
 
-         // Valid telegram ids
-         assertTrue(Telegram.isValidId("@ral_01"));
-         assertTrue(Telegram.isValidId("@kp1"));
-         assertTrue(Telegram.isValidId("@kp_kp02"));
+        // Valid telegram ids
+        assertTrue(Telegram.isValidId("@ral_01"));
+        assertTrue(Telegram.isValidId("@kp1"));
+        assertTrue(Telegram.isValidId("@kp_kp02"));
     }
 }

@@ -114,7 +114,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-       Telegram expectedAddress = new Telegram(VALID_TELEGRAM);
+        Telegram expectedAddress = new Telegram(VALID_TELEGRAM);
         assertEquals(expectedAddress, ParserUtil.parseTelegram(VALID_TELEGRAM));
     }
 
