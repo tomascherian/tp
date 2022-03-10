@@ -20,16 +20,18 @@ public class Meeting {
     private final MeetingDate date;
     private final StartTime startTime;
     private final EndTime endTime;
+    private final ParticipantsList list;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
-    public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime, Set<Tag> tags) {
-        requireAllNonNull(name, date, startTime, endTime, tags);
+    public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime, ParticipantsList list, Set<Tag> tags) {
+        requireAllNonNull(name, date, startTime, endTime, list, tags);
         this.name = name;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.list = list;
         this.tags.addAll(tags);
     }
 
@@ -49,6 +51,10 @@ public class Meeting {
         return endTime;
     }
 
+    public ParticipantsList getParticipantsList() {
+        return list;
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -60,9 +66,7 @@ public class Meeting {
 
         return otherMeeting != null
                 && otherMeeting.getName().equals(getName())
-                && otherMeeting.getDate().equals(getDate())
-                && otherMeeting.getStartTime().equals(getStartTime())
-                && otherMeeting.getEndTime().equals(getEndTime());
+                && otherMeeting.getDate().equals(getDate());
     }
 
     @Override
@@ -80,13 +84,14 @@ public class Meeting {
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getStartTime().equals(getStartTime())
                 && otherMeeting.getEndTime().equals(getEndTime())
+                && otherMeeting.getParticipantsList().equals(getParticipantsList())
                 && otherMeeting.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, startTime, endTime, tags);
+        return Objects.hash(name, date, startTime, endTime, list, tags);
     }
 
     @Override
@@ -98,7 +103,9 @@ public class Meeting {
                 .append("; From: ")
                 .append(getStartTime())
                 .append("; To: ")
-                .append(getEndTime());
+                .append(getEndTime())
+                .append("; Participants: ")
+                .append(getParticipantsList());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

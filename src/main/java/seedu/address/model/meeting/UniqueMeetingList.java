@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
  * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
@@ -51,7 +50,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     /**
      * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the list.
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
@@ -79,7 +78,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
     }
 
-    public void setPersons(UniqueMeetingList replacement) {
+    public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,7 +87,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      * Replaces the contents of this list with {@code meetings}.
      * {@code meetings} must not contain duplicate meetings.
      */
-    public void setPersons(List<Meeting> meetings) {
+    public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
         if (!meetingsAreUnique(meetings)) {
             throw new DuplicateMeetingException();
