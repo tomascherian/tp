@@ -63,8 +63,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-            case SortCommand.COMMAND_WORD:
-                return new SortCommand();
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

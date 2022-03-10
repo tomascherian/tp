@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Telegram;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
+
+
 
 /**
  * Jackson-friendly version of {@link Contact}.
@@ -35,8 +37,8 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -95,7 +97,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Telegram.class.getSimpleName()));
         }
         if (!Telegram.isValidId(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);

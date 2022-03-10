@@ -2,9 +2,13 @@ package seedu.address.model.contact;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a contact in the contact list.
@@ -25,13 +29,13 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Phone phone, Email email, Telegram Id, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+    public Contact(Name name, Phone phone, Email email, Telegram id, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, id, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
 
-        this.telegramUsername = Id;
+        this.telegramUsername = id;
         this.tags.addAll(tags);
     }
 
@@ -42,7 +46,6 @@ public class Contact {
     public Phone getPhone() {
         return phone;
     }
-
 
 
     public Email getEmail() {

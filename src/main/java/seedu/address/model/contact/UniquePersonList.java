@@ -8,8 +8,11 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.model.contact.exceptions.ContactNotFoundException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
+
+
+
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -17,7 +20,7 @@ import seedu.address.model.contact.exceptions.ContactNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Contact#isSameContact(Contact)
@@ -113,7 +116,7 @@ public class UniquePersonList implements Iterable<Contact> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override
