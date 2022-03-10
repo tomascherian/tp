@@ -87,8 +87,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-
-
     /**
      * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
      */
