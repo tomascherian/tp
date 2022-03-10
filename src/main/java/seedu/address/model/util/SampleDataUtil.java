@@ -1,22 +1,26 @@
 package seedu.address.model.util;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.Telegram;
+import seedu.address.model.tag.Tag;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.contact.*;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
     public static Contact[] getSamplePersons() {
-        return new Contact[] {
+        return new Contact[]{
                 new Contact(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                         new Telegram("@rak_01"),
+                        new Telegram("@rak_01"),
                         getTagSet("friends")),
                 new Contact(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                         new Telegram("@bernie_01"),
@@ -31,7 +35,7 @@ public class SampleDataUtil {
                         new Telegram("@irfan_01"),
                         getTagSet("classmates")),
                 new Contact(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                         new Telegram("@roy_01"),
+                        new Telegram("@roy_01"),
                         getTagSet("colleagues"))
         };
     }
