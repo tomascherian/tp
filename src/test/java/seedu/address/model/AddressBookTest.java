@@ -50,7 +50,7 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        Meeting meeting  = new MeetingBuilder().withName("Project Discussion")
+        Meeting meeting = new MeetingBuilder().withName("Project Discussion")
                 .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
                 .withParticipantsList("1 2 3")
                 .withTags("teammates").build();

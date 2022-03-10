@@ -9,7 +9,6 @@ import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.ParticipantsList;
 import seedu.address.model.meeting.StartTime;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -37,7 +36,7 @@ public class MeetingBuilder {
     public MeetingBuilder() {
         name = new MeetingName(DEFAULT_NAME);
         date = new MeetingDate(DEFAULT_DATE);
-        startTime= new StartTime(DEFAULT_START_TIME);
+        startTime = new StartTime(DEFAULT_START_TIME);
         endTime = new EndTime(DEFAULT_END_TIME);
         list = new ParticipantsList(DEFAULT_PARTICIPANTS_LIST);
         tags = new HashSet<>();
@@ -49,7 +48,7 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting meetingToCopy) {
         name = meetingToCopy.getName();
         date = meetingToCopy.getDate();
-        startTime= meetingToCopy.getStartTime();
+        startTime = meetingToCopy.getStartTime();
         endTime = meetingToCopy.getEndTime();
         list = meetingToCopy.getParticipantsList();
         tags = new HashSet<>(meetingToCopy.getTags());
