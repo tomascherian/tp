@@ -20,12 +20,16 @@ public class Meeting {
     private final MeetingDate date;
     private final StartTime startTime;
     private final EndTime endTime;
-    private final ParticipantsList list;
 
     // Data fields
+    private final ParticipantsList list;
     private final Set<Tag> tags = new HashSet<>();
 
-    public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime, ParticipantsList list, Set<Tag> tags) {
+    /**
+     * Every field must be present and not null.
+     */
+    public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime,
+                   ParticipantsList list, Set<Tag> tags) {
         requireAllNonNull(name, date, startTime, endTime, list, tags);
         this.name = name;
         this.date = date;
@@ -55,10 +59,18 @@ public class Meeting {
         return list;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns true if both meetings have the same name and same date.
+     * This defines a weaker notion of equality between two meetings.
+     */
     public boolean isSameMeeting(Meeting otherMeeting) {
         if (otherMeeting == this) {
             return true;
@@ -69,6 +81,10 @@ public class Meeting {
                 && otherMeeting.getDate().equals(getDate());
     }
 
+    /**
+     * Returns true if both meetings have the same identity and data fields.
+     * This defines a stronger notion of equality between two meetings.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
