@@ -20,7 +20,7 @@ import seedu.address.model.contact.Telegram;
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_TELEGRAM = " ";
+    private static final String INVALID_TELEGRAM = "#";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -84,7 +84,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TELEGRAM, VALID_TAGS);
         String expectedMessage = Telegram.MESSAGE_CONSTRAINTS;
@@ -92,7 +92,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
+    public void toModelType_nullTelegram_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);

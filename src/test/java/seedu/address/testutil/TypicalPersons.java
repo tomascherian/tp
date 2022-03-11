@@ -27,29 +27,29 @@ import seedu.address.model.contact.Contact;
 public class TypicalPersons {
 
     public static final Contact ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withTelegram("@alice02").withEmail("alice@example.com")
+            .withTelegram("@aliC_e02").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Contact BENSON = new PersonBuilder().withName("Benson Meier")
-            .withTelegram("@benson07")
+            .withTelegram("@bensoN_07")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Contact CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withTelegram("@carl_9").build();
+            .withEmail("heinz@example.com").withTelegram("@carL_9").build();
     public static final Contact DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTelegram("daniel_9").withTags("friends").build();
+            .withEmail("cornelia@example.com").withTelegram("@danieL_9").withTags("friends").build();
     public static final Contact ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withTelegram("@elle98").build();
+            .withEmail("werner@example.com").withTelegram("@ellE_98").build();
     public static final Contact FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withTelegram("@fiona_87").build();
+            .withEmail("lydia@example.com").withTelegram("@fionA_87").build();
     public static final Contact GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withTelegram("@georgebest").build();
+            .withEmail("anna@example.com").withTelegram("@george_besT01").build();
 
     // Manually added
     public static final Contact HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withTelegram("@hoona001").build();
+            .withEmail("stefan@example.com").withTelegram("@hoo_nA001").build();
     public static final Contact IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withTelegram("@ida").build();
+            .withEmail("hans@example.com").withTelegram("@i_0dA").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Contact AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
