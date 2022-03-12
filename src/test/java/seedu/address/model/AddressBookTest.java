@@ -65,7 +65,6 @@ public class AddressBookTest {
                 .withTags("teammates").build();
         Meeting editedMeeting = new MeetingBuilder(meeting).withDate("23/02/2022").build();
 
-        
         List<Meeting> newMeetings = Arrays.asList(meeting, editedMeeting);
         AddressBookStub newData = new AddressBookStub(newPersons, newMeetings);
 
@@ -109,9 +108,6 @@ public class AddressBookTest {
 
         private final ObservableList<Contact> persons = FXCollections.observableArrayList();
 
-        
-
-        
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Contact> persons, Collection<Meeting> meetings) {
