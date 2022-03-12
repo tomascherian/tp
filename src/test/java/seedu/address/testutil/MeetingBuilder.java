@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
