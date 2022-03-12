@@ -7,8 +7,9 @@ import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.ParticipantsList;
+import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,13 +22,12 @@ public class MeetingBuilder {
     public static final String DEFAULT_DATE = "01/02/2022";
     public static final String DEFAULT_START_TIME = "1800";
     public static final String DEFAULT_END_TIME = "1900";
-    public static final String DEFAULT_PARTICIPANTS_LIST = "1 2 3";
 
     private MeetingName name;
     private MeetingDate date;
     private StartTime startTime;
     private EndTime endTime;
-    private ParticipantsList list;
+    private Set<Participant> participants;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +38,7 @@ public class MeetingBuilder {
         date = new MeetingDate(DEFAULT_DATE);
         startTime = new StartTime(DEFAULT_START_TIME);
         endTime = new EndTime(DEFAULT_END_TIME);
-        list = new ParticipantsList(DEFAULT_PARTICIPANTS_LIST);
+        participants = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -50,8 +50,8 @@ public class MeetingBuilder {
         date = meetingToCopy.getDate();
         startTime = meetingToCopy.getStartTime();
         endTime = meetingToCopy.getEndTime();
-        list = meetingToCopy.getParticipantsList();
-        tags = new HashSet<>(meetingToCopy.getTags());
+        participants = new HashSet<Participant>(meetingToCopy.getParticipants());
+        tags = new HashSet<Tag>(meetingToCopy.getTags());
     }
 
     /**
@@ -89,8 +89,8 @@ public class MeetingBuilder {
     /**
      * Sets the {@code ParticipantsList} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withParticipantsList(String list) {
-        this.list = new ParticipantsList(list);
+    public MeetingBuilder withParticipants(Person... persons) {
+        this.participants = SampleDataUtil.getParticipantSet(persons);
         return this;
     }
 
@@ -103,6 +103,6 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(name, date, startTime, endTime, list, tags);
+        return new Meeting(name, date, startTime, endTime, participants, tags);
     }
 }
