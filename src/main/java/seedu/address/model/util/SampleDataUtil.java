@@ -21,22 +21,22 @@ public class SampleDataUtil {
     public static Contact[] getSamplePersons() {
         return new Contact[]{
             new Contact(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        new Telegram("@rak_01"),
+                        new Telegram("rak_01"),
                         getTagSet("friends")),
             new Contact(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        new Telegram("@bernie_01"),
+                        new Telegram("bernie_01"),
                         getTagSet("colleagues", "friends")),
             new Contact(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                        new Telegram("@chalro_01"),
+                        new Telegram("chalro_01"),
                         getTagSet("neighbours")),
             new Contact(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                        new Telegram("@david_01"),
+                        new Telegram("david_01"),
                         getTagSet("family")),
             new Contact(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                        new Telegram("@irfan_01"),
+                        new Telegram("irfan_01"),
                         getTagSet("classmates")),
             new Contact(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                        new Telegram("@roy_01"),
+                        new Telegram("roy_01"),
                         getTagSet("colleagues"))
         };
     }
