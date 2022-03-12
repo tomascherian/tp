@@ -49,6 +49,9 @@ public class JsonAdaptedMeeting {
         if (!Objects.isNull(persons)) {
             this.persons.addAll(persons);
         }
+        if (!Objects.isNull(tags)) {
+            this.tags.addAll(tags);
+        }
     }
 
     /**

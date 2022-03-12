@@ -47,7 +47,7 @@ public class UniqueContactListTest {
         uniquePersonList.add(ALICE);
         Contact editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(uniquePersonList.contains(editedAlice));
+        assertTrue(uniquePersonList.contains(editedAlice));
     }
 
     @Test

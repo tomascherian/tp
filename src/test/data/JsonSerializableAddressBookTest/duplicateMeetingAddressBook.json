@@ -5,13 +5,14 @@
     "email": "alice@example.com",
     "telegram": "al_02",
     "tagged": [ "friends" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "telegram": "al_99"
   } ],
   "meetings": [ {
+    "name": "Valid Meeting",
+    "date" : "12/03/2022",
+    "startTime" : "1600",
+    "endTime" : "1700",
+    "persons" : [ ]
+  }, {
     "name": "Valid Meeting",
     "date" : "12/03/2022",
     "startTime" : "1600",

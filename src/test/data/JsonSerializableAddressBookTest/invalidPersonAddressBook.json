@@ -3,6 +3,14 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "valid_Tele"
+  } ],
+  "meetings": [ {
+    "name": "Valid Meeting",
+    "date" : "12/03/2022",
+    "startTime" : "1600",
+    "endTime" : "1700",
+    "persons" : [ ],
+    "tags" : [ ]
   } ]
 }

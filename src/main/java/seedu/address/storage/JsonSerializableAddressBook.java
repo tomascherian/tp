@@ -27,7 +27,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and meetings.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyAddressBook} into this class for Json use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
@@ -65,9 +65,9 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
             Meeting meeting = jsonAdaptedMeeting.toModelType();
             if (addressBook.hasMeeting(meeting)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }
-            addressBook.hasMeeting(meeting);
+            addressBook.addMeeting(meeting);
         }
 
         return addressBook;
