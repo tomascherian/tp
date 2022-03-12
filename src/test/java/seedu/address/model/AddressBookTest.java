@@ -3,8 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.contact.Contact;
+//import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -46,12 +48,23 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        List<Contact> newPersons = Arrays.asList(ALICE, editedAlice);
+
+
+        Meeting meeting = new MeetingBuilder().withName("Project Discussion")
+                .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
+                .withParticipants(ALICE)
+                .withTags("teammates").build();
+        Meeting editedMeeting = new MeetingBuilder(meeting).withDate("23/02/2022").build();
+
+        List<Meeting> newMeetings = Arrays.asList(meeting, editedMeeting);
+        AddressBookStub newData = new AddressBookStub(newPersons, newMeetings);
+
+
+        //assertThrows(DuplicateContactException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -73,9 +86,9 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Contact editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertFalse(addressBook.hasPerson(editedAlice));
     }
 
     @Test
@@ -87,16 +100,25 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        private final ObservableList<Contact> persons = FXCollections.observableArrayList();
+
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+
+        AddressBookStub(Collection<Contact> persons, Collection<Meeting> meetings) {
+
             this.persons.setAll(persons);
+            this.meetings.setAll(meetings);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Contact> getPersonList() {
             return persons;
         }
-    }
 
+        @Override
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
+        }
+    }
 }
