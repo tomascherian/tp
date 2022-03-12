@@ -56,7 +56,7 @@ public class AddressBookTest {
 
         Meeting meeting = new MeetingBuilder().withName("Project Discussion")
                 .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
-                .withParticipantsList("1 2 3")
+                .withParticipants(ALICE)
                 .withTags("teammates").build();
         Meeting editedMeeting = new MeetingBuilder(meeting).withDate("23/02/2022").build();
 
