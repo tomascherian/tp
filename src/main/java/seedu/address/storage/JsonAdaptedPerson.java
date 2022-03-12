@@ -97,7 +97,7 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                    Telegram.class.getSimpleName()));
         }
         if (!Telegram.isValidId(telegram)) {
