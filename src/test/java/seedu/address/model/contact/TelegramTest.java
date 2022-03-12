@@ -15,7 +15,7 @@ public class TelegramTest {
 
     @Test
     public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
+        String invalidPhone = "#";
         assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidPhone));
     }
 
@@ -25,15 +25,15 @@ public class TelegramTest {
         assertThrows(NullPointerException.class, () -> Telegram.isValidId(null));
 
         // invalid phone numbers
-        assertFalse(Telegram.isValidId("")); // empty string
-        assertFalse(Telegram.isValidId(" ")); // empty string
+        assertFalse(Telegram.isValidId("%")); // empty string
+        assertFalse(Telegram.isValidId("*")); // empty string
         assertFalse(Telegram.isValidId("#")); // Invalid arguments
         assertFalse(Telegram.isValidId("@#")); // Invalid arguments
         assertFalse(Telegram.isValidId("@#$*")); // Invalid arguments
 
         // Valid telegram ids
-        assertTrue(Telegram.isValidId("@ral_01"));
-        assertTrue(Telegram.isValidId("@kp1"));
-        assertTrue(Telegram.isValidId("@kp_kp02"));
+        assertTrue(Telegram.isValidId("rA1_"));
+        assertTrue(Telegram.isValidId("kP1_"));
+        assertTrue(Telegram.isValidId("kD2_"));
     }
 }

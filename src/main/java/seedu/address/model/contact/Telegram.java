@@ -14,7 +14,7 @@ public class Telegram {
     public static final String MESSAGE_CONSTRAINTS =
             "Message should contain alphanumeric characters and underscore, and it should not be empty";
 
-    public static final String VALIDATION_REGEX = "@" + "[a-zA-Z0-9_]";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]*$";
     public final String telegramId;
 
     /**
