@@ -93,9 +93,14 @@
     -fx-background-radius: 10px;
 }
 
-.list-box {
+.left-list-box {
      -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-padding: 10 10 10 10;
+     -fx-padding: 0 10 0 0;
+}
+
+.right-list-box {
+     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-padding: 0 0 0 10;
 }
 
 .list-view {
@@ -169,6 +174,18 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+.result-display .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.result-display .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.result-display .scroll-pane .content {
+    -fx-background-color: transparent;
 }
 
 .status-bar .label {
@@ -348,8 +365,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 #tags {

@@ -48,7 +48,7 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(meeting.getName().value);
+        name.setText(meeting.getName().meetingName);
         participants.getChildren().add(new Label(meeting.getParticipantsList().value));
         date.setText(meeting.getDate().value);
         startToEndTime.setText(meeting.getStartTime().value + " - " + meeting.getEndTime().value);

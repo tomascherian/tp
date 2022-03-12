@@ -18,7 +18,7 @@ public class MeetingListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(MeetingListPanel.class);
 
     @FXML
-    private ListView<Meeting> personListView;
+    private ListView<Meeting> meetingListView;
 
     /**
      * Creates a {@code MeetingListPanel} with the given {@code ObservableList}.
