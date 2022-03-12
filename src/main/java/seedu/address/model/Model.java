@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
+
 
 
 /**
@@ -19,7 +19,7 @@ public interface Model {
     Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
 
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
 
@@ -97,7 +97,7 @@ public interface Model {
 
     void sortContactList();
 
-    void updateFilteredPersonList(Predicate<Person> predicate);
+
 
     /**
      * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.

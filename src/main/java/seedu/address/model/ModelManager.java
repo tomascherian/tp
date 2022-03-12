@@ -29,7 +29,7 @@ public class ModelManager implements Model {
 
     private final FilteredList<Contact> filteredPersons;
 
-    
+
     private final FilteredList<Meeting> filteredMeetings;
 
     /**

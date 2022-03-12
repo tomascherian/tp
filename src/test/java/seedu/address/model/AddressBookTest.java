@@ -57,7 +57,7 @@ public class AddressBookTest {
                 .build();
 
         List<Contact> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+
 
         Meeting meeting = new MeetingBuilder().withName("Project Discussion")
                 .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
