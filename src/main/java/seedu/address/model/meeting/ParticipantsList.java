@@ -8,14 +8,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidParticipantsList(String)}
  */
 public class ParticipantsList {
-    public static final String MESSAGE_CONSTRAINTS = "Participants list should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Participants list can only take in numerical values";
 
     public static final String VALIDATION_REGEX = "[\\d+ ]+";
 
     public final String value;
 
     /**
-     * Constructs an {@code Pa}.
+     * Constructs an {@code ParticipantsList}.
      *
      * @param list A valid list.
      */
