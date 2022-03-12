@@ -18,6 +18,6 @@ For the detailed documentation of this project, see the **[AddresSoc Product Web
 
 ### Acknowledgment
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org), 
-as **part of the se-education.org** initiative. 
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org),
+as **part of the se-education.org** initiative.
 If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

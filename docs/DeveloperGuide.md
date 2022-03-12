@@ -263,7 +263,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * are reasonably comfortable using CLI apps
 
 **Value proposition**: AddresSoC helps the student to
-* keep track of the contacts of peers in the student's network, 
+* keep track of the contacts of peers in the student's network,
 * organize the contacts for easier lookup, and
 * manage the student's social and academic life by keeping track of their schedule.
 
@@ -354,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddresSoc shows a list of contacts
 3.  User requests to delete a specific contact in the list
 4.  AddresSoc deletes the contact
-   
+
     Use case ends.
 
 **Extensions**
@@ -403,7 +403,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddresSoc shows a list of meetings
 3.  User requests to add a meeting in the list
 4.  AddresSoc deletes the person
-   
+
     Use case ends.
 
 **Extensions**

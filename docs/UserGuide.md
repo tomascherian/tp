@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**. 
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you're a student who can type fast, AddresSoC can get your contact and schedule management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -30,7 +30,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`add contact`**` n/John Doe e/johnd@u.nus.edu th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
-   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs 
+   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
    * **`delete`**`contact 3` : Deletes the 3rd contact shown in the current contact list.
 
@@ -198,7 +198,7 @@ any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Advanced users are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the 
+Advanced users are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the
 folder containing the `addressoc.jar` file to find a folder called `data`. Access the folder and edit the `addressoc.json` file found inside.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
