@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**. 
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**.
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you're a student who can type fast, AddresSoC can get your contact and schedule management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -30,7 +30,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`add contact`**` n/John Doe e/johnd@u.nus.edu th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
-   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs 
+   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
    * **`delete`**`contact 3` : Deletes the 3rd contact shown in the current contact list.
 
@@ -54,7 +54,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`, <br>
   and `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-  
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
@@ -193,12 +193,12 @@ Format: `exit`
 
 ### Saving the data
 
-AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after 
+AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after
 any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-Advanced users are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the 
+Advanced users are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the
 folder containing the `addressoc.jar` file to find a folder called `data`. Access the folder and edit the `addressoc.json` file found inside.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -218,7 +218,7 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` 
+**Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate`
 **Delete contact** | `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
 **Clear** | `clear`
 **Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`

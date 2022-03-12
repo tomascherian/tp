@@ -15,7 +15,7 @@ import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.EndTime
 import seedu.address.model.meeting.ParticipantsList;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonAdaptedPerson;
 
 /**
@@ -56,8 +56,7 @@ public class JsonAdaptedMeeting {
         date = source.getDate().value;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
-        persons.addAll(source.getParticipantsList().getPersons()
-                .stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getParticipantsList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -70,9 +69,9 @@ public class JsonAdaptedMeeting {
         final MeetingDate modelDate = toModelDate(date);
         final StartTime modelStartTime = toModelStartTime(startTime);
         final EndTime modelEndTime = toModelEndTime(endTime);
-        final ParticipantsList modelPersons = toModelPersons(persons);
+        final Set<Participant> modelParticipants = toModelParticipants(persons);
 
-        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelPersons);
+        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelParticipants);
     }
 
     private MeetingName toModelName(String name) throws IllegalValueException {
@@ -119,11 +118,11 @@ public class JsonAdaptedMeeting {
         return new EndTime(time);
     }
 
-    private ParticipantsList toModelPersons(List<JsonAdaptedPerson> persons) throws IllegalValueException {
-        final List<Person> meetingPersons = new ArrayList<>();
+    private Set<Participant> toModelParticipants(List<JsonAdaptedPerson> persons) throws IllegalValueException {
+        final List<Contact> meetingPersons = new ArrayList<>();
         for (JsonAdaptedPerson jsonPerson : persons) {
             meetingPersons.add(jsonPerson.toModelType());
         }
-        return new ParticipantsList(meetingPersons);
+        return new meetingPersons.stream().collect(Collectors.toSet());
     }
 }
