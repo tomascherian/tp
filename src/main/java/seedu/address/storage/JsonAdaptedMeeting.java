@@ -1,22 +1,24 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.meeting.MeetingDate;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.StartTime;
-import seedu.address.model.meeting.EndTime
-import seedu.address.model.meeting.ParticipantsList;
 import seedu.address.model.contact.Contact;
-import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Participant;
+import seedu.address.model.meeting.StartTime;
+import seedu.address.model.tag.Tag;
 
 /**
  * Json-friendly version of {@link Meeting}.
@@ -30,6 +32,7 @@ public class JsonAdaptedMeeting {
     private final String startTime;
     private final String endTime;
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
@@ -37,7 +40,8 @@ public class JsonAdaptedMeeting {
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("name") String name, @JsonProperty("date") String date,
                               @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
-                              @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                              @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -51,12 +55,13 @@ public class JsonAdaptedMeeting {
      * Converts a given {@code Meeting} into an object of this class for Json use.
      */
     public JsonAdaptedMeeting(Meeting source) {
-        // to be replaced with actual implementation of Meeting
         name = source.getName().meetingName;
         date = source.getDate().value;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
-        persons.addAll(source.getParticipantsList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getParticipants().stream().map(participant -> participant.contact)
+                .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
@@ -70,8 +75,9 @@ public class JsonAdaptedMeeting {
         final StartTime modelStartTime = toModelStartTime(startTime);
         final EndTime modelEndTime = toModelEndTime(endTime);
         final Set<Participant> modelParticipants = toModelParticipants(persons);
+        final Set<Tag> modelTags = toModelTags(tags);
 
-        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelParticipants);
+        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelParticipants, modelTags);
     }
 
     private MeetingName toModelName(String name) throws IllegalValueException {
@@ -123,6 +129,14 @@ public class JsonAdaptedMeeting {
         for (JsonAdaptedPerson jsonPerson : persons) {
             meetingPersons.add(jsonPerson.toModelType());
         }
-        return new meetingPersons.stream().collect(Collectors.toSet());
+        return meetingPersons.stream().map(Participant::new).collect(Collectors.toSet());
+    }
+
+    private Set<Tag> toModelTags(List<JsonAdaptedTag> tags) throws IllegalValueException {
+        final List<Tag> meetingTags = new ArrayList<>();
+        for (JsonAdaptedTag jsonTag : tags) {
+            meetingTags.add(jsonTag.toModelType());
+        }
+        return new HashSet<>(meetingTags);
     }
 }
