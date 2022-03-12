@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,8 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.NameComparator;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
+
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +26,10 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+
+    private final FilteredList<Contact> filteredPersons;
+
+
     private final FilteredList<Meeting> filteredMeetings;
 
     /**
@@ -91,24 +98,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Contact person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Contact target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
+    public void addPerson(Contact person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
+    public void setPerson(Contact target, Contact editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
@@ -145,12 +152,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Contact> getFilteredPersonList() {
         return filteredPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Contact> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -173,6 +180,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortContactList() {
+        Collections.sort(filteredPersons, new NameComparator());
+
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -191,5 +204,6 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredMeetings.equals(other.filteredMeetings);
     }
+
 
 }

@@ -9,7 +9,7 @@ import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -89,8 +89,8 @@ public class MeetingBuilder {
     /**
      * Sets the {@code ParticipantsList} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withParticipants(Person... persons) {
-        this.participants = SampleDataUtil.getParticipantSet(persons);
+    public MeetingBuilder withParticipants(Contact ... contacts) {
+        this.participants = SampleDataUtil.getParticipantSet(contacts);
         return this;
     }
 

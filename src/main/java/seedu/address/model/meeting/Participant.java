@@ -2,39 +2,39 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
  * Represents the Meeting participants in the address book.
  */
 public class Participant {
 
-    public final Person person;
+    public final Contact contact;
 
     /**
      * Constructs an {@code ParticipantsList}.
      *
-     * @param person A valid person.
+     * @param contact A valid contact.
      */
-    public Participant(Person person) {
-        requireNonNull(person);
-        this.person = person;
+    public Participant(Contact contact) {
+        requireNonNull(contact);
+        this.contact = contact;
     }
 
     @Override
     public String toString() {
-        return person.toString();
+        return contact.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Participant // instanceof handles nulls
-                && person.equals(((Participant) other).person)); // state check
+                && contact.equals(((Participant) other).contact)); // state check
     }
 
     @Override
     public int hashCode() {
-        return person.hashCode();
+        return contact.hashCode();
     }
 }
