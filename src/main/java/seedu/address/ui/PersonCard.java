@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Contact}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -29,28 +29,25 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label nameAndTelegram;
     @FXML
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label telegram;
     @FXML
     private Label email;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Contact} and index to display.
      */
     public PersonCard(Contact person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        nameAndTelegram.setText(person.getName().fullName + " - @" + person.getTelegram().telegramId);
         phone.setText(person.getPhone().value);
-        telegram.setText(person.getTelegram().telegramId);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

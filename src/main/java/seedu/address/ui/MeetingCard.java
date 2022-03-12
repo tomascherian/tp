@@ -49,12 +49,15 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         name.setText(meeting.getName().meetingName);
-        participants.getChildren().add(new Label(meeting.getParticipantsList().value));
         date.setText(meeting.getDate().value);
         startToEndTime.setText(meeting.getStartTime().value + " - " + meeting.getEndTime().value);
         meeting.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        meeting.getParticipants().stream()
+                .sorted(Comparator.comparing(participant -> participant.contact.getName().fullName))
+                .forEach(participant -> participants.getChildren().add(
+                        new Label(participant.contact.getName().fullName)));
     }
 
     @Override
