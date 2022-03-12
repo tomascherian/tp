@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -48,8 +50,15 @@ public class AddressBookTest {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
+        Meeting meeting = new MeetingBuilder().withName("Project Discussion")
+                .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
+                .withParticipantsList("1 2 3")
+                .withTags("teammates").build();
+        Meeting editedMeeting = new MeetingBuilder(meeting).withDate("23/02/2022").build();
+
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Meeting> newMeetings = Arrays.asList(meeting, editedMeeting);
+        AddressBookStub newData = new AddressBookStub(newPersons, newMeetings);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -88,15 +97,21 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings) {
             this.persons.setAll(persons);
+            this.meetings.setAll(meetings);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-    }
 
+        @Override
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
+        }
+    }
 }
