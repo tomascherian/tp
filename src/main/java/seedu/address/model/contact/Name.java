@@ -1,7 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 
 /**
  * Represents a Person's name in the address book.
@@ -56,4 +57,18 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /** Compares based on name
+     *
+     * @param name
+     * @return
+     */
+    public int compareTo(Name name) {
+        if (Integer.parseInt(this.fullName) == Integer.parseInt(name.fullName)) {
+            return 0;
+        } else if (Integer.parseInt(this.fullName) > Integer.parseInt(name.fullName)) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

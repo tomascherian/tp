@@ -22,20 +22,20 @@ public class Meeting {
     private final EndTime endTime;
 
     // Data fields
-    private final ParticipantsList list;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Participant> participants = new HashSet<Participant>();
+    private final Set<Tag> tags = new HashSet<Tag>();
 
     /**
      * Every field must be present and not null.
      */
     public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime,
-                   ParticipantsList list, Set<Tag> tags) {
-        requireAllNonNull(name, date, startTime, endTime, list, tags);
+                   Set<Participant> participants, Set<Tag> tags) {
+        requireAllNonNull(name, date, startTime, endTime, participants, tags);
         this.name = name;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.list = list;
+        this.participants.addAll(participants);
         this.tags.addAll(tags);
     }
 
@@ -55,8 +55,8 @@ public class Meeting {
         return endTime;
     }
 
-    public ParticipantsList getParticipantsList() {
-        return list;
+    public Set<Participant> getParticipants() {
+        return Collections.unmodifiableSet(participants);
     }
 
     /**
@@ -100,14 +100,14 @@ public class Meeting {
                 && otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getStartTime().equals(getStartTime())
                 && otherMeeting.getEndTime().equals(getEndTime())
-                && otherMeeting.getParticipantsList().equals(getParticipantsList())
+                && otherMeeting.getParticipants().equals(getParticipants())
                 && otherMeeting.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, startTime, endTime, list, tags);
+        return Objects.hash(name, date, startTime, endTime, participants, tags);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Meeting {
                 .append("; To: ")
                 .append(getEndTime())
                 .append("; Participants: ")
-                .append(getParticipantsList());
+                .append(getParticipants());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
