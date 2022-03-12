@@ -9,11 +9,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.Name;
-import seedu.address.model.meeting.Time;
-import seedu.address.model.meeting.PersonList;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.StartTime;
+import seedu.address.model.meeting.EndTime
+import seedu.address.model.meeting.ParticipantsList;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAdaptedPerson;
 
@@ -51,11 +52,11 @@ public class JsonAdaptedMeeting {
      */
     public JsonAdaptedMeeting(Meeting source) {
         // to be replaced with actual implementation of Meeting
-        name = source.getName().name;
+        name = source.getName().meetingName;
         date = source.getDate().value;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
-        persons.addAll(source.getPersonList().getPersons()
+        persons.addAll(source.getParticipantsList().getPersons()
                 .stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
@@ -65,50 +66,64 @@ public class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person
      */
     public Meeting toModelType() throws IllegalValueException {
-        final Name modelName = toModelName(name);
-        final Date modelDate = toModelDate(date);
-        final Time modelStartTime = toModelTime(startTime);
-        final Time modelEndTime = toModelTime(endTime);
-        final PersonList modelPersons = toModelPersons(persons);
+        final MeetingName modelName = toModelName(name);
+        final MeetingDate modelDate = toModelDate(date);
+        final StartTime modelStartTime = toModelStartTime(startTime);
+        final EndTime modelEndTime = toModelEndTime(endTime);
+        final ParticipantsList modelPersons = toModelPersons(persons);
 
         return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelPersons);
     }
 
-    private Name toModelName(String name) throws IllegalValueException {
+    private MeetingName toModelName(String name) throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!MeetingName.isValidName(name)) {
+            throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(name);
+        return new MeetingName(name);
     }
 
-    private Date toModelDate(String date) throws IllegalValueException {
+    private MeetingDate toModelDate(String date) throws IllegalValueException {
         if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeetingDate.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        if (!MeetingDate.isValidDate(date)) {
+            throw new IllegalValueException(MeetingDate.MESSAGE_CONSTRAINTS);
         }
-        return new Date(date);
+        return new MeetingDate(date);
     }
 
-    private Time toModelTime(String time) throws IllegalValueException {
+    private StartTime toModelStartTime(String time) throws IllegalValueException {
         if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StartTime.class.getSimpleName()));
         }
-        if (!Time.isValidTime(startTime)) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
         }
-        return new Time(time);
+        return new StartTime(time);
     }
 
-    private PersonList toModelPersons(List<JsonAdaptedPerson> persons) throws IllegalValueException {
+    private EndTime toModelEndTime(String time) throws IllegalValueException {
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndTime.class.getSimpleName()));
+        }
+        if (!EndTime.isValidEndTime(endTime)) {
+            throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);
+        }
+        return new EndTime(time);
+    }
+
+    private ParticipantsList toModelPersons(List<JsonAdaptedPerson> persons) throws IllegalValueException {
         final List<Person> meetingPersons = new ArrayList<>();
         for (JsonAdaptedPerson jsonPerson : persons) {
             meetingPersons.add(jsonPerson.toModelType());
         }
-        return new PersonList(meetingPersons);
+        return new ParticipantsList(meetingPersons);
     }
 }
