@@ -11,6 +11,7 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.meeting.Participant;
 import seedu.address.model.tag.Tag;
 
 
@@ -55,6 +56,12 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    public static Set<Participant> getParticipantSet(Contact... persons) {
+        return Arrays.stream(persons)
+                .map(Participant::new)
                 .collect(Collectors.toSet());
     }
 
