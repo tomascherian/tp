@@ -123,7 +123,7 @@ public class Meeting {
 
         Set<Participant> participants = getParticipants();
         if (!participants.isEmpty()) {
-            builder.append("; Partcipants: ");
+            builder.append("; Participants: ");
             participants.forEach(builder::append);
         }
 
