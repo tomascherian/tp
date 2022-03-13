@@ -26,14 +26,14 @@ public class MeetingName {
      */
     public MeetingName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidMeetingName(name), MESSAGE_CONSTRAINTS);
         meetingName = name;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidMeetingName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
