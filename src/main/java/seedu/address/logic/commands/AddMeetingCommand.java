@@ -39,7 +39,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START TIME "
             + PREFIX_END_TIME + "END TIME "
-            + "[" + PREFIX_PARTICIPANTS + "PARTICIPANTS] "
+            + "[" + PREFIX_PARTICIPANTS + "PARTICIPANTS]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEETING_NAME + "2103 project "

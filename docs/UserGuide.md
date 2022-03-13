@@ -121,7 +121,7 @@ Format: `clear`
 
 Adds a meeting to the meeting list.
 
-Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX] [t/TAGS]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
 
 * Schedules a meeting with a specified date, start time and end time to the address book.
 * Optionally, the people involved in the meeting can also be specified.
@@ -129,7 +129,7 @@ Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX] [t
 * `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
 
 Examples:
-* `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
+* `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
   Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
 * `addm n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
   Adds meeting "JAVA Workshop" with given date and time.
@@ -222,7 +222,7 @@ Action | Format, Examples
 **Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate`
 **Delete contact** | `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
 **Clear** | `clear`
-**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
+**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
