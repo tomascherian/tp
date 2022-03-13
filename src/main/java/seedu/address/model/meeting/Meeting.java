@@ -119,9 +119,13 @@ public class Meeting {
                 .append("; From: ")
                 .append(getStartTime())
                 .append("; To: ")
-                .append(getEndTime())
-                .append("; Participants: ")
-                .append(getParticipants());
+                .append(getEndTime());
+
+        Set<Participant> participants = getParticipants();
+        if (!participants.isEmpty()) {
+            builder.append("; Partcipants: ");
+            participants.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
