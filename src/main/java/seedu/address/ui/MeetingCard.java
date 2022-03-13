@@ -42,7 +42,7 @@ public class MeetingCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code Meeting} with the given {@code Meeting} and index to display.
      */
     public MeetingCard(Meeting meeting, int displayedIndex) {
         super(FXML);
