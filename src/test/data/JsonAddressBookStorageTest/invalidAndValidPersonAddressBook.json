@@ -3,11 +3,18 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "telegram": "al_02"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "telegram": "al_02"
+  } ],
+  "meetings": [ {
+    "name": "Valid Meeting",
+    "date" : "12/03/2022",
+    "startTime" : "1600",
+    "endTime" : "1700",
+    "participants" : [ ]
   } ]
 }

@@ -3,6 +3,14 @@
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "telegram": "al_02"
+  } ],
+  "meetings": [ {
+    "name": "Valid Meeting",
+    "date" : "12/03/2022",
+    "startTime" : "1600",
+    "endTime" : "1700",
+    "participants" : [ ],
+    "tags" : [ ]
   } ]
 }
