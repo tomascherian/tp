@@ -31,7 +31,7 @@ public class JsonAdaptedMeeting {
     private final String date;
     private final String startTime;
     private final String endTime;
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPerson> participants = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -40,14 +40,14 @@ public class JsonAdaptedMeeting {
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("name") String name, @JsonProperty("date") String date,
                               @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
-                              @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                              @JsonProperty("participants") List<JsonAdaptedPerson> participants,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        if (!Objects.isNull(persons)) {
-            this.persons.addAll(persons);
+        if (!Objects.isNull(participants)) {
+            this.participants.addAll(participants);
         }
         if (!Objects.isNull(tags)) {
             this.tags.addAll(tags);
@@ -62,7 +62,7 @@ public class JsonAdaptedMeeting {
         date = source.getDate().value;
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
-        persons.addAll(source.getParticipants().stream().map(participant -> participant.contact)
+        participants.addAll(source.getParticipants().stream().map(participant -> participant.contact)
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
@@ -77,7 +77,7 @@ public class JsonAdaptedMeeting {
         final MeetingDate modelDate = toModelDate(date);
         final StartTime modelStartTime = toModelStartTime(startTime);
         final EndTime modelEndTime = toModelEndTime(endTime);
-        final Set<Participant> modelParticipants = toModelParticipants(persons);
+        final Set<Participant> modelParticipants = toModelParticipants(participants);
         final Set<Tag> modelTags = toModelTags(tags);
 
         return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelParticipants, modelTags);
@@ -127,9 +127,9 @@ public class JsonAdaptedMeeting {
         return new EndTime(time);
     }
 
-    private Set<Participant> toModelParticipants(List<JsonAdaptedPerson> persons) throws IllegalValueException {
+    private Set<Participant> toModelParticipants(List<JsonAdaptedPerson> participants) throws IllegalValueException {
         final List<Contact> meetingPersons = new ArrayList<>();
-        for (JsonAdaptedPerson jsonPerson : persons) {
+        for (JsonAdaptedPerson jsonPerson : participants) {
             meetingPersons.add(jsonPerson.toModelType());
         }
         return meetingPersons.stream().map(Participant::new).collect(Collectors.toSet());

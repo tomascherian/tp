@@ -47,7 +47,7 @@
   "date" : "12/03/2022",
   "startTime" : "1600",
   "endTime" : "1700",
-  "persons" : [ {
+  "participants" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -66,7 +66,7 @@
   "date" : "15/03/2022",
   "startTime" : "1900",
   "endTime" : "2000",
-  "persons" : [ {
+  "participants" : [ {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -85,7 +85,7 @@
   "date" : "20/03/2022",
   "startTime" : "1600",
   "endTime" : "1700",
-  "persons" : [ {
+  "participants" : [ {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -104,14 +104,14 @@
   "date" : "22/03/2022",
   "startTime" : "1700",
   "endTime" : "1800",
-  "persons" : [ ],
+  "participants" : [ ],
   "tags" : [ ]
 }, {
   "name" : "Computing club meeting",
   "date" : "30/03/2022",
   "startTime" : "1600",
   "endTime" : "1700",
-  "persons" : [ {
+  "participants" : [ {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",

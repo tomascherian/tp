@@ -11,12 +11,12 @@
     "date" : "12/03/2022",
     "startTime" : "1600",
     "endTime" : "1700",
-    "persons" : [ ]
+    "participants" : [ ]
   }, {
     "name": "Valid Meeting",
     "date" : "12/03/2022",
     "startTime" : "1600",
     "endTime" : "1700",
-    "persons" : [ ]
+    "participants" : [ ]
   } ]
 }
