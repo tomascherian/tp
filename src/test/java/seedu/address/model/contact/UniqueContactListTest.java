@@ -22,7 +22,7 @@ import seedu.address.testutil.PersonBuilder;
 
 
 
-public class UniquePersonListTest {
+public class UniqueContactListTest {
 
     private final UniquePersonList uniquePersonList = new UniquePersonList();
 
@@ -47,7 +47,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         Contact editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(uniquePersonList.contains(editedAlice));
+        assertTrue(uniquePersonList.contains(editedAlice));
     }
 
     @Test
