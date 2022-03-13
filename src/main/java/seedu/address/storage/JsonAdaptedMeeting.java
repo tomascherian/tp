@@ -88,7 +88,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MeetingName.class.getSimpleName()));
         }
-        if (!MeetingName.isValidName(name)) {
+        if (!MeetingName.isValidMeetingName(name)) {
             throw new IllegalValueException(MeetingName.MESSAGE_CONSTRAINTS);
         }
         return new MeetingName(name);
