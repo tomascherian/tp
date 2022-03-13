@@ -1,24 +1,24 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import relevant model classes
-//import seedu.address.model.person.Address;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.Phone;
-//import seedu.address.model.tag.Tag;
+import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.StartTime;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddMeetingCommand object
@@ -33,7 +33,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
-                        PREFIX_CONTACT);
+                        PREFIX_PARTICIPANTS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -41,15 +41,14 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         // UPDATE WITH MODEL'S CLASSES
-        MeetingName meetingName = ParserUtil.parseName(argMultimap.getValue(PREFIX_MEETING_NAME).get());
-        Date date = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_DATE).get());
-        Time startTime = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_START_TIME).get());
-        Time endTime = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_END_TIME).get());
-        Set<Contact> contactList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONTACT));
+        MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_MEETING_NAME).get());
+        MeetingDate date = ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_DATE).get());
+        StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_END_TIME).get());
+        Set<Index> participantsIndex = ParserUtil.parseParticipants(argMultimap.getAllValues(PREFIX_PARTICIPANTS));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Meeting meeting = new Meeting(meetingName, date, startTime, endTime, contactList);
-
-        return new AddMeetingCommand(meeting);
+        return new AddMeetingCommand(meetingName, date, startTime, endTime, participantsIndex, tagList);
     }
 
     /**
