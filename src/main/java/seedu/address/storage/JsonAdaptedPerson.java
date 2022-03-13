@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Person} into this class for Json use.
      */
     public JsonAdaptedPerson(Contact source) {
         name = source.getName().fullName;
@@ -62,7 +62,7 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Json-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
@@ -96,10 +96,10 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        //   if (telegram == null) {
-        //     throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-        //           Telegram.class.getSimpleName()));
-        //}
+        if (telegram == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                   Telegram.class.getSimpleName()));
+        }
         if (!Telegram.isValidId(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }

@@ -11,7 +11,12 @@ import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.tag.Tag;
 
 
@@ -42,10 +47,38 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        Contact[] samplePersons = getSamplePersons();
+
+        return new Meeting[] {
+            new Meeting(new MeetingName("CS2103T project"), new MeetingDate("12/03/2022"),
+                        new StartTime("1600"), new EndTime("1700"),
+                        getParticipantSet(samplePersons[0], samplePersons[1]), getTagSet("v1point2")),
+            new Meeting(new MeetingName("CS2101 project"), new MeetingDate("15/03/2022"),
+                        new StartTime("1900"), new EndTime("2000"),
+                        getParticipantSet(samplePersons[0], samplePersons[1]), getTagSet("OP2")),
+            new Meeting(new MeetingName("NUSSU meeting"), new MeetingDate("20/03/2022"),
+                        new StartTime("1600"), new EndTime("1700"),
+                        getParticipantSet(samplePersons[3], samplePersons[1]), getTagSet("important")),
+            new Meeting(new MeetingName("Dance exco meeting"), new MeetingDate("22/03/2022"),
+                        new StartTime("1700"), new EndTime("1800"),
+                        getParticipantSet(samplePersons[0], samplePersons[3]), getTagSet()),
+            new Meeting(new MeetingName("Computing club meeting"), new MeetingDate("30/03/2022"),
+                        new StartTime("1600"), new EndTime("1700"),
+                        getParticipantSet(samplePersons[4], samplePersons[2]), getTagSet()),
+
+
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Contact samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleAb.addMeeting(sampleMeeting);
         }
         return sampleAb;
     }
@@ -59,10 +92,12 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a participant set containing the list of Persons given.
+     */
     public static Set<Participant> getParticipantSet(Contact... persons) {
         return Arrays.stream(persons)
                 .map(Participant::new)
                 .collect(Collectors.toSet());
     }
-
 }
