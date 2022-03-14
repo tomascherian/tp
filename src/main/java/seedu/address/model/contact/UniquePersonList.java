@@ -100,6 +100,11 @@ public class UniquePersonList implements Iterable<Contact> {
         internalList.setAll(persons);
     }
 
+    public void sortContactList() {
+        internalList.sort(new NameComparator());
+    }
+
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

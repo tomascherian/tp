@@ -151,7 +151,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void sortContactList() {
+        public void sortContact() {
             throw new AssertionError("This method should not be called.");
         }
 

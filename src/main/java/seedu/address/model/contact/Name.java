@@ -57,18 +57,5 @@ public class Name {
         return fullName.hashCode();
     }
 
-    /** Compares based on name
-     *
-     * @param name
-     * @return
-     */
-    public int compareTo(Name name) {
-        if (Integer.parseInt(this.fullName) == Integer.parseInt(name.fullName)) {
-            return 0;
-        } else if (Integer.parseInt(this.fullName) > Integer.parseInt(name.fullName)) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
+
 }
