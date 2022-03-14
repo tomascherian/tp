@@ -1,0 +1,16 @@
+{
+  "persons": [ {
+    "name": "Valid Person",
+    "phone": "9482424",
+    "email": "validemail@email.com",
+    "telegram": "valid_Tele"
+  } ],
+  "meetings": [ {
+    "name": "Invalid Meeting with wrong date format",
+    "date" : "12-03-2022",
+    "startTime" : "1600",
+    "endTime" : "1700",
+    "participants" : [ ],
+    "tags" : [ ]
+  } ]
+}

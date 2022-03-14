@@ -14,14 +14,13 @@ public interface ReadOnlyAddressBook {
     /**
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
-*/
-
+    */
     ObservableList<Contact> getPersonList();
 
     /**
      * Returns an unmodifiable view of the meetings list.
      * This list will not contain any duplicate meetings.
-*/
+    */
     ObservableList<Meeting> getMeetingList();
 
 }

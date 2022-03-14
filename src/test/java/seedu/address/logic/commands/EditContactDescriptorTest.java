@@ -17,7 +17,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 
 
-public class EditPersonDescriptorTest {
+public class EditContactDescriptorTest {
 
     @Test
     public void equals() {

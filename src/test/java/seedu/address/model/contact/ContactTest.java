@@ -17,7 +17,7 @@ import seedu.address.testutil.PersonBuilder;
 
 
 
-public class PersonTest {
+public class ContactTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {

@@ -41,8 +41,8 @@ public class StartTime {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EndTime // instanceof handles nulls
-                && value.equals(((EndTime) other).value)); // state check
+                || (other instanceof StartTime // instanceof handles nulls
+                && value.equals(((StartTime) other).value)); // state check
     }
 
     @Override

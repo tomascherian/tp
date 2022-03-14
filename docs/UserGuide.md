@@ -30,7 +30,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
-   * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
+   * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
    * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
@@ -116,11 +116,11 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Adding a meeting : `add meeting`
+### Adding a meeting : `addm`
 
 Adds a meeting to the meeting list.
 
-Format: `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
 
 * Schedules a meeting with a specified date, start time and end time to the address book.
 * Optionally, the people involved in the meeting can also be specified.
@@ -128,26 +128,27 @@ Format: `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]..
 * `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
 
 Examples:
-* `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3 c/4 c/5`
+* `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
   Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
-* `add meeting n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
+* `addm n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
   Adds meeting "JAVA Workshop" with given date and time.
-* `add meeting n/Job Interview st/1500 et/1700`
+* `addm n/Job Interview st/1500 et/1700`
   Returns error message as d/DATE is missing.
 
-### Deleting a meeting : `delete meeting`
+
+### Deleting a meeting : `deletem`
 
 Deletes the specified meeting from the displayed meeting list
 
-Format: `delete meeting MEETING_INDEX`
+Format: `deletem MEETING_INDEX`
 
 * Deletes the meeting at the specified `MEETING_INDEX`.
 * The index refers to the index number shown in the displayed meetings list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete meeting 3` deletes the 3rd meeting in the displayed meeting list.
-* `delete meeting -1` returns an error for invalid input.
+* `deletem 3` deletes the 3rd meeting in the displayed meeting list.
+* `deletem -1` returns an error for invalid input.
 
 ### Editing a person : `edit`
 
@@ -220,8 +221,8 @@ Action | Format, Examples
 **Add contact** | `addc n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Clear** | `clear`
-**Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
-**Delete Meeting** | `delete meeting MEETING_INDEX`<br> e.g., `delete meeting 2`
+**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
-//import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -56,7 +56,7 @@ public class AddressBookTest {
 
         Meeting meeting = new MeetingBuilder().withName("Project Discussion")
                 .withDate("10/02/2022").withStartTime("1830").withEndTime("1930")
-                .withParticipantsList("1 2 3")
+                .withParticipants(ALICE)
                 .withTags("teammates").build();
         Meeting editedMeeting = new MeetingBuilder(meeting).withDate("23/02/2022").build();
 
@@ -64,7 +64,7 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newPersons, newMeetings);
 
 
-        //assertThrows(DuplicateContactException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateContactException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class AddressBookTest {
         addressBook.addPerson(ALICE);
         Contact editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertFalse(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasPerson(editedAlice));
     }
 
     @Test

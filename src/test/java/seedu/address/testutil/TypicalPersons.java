@@ -15,11 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.contact.Contact;
-
-
-
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -37,9 +33,9 @@ public class TypicalPersons {
     public static final Contact CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withTelegram("carL_9").build();
     public static final Contact DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withTelegram("danieL_9").withTags("friends").build();
+            .withEmail("cornelia@example.com").withTelegram("dan_the_man").withTags("friends").build();
     public static final Contact ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withTelegram("ellE_98").build();
+            .withEmail("werner@example.com").withTelegram("elle_or_L").build();
     public static final Contact FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withTelegram("fionA_87").build();
     public static final Contact GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
@@ -62,17 +58,6 @@ public class TypicalPersons {
 
     private TypicalPersons() {
     } // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical persons.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Contact person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        return ab;
-    }
 
     public static List<Contact> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

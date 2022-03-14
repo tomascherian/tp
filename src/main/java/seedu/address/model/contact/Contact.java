@@ -75,9 +75,9 @@ public class Contact {
 
         return otherContact != null
                 && otherContact.getName().equals(getName())
-                && otherContact.getEmail().equals(getEmail())
-                && otherContact.getPhone().equals(getPhone())
-                && otherContact.getTelegram().equals(getTelegram());
+                && (otherContact.getEmail().equals(getEmail())
+                        || otherContact.getPhone().equals(getPhone())
+                        || otherContact.getTelegram().equals(getTelegram()));
     }
 
     /**
