@@ -28,11 +28,11 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`list`** : Lists all contacts.
 
-   * **`add contact`**` n/John Doe e/johnd@u.nus.edu th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
+   * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
    * **`add meeting`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
-   * **`delete`**`contact 3` : Deletes the 3rd contact shown in the current contact list.
+   * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -52,8 +52,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
   e.g. in `add contact n/NAME`, `NAME` is a parameter which can be used as `add contact n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [th/TELEGRAM_HANDLE]` can be used as `n/John Doe th/@JohnD` or as `n/John Doe`, <br>
-  and `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g.  `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -83,32 +82,32 @@ Shows a list of all persons in the contact list.
 
 Format: `list`
 
-### Adding a contact : `add contact`
+### Adding a contact : `addc`
 
 Adds the specified contact to the contact list.
 
-Format: `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...`
+Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
-* Adds a person into the contact list with given email
-* Optionally phone number, telegram handle and tags can also be specified
+* Adds a person into the contact list with given email, phone number, telegram handle.
+* Optionally Tags can also be specified
 
 Examples:
-* `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email and tags
-* `add contact n/Bob Tan p/91234567` gives an error message as e/EMAIL is not optional
+* `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags
+* `addc n/Bob Tan p/91234567` gives an error message as e/EMAIL and th/TELEGRAM is not optional
 
-### Deleting a contact : `delete contact`
+### Deleting a contact : `deletec`
 
 Removes the specified person from the contact list
 
-Format: `delete contact CONTACT_INDEX`
+Format: `deletec CONTACT_INDEX`
 
 * Deletes the person at the specified CONTACT_INDEX
 * The index refers to the index number shown in the displayed contact list
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-*`delete contact 2` deletes the 2nd person in the address book
-*`delete contact 0` returns an error for invalid input
+*`deletec 2` deletes the 2nd person in the address book
+*`deletec 0` returns an error for invalid input
 
 
 ### Clearing all entries : `clear`
@@ -218,8 +217,8 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add contact** | `add contact n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `add contact n/Alice Lee e/alice.lee@u.nus.edu t/database expert t/CS2103 teammate`
-**Delete contact** | `delete contact CONTACT_INDEX` <br> e.g., `delete contact 2`
+**Add contact** | `addc n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
+**Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Clear** | `clear`
 **Add Meeting** | `add meeting n/NAME d/DATE st/START_TIME et/END_TIME [c/CONTACT_INDEX]...` <br>e.g., `add meeting n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 c/1 c/2 c/3`
 **Delete Meeting** | `delete meeting MEETING_INDEX`<br> e.g., `delete meeting 2`
