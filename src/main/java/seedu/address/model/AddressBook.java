@@ -107,7 +107,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Contact key) {
+
         persons.remove(key);
+    }
+
+    public void sortPerson() {
+        persons.sortContactList();
     }
 
     //// meeting-level operations

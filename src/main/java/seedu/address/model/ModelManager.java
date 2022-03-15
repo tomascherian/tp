@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.NameComparator;
 import seedu.address.model.meeting.Meeting;
 
 
@@ -109,6 +107,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortContact() {
+        addressBook.sortPerson();
+    }
+
+    @Override
     public void addPerson(Contact person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -179,11 +182,13 @@ public class ModelManager implements Model {
         filteredMeetings.setPredicate(predicate);
     }
 
-    @Override
-    public void sortContactList() {
-        Collections.sort(filteredPersons, new NameComparator());
+    // @Override
+    //public void sortContactList() {
 
-    }
+    //filteredPersons.sort(new NameComparator());
+    //  getFilteredPersonList().sort(new NameComparator());
+
+    //}
 
     @Override
     public boolean equals(Object obj) {

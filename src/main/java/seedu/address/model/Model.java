@@ -72,6 +72,8 @@ public interface Model {
      */
     void deletePerson(Contact target);
 
+    void sortContact();
+
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
@@ -95,7 +97,7 @@ public interface Model {
 
     void updateFilteredPersonList(Predicate<Contact> predicate);
 
-    void sortContactList();
+
 
 
 
