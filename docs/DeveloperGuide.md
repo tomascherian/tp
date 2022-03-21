@@ -279,18 +279,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                                   | add a contact                                                | I can look it up if I need to find the contact.                 |
 | `* * *`  | user                                                   | delete a contact                                             | I can remove contacts I no longer need or had added wrongly.    |
 | `* * *`  | user                                                   | view all my contacts                                         | I can see my full list of contacts at once.                     |
+| `* * *`  | user                                                   | add a meeting                                                | I can look it up if I need to find the meeting.                 |
+| `* * *`  | user                                                   | delete a meeting                                             | I can remove meetings that I had added wrongly or are already done.    |
+| `* * *`  | user                                                   | view all my meetings                                         | I can see my full list of meetings at once.                     |
 | `* * *`  | user who wants to contact a specific person            | view a single contact and its details                        |                                                                 |
 | `* * *`  | user who needs to meet my peers                        | schedule a meeting with specific contacts in my contact list | I can keep track of my meetings                                 |
-| `* *`    | careless user who keyed in wrong information for a  contact / meeting       | edit the contact / meeting              | I can correct the wrong information                             |
+| `* *`    | careless user who keyed in wrong information for a contact | edit the contact                                        | I can correct the wrong information                             |
+| `* *`    | careless user who keyed in wrong information for a meeting | edit the meeting                                        | I can correct the wrong information                             |
 | `* *`    | careless user                                          | undo my previous action(s)                                   | I can correct mistakes I made (eg. recover a deleted meeting).  |
-| `* *`    | user who wants to schedule meetings with various people| label meetings with specific types (e.g. lunch, project)     | I can keep track of what each meeting is for.                   |
+| `* *`    | user who wants to schedule meetings with various people| tag meetings with specific types (e.g. lunch, project)       | I can keep track of what each meeting is for.                   |
 | `* *`    | user who has many contacts                             | add tags to each contact                                     | I can keep track of any notable information about the contact.  |
 | `* *`    | user who wants to contact a specific person            | search for that specific contact                             | I do not need to look through the entire list to find it.       |
+| `* *`    | user who wants to schedule a meeting on a specific day | search for meetings occurring that day                       | I can see what time I am free that day.                         |
+| `* *`    | busy user with many meetings                           | search for meetings by name or tags                          | I can find specific meetings or groups of meetings easily.      |
 | `* *`    | busy user with many meetings                           | be reminded of meetings happening in the next few days       | I do not forget these meetings.                                 |
-| `* *`    | user who needs to manage a variety of contacts         | categorise my contacts into subgroups                        | I can keep track of what group each contact is from.            |
+| `* *`    | user who needs to manage a variety of contacts         | categorize my contacts into subgroups                        | I can keep track of what group each contact is from.            |
+| `* *`    | user who needs to manage a variety of contacts         | search for contacts by their tags / grouping                 | I can find all contacts from a specific group / with a specific tag.            |
+| `* *`    | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily.                                   |
+| `* *`    | user with many meetings in my contact list             | sort meetings by date and time                               | I can see my earliest upcoming meetings.                        |
 | `*`      | long-term user of the app                              | archive contacts that may no longer be relevant              | my contact list is less cluttered.                              |
 | `*`      | user who wants to add many new contacts quickly        | add many contacts at once                                    | I do not have to spend time adding them individually.           |
-| `*`      | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily                                    |
 | `*`      | new user who already has a contact list on another app | import all my contacts into AddresSoC                        | I do not have to spend time adding them individually.           |
 
 *{More to be added}*
@@ -392,8 +400,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
-
 
 **Use case: Add a meeting**
 
@@ -421,6 +427,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
+*{More to be added}*
 
 ### Non-Functional Requirements
 
