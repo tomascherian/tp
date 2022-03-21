@@ -107,7 +107,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         requireNonNull(key);
         List<Meeting> newMeetings = new ArrayList<>();
         for (Meeting m : internalList) {
-            newMeetings.add(m.removeMeetingParticipant(key));
+            if (m.hasMeetingParticipant(key)) {
+                newMeetings.add(m.removeMeetingParticipant(key));
+            } else {
+                newMeetings.add(m);
+            }
         }
         setMeetings(newMeetings);
     }

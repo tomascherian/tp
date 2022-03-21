@@ -23,8 +23,8 @@ public class Meeting {
     private final EndTime endTime;
 
     // Data fields
-    private final Set<Participant> participants = new HashSet<Participant>();
-    private final Set<Tag> tags = new HashSet<Tag>();
+    private final Set<Participant> participants = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -73,6 +73,14 @@ public class Meeting {
                 .filter(p -> !p.isSameParticipant(toRemove))
                 .collect(Collectors.toSet());
         return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+    }
+
+    /**
+     * Returns true if the participant {@code toCheck} is in
+     * this meeting's participant list.
+     */
+    public boolean hasMeetingParticipant(Participant toCheck) {
+        return participants.contains(toCheck);
     }
 
     /**
