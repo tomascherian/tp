@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniquePersonList;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.UniqueMeetingList;
 
 
@@ -107,8 +108,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Contact key) {
-
+        assert hasPerson(key) : "Contact specified does not exist in the contact list";
         persons.remove(key);
+        removeMeetingParticipant(key);
     }
 
     public void sortPerson() {
@@ -151,6 +153,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    private void removeMeetingParticipant(Contact key) {
+        meetings.removeMeetingParticipant(new Participant(key));
     }
 
     //// util methods

@@ -6,7 +6,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -57,6 +59,21 @@ public class Meeting {
 
     public Set<Participant> getParticipants() {
         return Collections.unmodifiableSet(participants);
+    }
+
+    /**
+     * Removes a participant from this meeting's participant list
+     *
+     * @param toRemove the participant to remove.
+     * @return a new meeting instance with the participant removed
+     */
+    public Meeting removeMeetingParticipant(Participant toRemove) {
+        assert participants.contains(toRemove);
+
+        Set<Participant> newParticipants= participants.stream()
+                .filter(p -> !p.isSameParticipant(toRemove))
+                .collect(Collectors.toSet());
+        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
     }
 
     /**

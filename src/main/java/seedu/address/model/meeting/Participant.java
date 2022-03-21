@@ -26,6 +26,15 @@ public class Participant {
         return contact.toString();
     }
 
+    public boolean isSameParticipant(Participant other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other != null
+                && other.contact.isSameContact(this.contact);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

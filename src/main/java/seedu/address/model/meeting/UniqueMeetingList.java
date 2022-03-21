@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +96,15 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.setAll(meetings);
+    }
+
+    public void removeMeetingParticipant(Participant key) {
+        requireNonNull(key);
+        List<Meeting> newMeetings = new ArrayList<>();
+        for (Meeting m : internalList) {
+            newMeetings.add(m.removeMeetingParticipant(key));
+        }
+        setMeetings(newMeetings);
     }
 
     /**
