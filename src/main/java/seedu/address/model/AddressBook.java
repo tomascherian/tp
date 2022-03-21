@@ -98,9 +98,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setPerson(Contact target, Contact editedPerson) {
+        assert hasPerson(target) : "Contact specified does not exist in the contact list";
         requireNonNull(editedPerson);
 
         persons.setContact(target, editedPerson);
+        setMeetingParticipant(target, editedPerson);
     }
 
     /**
@@ -145,6 +147,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedMeeting);
 
         meetings.setMeeting(target, editedMeeting);
+    }
+
+    private void setMeetingParticipant(Contact target, Contact editedContact) {
+        meetings.setMeetingParticipant(new Participant(target), new Participant(editedContact));
     }
 
     /**

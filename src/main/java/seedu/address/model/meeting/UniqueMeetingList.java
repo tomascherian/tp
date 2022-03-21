@@ -3,9 +3,9 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -99,20 +99,34 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Replaces a participant {@code target} in all meetings it is
+     * participating in with {@code editedParticipant}.
+     *
+     * @param target the participant to be updated
+     * @param editedParticipant the updated participant
+     */
+    public void setMeetingParticipant(Participant target, Participant editedParticipant) {
+        requireAllNonNull(target, editedParticipant);
+        List<Meeting> newMeetings = internalList.stream()
+                .map(existingMeeting -> existingMeeting.hasMeetingParticipant(target)
+                                                ? existingMeeting.setMeetingParticipant(target, editedParticipant)
+                                                : existingMeeting)
+                .collect(Collectors.toList());
+        setMeetings(newMeetings);
+    }
+
+    /**
      * Removes a meeting participant from all meetings it is participating in.
      *
      * @param key the participant to be removed
      */
     public void removeMeetingParticipant(Participant key) {
         requireNonNull(key);
-        List<Meeting> newMeetings = new ArrayList<>();
-        for (Meeting m : internalList) {
-            if (m.hasMeetingParticipant(key)) {
-                newMeetings.add(m.removeMeetingParticipant(key));
-            } else {
-                newMeetings.add(m);
-            }
-        }
+        List<Meeting> newMeetings = internalList.stream()
+                .map(existingMeeting -> existingMeeting.hasMeetingParticipant(key)
+                                        ? existingMeeting.removeMeetingParticipant(key)
+                                        : existingMeeting)
+                .collect(Collectors.toList());
         setMeetings(newMeetings);
     }
 

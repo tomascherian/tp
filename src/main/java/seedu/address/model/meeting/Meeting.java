@@ -61,13 +61,30 @@ public class Meeting {
     }
 
     /**
+     * Replaces a participant of this meeting with the {@code editedParticipant}.
+     *
+     * @param target the participant to be replaced
+     * @param editedParticipant the updated participant that will replace {@code target}
+     * @return
+     */
+    public Meeting setMeetingParticipant(Participant target, Participant editedParticipant) {
+        requireAllNonNull(target, editedParticipant);
+        assert participants.contains(target) : "The given participant is not participating in this meeting";
+
+        Set<Participant> newParticipants = new HashSet<>(participants);
+        newParticipants.remove(target);
+        newParticipants.add(editedParticipant);
+        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+    }
+
+    /**
      * Removes a participant from this meeting's participant list
      *
      * @param toRemove the participant to remove.
      * @return a new meeting instance with the participant removed
      */
     public Meeting removeMeetingParticipant(Participant toRemove) {
-        assert participants.contains(toRemove);
+        assert participants.contains(toRemove) : "The given participant is not participating in this meeting";
 
         Set<Participant> newParticipants = participants.stream()
                 .filter(p -> !p.isSameParticipant(toRemove))
