@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,7 +69,7 @@ public class Meeting {
     public Meeting removeMeetingParticipant(Participant toRemove) {
         assert participants.contains(toRemove);
 
-        Set<Participant> newParticipants= participants.stream()
+        Set<Participant> newParticipants = participants.stream()
                 .filter(p -> !p.isSameParticipant(toRemove))
                 .collect(Collectors.toSet());
         return new Meeting(name, date, startTime, endTime, newParticipants, tags);

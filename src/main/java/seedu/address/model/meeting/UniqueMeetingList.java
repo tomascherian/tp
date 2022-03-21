@@ -98,6 +98,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.setAll(meetings);
     }
 
+    /**
+     * Removes a meeting participant from all meetings it is participating in.
+     *
+     * @param key the participant to be removed
+     */
     public void removeMeetingParticipant(Participant key) {
         requireNonNull(key);
         List<Meeting> newMeetings = new ArrayList<>();
