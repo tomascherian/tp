@@ -50,6 +50,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting list";
+    public static final String MESSAGE_INVALID_TIME = "Meeting end time should be later meeting start time";
 
     private final MeetingName meetingName;
     private final MeetingDate meetingDate;
@@ -86,6 +87,10 @@ public class AddMeetingCommand extends Command {
 
         List<Contact> lastShownList = model.getFilteredPersonList();
         final Set<Participant> participants = new HashSet<>();
+
+        if (startTime.isAfter(endTime)) {
+            throw new CommandException(MESSAGE_INVALID_TIME);
+        }
 
         for (Index targetIndex : participantsIndex) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
