@@ -22,7 +22,7 @@ public class JsonAdaptedMeetingTest {
     private static final String INVALID_DATE = "10-12-2022";
     private static final String INVALID_START_TIME = "12:30";
     private static final String INVALID_END_TIME = "2559";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "/friend";
 
     private static final String VALID_MEETING_NAME = CS2103T.getName().toString();
     private static final String VALID_DATE = CS2103T.getDate().toString();
