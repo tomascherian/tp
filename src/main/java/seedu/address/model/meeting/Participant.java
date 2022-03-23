@@ -26,6 +26,20 @@ public class Participant {
         return contact.toString();
     }
 
+    /**
+     * Returns true if this participant's {@code contact} shares the same name and at
+     * least one other identity field as the {@code other} participant's {@code contact}.
+     * This defines a weaker notion of equality between two participants.
+     */
+    public boolean isSameParticipant(Participant other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other != null
+                && other.contact.isSameContact(this.contact);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

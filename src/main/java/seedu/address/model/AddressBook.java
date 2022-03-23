@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.UniquePersonList;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.UniqueMeetingList;
 
 
@@ -97,9 +98,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setPerson(Contact target, Contact editedPerson) {
+        assert hasPerson(target) : "Contact specified does not exist in the contact list";
         requireNonNull(editedPerson);
 
         persons.setContact(target, editedPerson);
+        setMeetingParticipant(target, editedPerson);
     }
 
     /**
@@ -107,8 +110,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Contact key) {
+        assert hasPerson(key) : "Contact specified does not exist in the contact list";
 
         persons.remove(key);
+        removeMeetingParticipant(key);
     }
 
     public void sortPerson() {
@@ -145,12 +150,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings.setMeeting(target, editedMeeting);
     }
 
+    private void setMeetingParticipant(Contact target, Contact editedContact) {
+        meetings.updateParticipantLists(new Participant(target), new Participant(editedContact));
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    private void removeMeetingParticipant(Contact key) {
+        meetings.removeFromParticipantLists(new Participant(key));
     }
 
     //// util methods

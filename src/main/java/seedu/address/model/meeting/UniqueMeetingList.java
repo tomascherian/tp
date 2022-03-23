@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -95,6 +96,38 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.setAll(meetings);
+    }
+
+    /**
+     * Replaces a participant {@code target} in all meetings it is
+     * participating in with {@code editedParticipant}.
+     *
+     * @param target the participant to be updated
+     * @param editedParticipant the updated participant
+     */
+    public void updateParticipantLists(Participant target, Participant editedParticipant) {
+        requireAllNonNull(target, editedParticipant);
+        List<Meeting> newMeetings = internalList.stream()
+                .map(existingMeeting -> existingMeeting.hasParticipant(target)
+                                                ? existingMeeting.setParticipant(target, editedParticipant)
+                                                : existingMeeting)
+                .collect(Collectors.toList());
+        setMeetings(newMeetings);
+    }
+
+    /**
+     * Removes a meeting participant from all meetings it is participating in.
+     *
+     * @param toRemove the participant to be removed
+     */
+    public void removeFromParticipantLists(Participant toRemove) {
+        requireNonNull(toRemove);
+        List<Meeting> newMeetings = internalList.stream()
+                .map(existingMeeting -> existingMeeting.hasParticipant(toRemove)
+                                        ? existingMeeting.removeParticipant(toRemove)
+                                        : existingMeeting)
+                .collect(Collectors.toList());
+        setMeetings(newMeetings);
     }
 
     /**
