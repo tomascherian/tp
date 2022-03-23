@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.CS2103T;
@@ -38,7 +38,7 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_validMeetingDetails_returnsMeeting() throws Exception {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(CS2103T);
-        //assertEquals(CS2103T, meeting.toModelType());
+        assertEquals(CS2103T, meeting.toModelType());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class JsonAdaptedMeetingTest {
                 new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, INVALID_START_TIME, VALID_END_TIME,
                         VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = StartTime.MESSAGE_CONSTRAINTS;
-        //assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, null, VALID_END_TIME,
                 VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName());
-        //assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class JsonAdaptedMeetingTest {
                 new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME, INVALID_END_TIME,
                         VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = EndTime.MESSAGE_CONSTRAINTS;
-        //assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME, null,
                 VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName());
-        //assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
     @Test
