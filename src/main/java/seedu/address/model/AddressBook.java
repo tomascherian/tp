@@ -111,6 +111,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Contact key) {
         assert hasPerson(key) : "Contact specified does not exist in the contact list";
+
         persons.remove(key);
         removeMeetingParticipant(key);
     }
@@ -150,7 +151,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     private void setMeetingParticipant(Contact target, Contact editedContact) {
-        meetings.setMeetingParticipant(new Participant(target), new Participant(editedContact));
+        meetings.updateParticipantLists(new Participant(target), new Participant(editedContact));
     }
 
     /**
@@ -162,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     private void removeMeetingParticipant(Contact key) {
-        meetings.removeMeetingParticipant(new Participant(key));
+        meetings.removeFromParticipantLists(new Participant(key));
     }
 
     //// util methods

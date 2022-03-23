@@ -105,11 +105,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      * @param target the participant to be updated
      * @param editedParticipant the updated participant
      */
-    public void setMeetingParticipant(Participant target, Participant editedParticipant) {
+    public void updateParticipantLists(Participant target, Participant editedParticipant) {
         requireAllNonNull(target, editedParticipant);
         List<Meeting> newMeetings = internalList.stream()
-                .map(existingMeeting -> existingMeeting.hasMeetingParticipant(target)
-                                                ? existingMeeting.setMeetingParticipant(target, editedParticipant)
+                .map(existingMeeting -> existingMeeting.hasParticipant(target)
+                                                ? existingMeeting.setParticipant(target, editedParticipant)
                                                 : existingMeeting)
                 .collect(Collectors.toList());
         setMeetings(newMeetings);
@@ -118,13 +118,13 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     /**
      * Removes a meeting participant from all meetings it is participating in.
      *
-     * @param key the participant to be removed
+     * @param toRemove the participant to be removed
      */
-    public void removeMeetingParticipant(Participant key) {
-        requireNonNull(key);
+    public void removeFromParticipantLists(Participant toRemove) {
+        requireNonNull(toRemove);
         List<Meeting> newMeetings = internalList.stream()
-                .map(existingMeeting -> existingMeeting.hasMeetingParticipant(key)
-                                        ? existingMeeting.removeMeetingParticipant(key)
+                .map(existingMeeting -> existingMeeting.hasParticipant(toRemove)
+                                        ? existingMeeting.removeParticipant(toRemove)
                                         : existingMeeting)
                 .collect(Collectors.toList());
         setMeetings(newMeetings);

@@ -67,7 +67,7 @@ public class Meeting {
      * @param editedParticipant the updated participant that will replace {@code target}
      * @return
      */
-    public Meeting setMeetingParticipant(Participant target, Participant editedParticipant) {
+    public Meeting setParticipant(Participant target, Participant editedParticipant) {
         requireAllNonNull(target, editedParticipant);
         assert participants.contains(target) : "The given participant is not participating in this meeting";
 
@@ -83,7 +83,8 @@ public class Meeting {
      * @param toRemove the participant to remove.
      * @return a new meeting instance with the participant removed
      */
-    public Meeting removeMeetingParticipant(Participant toRemove) {
+    public Meeting removeParticipant(Participant toRemove) {
+        requireAllNonNull(toRemove);
         assert participants.contains(toRemove) : "The given participant is not participating in this meeting";
 
         Set<Participant> newParticipants = participants.stream()
@@ -96,7 +97,7 @@ public class Meeting {
      * Returns true if the participant {@code toCheck} is in
      * this meeting's participant list.
      */
-    public boolean hasMeetingParticipant(Participant toCheck) {
+    public boolean hasParticipant(Participant toCheck) {
         return participants.contains(toCheck);
     }
 
