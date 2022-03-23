@@ -19,7 +19,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeetings {
 
-    public static final Meeting CS2103T = new MeetingBuilder().withName("CS2103T project").withDate("12/03/2022")
+    public static final Meeting CS2103T = new MeetingBuilder().withName("CS2103T project").withDate("25/03/2022")
             .withStartTime("1600").withEndTime("1700").withParticipants(ALICE, BENSON).withTags("v1point2").build();
     public static final Meeting CS2101 = new MeetingBuilder().withName("CS2101 project").withDate("15/03/2022")
             .withStartTime("1900").withEndTime("2000").withParticipants(BENSON, CARL).withTags("OP2").build();

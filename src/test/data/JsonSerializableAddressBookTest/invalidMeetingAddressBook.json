@@ -7,7 +7,7 @@
   } ],
   "meetings": [ {
     "name": "Invalid Meeting with wrong date format",
-    "date" : "12-03-2022",
+    "date" : "12032022",
     "startTime" : "1600",
     "endTime" : "1700",
     "participants" : [ ],
