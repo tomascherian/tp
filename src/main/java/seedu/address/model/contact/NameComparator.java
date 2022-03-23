@@ -16,7 +16,7 @@ public class NameComparator implements Comparator<Contact> {
     @Override
     public int compare(Contact s1, Contact s2) {
 
-        return s1.getName().fullName.compareTo(s2.getName().fullName);
+        return s1.getName().fullName.toLowerCase().compareTo(s2.getName().fullName.toLowerCase());
 
     }
 }
