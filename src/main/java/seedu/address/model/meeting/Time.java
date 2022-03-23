@@ -27,7 +27,7 @@ public class Time implements Comparable<Time> {
     }
 
     /**
-     * Returns if a given string is a valid time.
+     * Returns true if a given string is a valid time.
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
