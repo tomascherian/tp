@@ -101,8 +101,8 @@ Format: `deletec CONTACT_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-*`deletec 2` deletes the 2nd person in the address book
-*`deletec 0` returns an error for invalid input
+* `deletec 2` deletes the 2nd person in the address book
+* `deletec 0` returns an error for invalid input
 
 
 ### Editing a contact : `editc`
@@ -118,8 +118,8 @@ Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]�
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
 ### Locating persons by name: `find`
