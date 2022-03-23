@@ -110,7 +110,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StartTime.class.getSimpleName()));
         }
-        if (!StartTime.isValidStartTime(startTime)) {
+        if (!StartTime.isValidTime(startTime)) {
             throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
         }
         return new StartTime(time);
@@ -121,7 +121,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EndTime.class.getSimpleName()));
         }
-        if (!EndTime.isValidEndTime(endTime)) {
+        if (!EndTime.isValidTime(endTime)) {
             throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);
         }
         return new EndTime(time);
