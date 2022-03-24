@@ -6,10 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
@@ -211,8 +209,7 @@ public class ParserUtil {
         requireNonNull(days);
 
         if (!StringUtil.isNonZeroUnsignedInteger(days.trim())) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemindCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Integer.parseInt(days.trim());
     }

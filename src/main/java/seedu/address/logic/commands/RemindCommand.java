@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.model.Model;
 import seedu.address.model.meeting.ReminderDatePredicate;
 
@@ -15,12 +17,21 @@ public class RemindCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
 
+    public static final String MESSAGE_REMINDER = "REMINDER \n"
+            + "-----------\n"
+            + "As of today, "
+            + DateTimeFormatter.ofPattern(" dd MMM yyyy").format(LocalDate.now())
+            + " :- \n"
+            + " %1$d meeting/s are upcoming \n"
+            + " in %2$d day/s";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all meetings which occur "
             + "within X days from the today, as a list.\n"
             + "Parameters: DAYS (Integer more than or equal to 0) \n"
             + "Example: " + COMMAND_WORD + " 3";
 
     private final ReminderDatePredicate predicate;
+
 
     /**
      * @param predicate of the number of days from the current date, to return true for meetings
@@ -36,7 +47,7 @@ public class RemindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMeetingList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_REMINDER, model.getFilteredMeetingList().size(),
+                String.format(MESSAGE_REMINDER, model.getFilteredMeetingList().size(),
                         predicate.getDays()));
     }
 

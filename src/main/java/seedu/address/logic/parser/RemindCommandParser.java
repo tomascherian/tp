@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.ReminderDatePredicate;
@@ -20,7 +21,8 @@ public class RemindCommandParser implements Parser<RemindCommand> {
         try {
             days = ParserUtil.parseDays(args);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage());
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemindCommand.MESSAGE_USAGE));
         }
         return new RemindCommand(new ReminderDatePredicate(days));
     }
