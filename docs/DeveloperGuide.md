@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Meeting feature
 
-This section describes how a ```Meeting``` object is added to the list of meetings using the ```addm``` command. 
+This section describes how a ```Meeting``` object is added to the list of meetings using the ```addm``` command.
 
 #### Implementation
 
@@ -283,15 +283,15 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-A `Meeting` object in AddresSoc has a set containing 0 or more participants, each represented by a 
-`Participant` object. Each `Participant` holds a reference to a `Contact` that exists in the 
+A `Meeting` object in AddresSoc has a set containing 0 or more participants, each represented by a
+`Participant` object. Each `Participant` holds a reference to a `Contact` that exists in the
 `UniquePersonList` of the `AddressBook`. This design is summarized below:
 
 ![MeetingParticipantClassDiagram](images/MeetingParticipantClassDiagram.png)
 
-Users can directly modify the set of `Participants` of a `Meeting` during commands that allow them to specify 
-participant indexes, such as `AddMeetingCommand` and `EditMeetingCommand`. When entering these commands, the user optionally specifies the indexes of contacts in the 
-currently displayed contact list to participate in the meeting.  During such commands, the 
+Users can directly modify the set of `Participants` of a `Meeting` during commands that allow them to specify
+participant indexes, such as `AddMeetingCommand` and `EditMeetingCommand`. When entering these commands, the user optionally specifies the indexes of contacts in the
+currently displayed contact list to participate in the meeting.  During such commands, the
 general process of creating and adding `Participants` to a `Meeting`'s participant set is as follows:
 1. If an index is specified, the validity of the index is checked.
     * If the index is invalid, the command execution is stopped.
@@ -306,18 +306,18 @@ Activity: Create Participant
 
 ![CreateParticipantActivityDiagram](images/CreateParticipantActivityDiagram.png)
 
-Another scenario when a `Meeting` may have its set of `Participants` modified is when a `Contact` object 
-is replaced by another `Contact` object in the `UniquePersonList` (ie. during the execution of `EditContactCommand`). 
-In this case, the `Participant` referencing the original `Contact` object is updated. Each `Meeting` that 
-this `Participant` participates in is replaced with a new `Meeting` containing the updated `Participant`. 
+Another scenario when a `Meeting` may have its set of `Participants` modified is when a `Contact` object
+is replaced by another `Contact` object in the `UniquePersonList` (ie. during the execution of `EditContactCommand`).
+In this case, the `Participant` referencing the original `Contact` object is updated. Each `Meeting` that
+this `Participant` participates in is replaced with a new `Meeting` containing the updated `Participant`.
 
-It is important to note here that the **entire `UniqueMeetingList`** is looped through during this operation to check whether each `Meeting` is participated by this 
+It is important to note here that the **entire `UniqueMeetingList`** is looped through during this operation to check whether each `Meeting` is participated by this
 `Participant`. The following activity diagram summarises this process:
 
 ![UpdateParticipantActivityDiagram](images/UpdateParticipantActivityDiagram.png)
 
-Similarly, the deletion of a `Contact` from `UniquePersonList` during the execution of `DeleteContactCommand` also 
-updates participant sets by looping through the entire `UniqueMeetingList`. The process is identical to the above, 
+Similarly, the deletion of a `Contact` from `UniquePersonList` during the execution of `DeleteContactCommand` also
+updates participant sets by looping through the entire `UniqueMeetingList`. The process is identical to the above,
 except that no replacement participant is created and added to the meeting's participant set.
 
 #### Design considerations:
@@ -325,24 +325,24 @@ except that no replacement participant is created and added to the meeting's par
 **Aspect: Whether each `Contact` should keep track of a list of `Meetings` it participates in:**
 
 * **Alternative 1 (current choice):** `Contacts` do not keep track of the `Meetings` they participate in.
-    * Pros: More testable. The `Contact` class does not depend on `Meeting`, which reduces the 
+    * Pros: More testable. The `Contact` class does not depend on `Meeting`, which reduces the
       chance of regressions.
-    * Cons: Slower as every meeting in the `UniqueMeetingList` must be checked whenever a `Contact` 
+    * Cons: Slower as every meeting in the `UniqueMeetingList` must be checked whenever a `Contact`
       is updated or deleted. The poor performance would be noticeable when there is a large number of meetings scheduled.
 
 * **Alternative 2:** Each `Contact` keeps track of the `Meetings` it participates in.
-    * Pros: When updating or deleting contacts, the meetings whose participant sets need to be updated 
+    * Pros: When updating or deleting contacts, the meetings whose participant sets need to be updated
       can be directly accessed from the contact. Thus, these operations are faster.
-    * Cons: Harder to implement. Moreover, the `Meeting` and `Contact` classes will now depend on each other. The cyclic dependency makes the code 
+    * Cons: Harder to implement. Moreover, the `Meeting` and `Contact` classes will now depend on each other. The cyclic dependency makes the code
       less testable.
 
 Reasons for choosing Alternative 1:
 * It reduces regressions by preventing cyclic dependencies.
-* The number of meetings that the target user (a busy NUS School of Computing student) would realistically schedule is 
-  not expected to be so large that the slower performance of alternative 1 is noticeable.   
+* The number of meetings that the target user (a busy NUS School of Computing student) would realistically schedule is
+  not expected to be so large that the slower performance of alternative 1 is noticeable.
 * Hence, testability was prioritised over performance.
 
-### \[Proposed\] Data archiving 
+### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
