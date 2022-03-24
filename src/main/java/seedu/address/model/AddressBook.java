@@ -153,6 +153,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings.remove(key);
     }
 
+    public void sortMeet() {
+        meetings.sortMeetingList();
+    }
+
     //// util methods
 
     @Override

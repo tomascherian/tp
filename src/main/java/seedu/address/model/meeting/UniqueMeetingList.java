@@ -84,6 +84,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.setAll(replacement.internalList);
     }
 
+    public void sortMeetingList() {
+        internalList.sort(new MeetingComparator());
+    }
+
     /**
      * Replaces the contents of this list with {@code meetings}.
      * {@code meetings} must not contain duplicate meetings.

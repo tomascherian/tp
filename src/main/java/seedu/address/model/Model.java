@@ -126,6 +126,8 @@ public interface Model {
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 
+    void sortMeeting();
+
     /** Returns an unmodifiable view of the filtered Meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
 
