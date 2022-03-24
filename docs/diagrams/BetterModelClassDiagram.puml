@@ -14,18 +14,18 @@ UniqueMeetingTagList -[hidden]right- UniqueMeetingList
 
 
 UniquePersonTagList *-right-> "*" Tag
-UniquePersonList -down-> Person
+UniquePersonList -down-> Contact
 
 UniqueMeetingTagList *-left-> "*" Tag
 UniqueMeetingList -down-> Meeting
 
-Person -up-> "*" Tag
+Contact -up-> "*" Tag
 Meeting -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Contact *--> Name
+Contact *--> Phone
+Contact *--> Email
+Contact *--> Address
 
 Meeting *--> MeetingName
 Meeting *--> MeetingDate
