@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -259,7 +259,7 @@ This process is summarised in the activity diagram below.
 
 ![CreateParticipantActivityDiagram](images/CreateParticipantActivityDiagram.png)
 
-Another scenario when a `Meeting` may have its set of `Participants` modified is when the a `Contact` object 
+Another scenario when a `Meeting` may have its set of `Participants` modified is when a `Contact` object 
 is replaced by another `Contact` object in the `UniquePersonList` (ie. during the execution of `EditContactCommand`). 
 In this case, the `Participant` referencing the original `Contact` object is updated. Each `Meeting` that 
 this `Participant` participates in is replaced with a new `Meeting` containing the updated `Participant`. 
