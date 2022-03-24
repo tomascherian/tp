@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletec 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletec 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -154,6 +154,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Meeting feature
+
+This section describes how a ```Meeting``` object is added to the list of meetings using the ```addm``` command. 
+
+#### Implementation
+
+A ```Meeting``` object in AddresSoc consists of ```MeetingName```,```MeetingDate```,```StartTime```,```EndTime```,
+as well as the optional ```Tags``` and ```Participants``` fields. Upon the ```addm``` command being called with the
+relevant fields provided, a ```Meeting``` will be added to the ```UniqueMeetingList```.
+
+Given below is an example usage scenario and how the ```addm``` command behaves at each step.
+1. The user inputs the command ```addm mn/2103 Meeting d/25/03/2022 st/1600 et/1800 t/Important pt/2 pt/3```
+2. The user input is passed into ```AddressBookParser``` which matches the ```addm``` command word and passes the arguments to ```AddMeetingCommandParser```.
+3. ```AddMeetingCommandParser``` parses the arguments according to the prefixes and constructs a ```AddMeetingCommand``` object.
+4. The ```AddMeetingCommand``` object is returned to ```LogicManager``` to be executed. During execution, the ```Meeting``` object with the given fields is constructed and added to the ```UniqueMeetingList```.
+
+####Sequence Diagram
+The sequence diagram below shows the execution of the above example:
+
+![Interactions Inside the Logic Component for the `addm mn/2103 Meeting d/25/03/2022 st/1600 et/1800 t/Important pt/2 pt/3` Command](images/AddMeetingSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+####Activity Diagram
+The activity diagram below shows the execution of the above example:
+
+![Add Meeting activity diagram](images/AddMeetingActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -257,6 +285,8 @@ general process of creating and adding `Participants` to a `Meeting`'s participa
 4. Repeat steps 1 to 3 for all indexes given by the user.
 
 This process is summarised in the activity diagram below.
+
+Activity: Create Participant
 
 ![CreateParticipantActivityDiagram](images/CreateParticipantActivityDiagram.png)
 

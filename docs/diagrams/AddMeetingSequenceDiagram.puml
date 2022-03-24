@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
+participant "a:AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Meeting" as Meeting MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addm mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addm mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+activate AddressBookParser
+
+create AddMeetingCommandParser
+AddressBookParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
+
+AddMeetingCommandParser --> AddressBookParser
+deactivate AddMeetingCommandParser
+
+AddressBookParser -> AddMeetingCommandParser : parse("mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+activate AddMeetingCommandParser
+
+create AddMeetingCommand
+AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(2103 Meeting, 25/03/2022, 1600, 1800, 2, 3, Important)
+activate AddMeetingCommand
+
+AddMeetingCommand --> AddMeetingCommandParser : a
+deactivate AddMeetingCommand
+
+AddMeetingCommandParser --> AddressBookParser : a
+deactivate AddMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddMeetingCommandParser -[hidden]-> AddressBookParser
+destroy AddMeetingCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddMeetingCommand : execute()
+activate AddMeetingCommand
+
+create Meeting
+AddMeetingCommand -> Meeting : Meeting(2103 Meeting, 25/03/2022, 1600, 1800, 2, 3, Important)
+activate Meeting
+
+Meeting --> AddMeetingCommand : toAdd
+deactivate Meeting
+
+AddMeetingCommand -> Model : addMeeting(toAdd)
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+create CommandResult
+AddMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddMeetingCommand
+deactivate CommandResult
+
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
