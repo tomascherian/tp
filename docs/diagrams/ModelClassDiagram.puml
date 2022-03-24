@@ -13,12 +13,21 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
+Class Contact
 Class Address
 Class Email
 Class Name
 Class Phone
+
 Class Tag
+
+Class UniqueMeetingList
+Class Meeting
+Class MeetingName
+Class MeetingDate
+Class StartTime
+Class EndTime
+Class Participant
 
 }
 
@@ -27,24 +36,43 @@ HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager -down--> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager .up.|> Model
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueMeetingList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+UniquePersonList ---> "~* all" Contact
+Contact *--> Name
+Contact *--> Phone
+Contact *--> Email
+Contact *--> Address
+Contact *-down--> "*" Tag
+
+UniqueMeetingList ---> "~* all" Meeting
+Meeting *--> MeetingName
+Meeting *--> MeetingDate
+Meeting *--> StartTime
+Meeting *--> EndTime
+Meeting *--> "*" Participant
+Meeting *-down--> "*" Tag
+
+Name -[hidden]right- Phone
+Phone -[hidden]right- Address
+Address -[hidden]right- Email
+
+MeetingName -[hidden]right- MeetingDate
+MeetingDate -[hidden]right- StartTime
+StartTime -[hidden]right- EndTime
+EndTime -[hidden]right- Participant
+
+
+Participant -[hidden]->Tag
+ModelManager -->"~* filtered" Contact
+ModelManager -->"~* filtered" Meeting
 @enduml
