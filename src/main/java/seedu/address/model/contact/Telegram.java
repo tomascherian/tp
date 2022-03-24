@@ -14,7 +14,7 @@ public class Telegram {
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram id should contain alphanumeric characters and underscore, and it should not be empty";
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]*$";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]+$";
     public final String telegramId;
 
     /**
@@ -32,7 +32,7 @@ public class Telegram {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidId(String test) {
-        return test.matches(VALIDATION_REGEX) && !test.isEmpty();
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
