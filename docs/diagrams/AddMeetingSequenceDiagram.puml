@@ -1,6 +1,5 @@
 @startuml
 !include style.puml
-scale 2.0
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -15,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 participant ":Meeting" as Meeting MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addm mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+[-> LogicManager : execute(userInput)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addm mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+LogicManager -> AddressBookParser : parseCommand(userInput)
 activate AddressBookParser
 
 create AddMeetingCommandParser
@@ -28,11 +27,11 @@ activate AddMeetingCommandParser
 AddMeetingCommandParser --> AddressBookParser
 deactivate AddMeetingCommandParser
 
-AddressBookParser -> AddMeetingCommandParser : parse("mn/2103 Meeting\n d/25/03/2022 st/1600\n et/1800 t/Important pt/2 pt/3")
+AddressBookParser -> AddMeetingCommandParser : parse(inputArguments)
 activate AddMeetingCommandParser
 
 create AddMeetingCommand
-AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(2103 Meeting, 25/03/2022, 1600, 1800, 2, 3, Important)
+AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(inputFields)
 activate AddMeetingCommand
 
 AddMeetingCommand --> AddMeetingCommandParser : a
@@ -51,7 +50,7 @@ LogicManager -> AddMeetingCommand : execute()
 activate AddMeetingCommand
 
 create Meeting
-AddMeetingCommand -> Meeting : Meeting(2103 Meeting, 25/03/2022, 1600, 1800, 2, 3, Important)
+AddMeetingCommand -> Meeting : Meeting(inputFields)
 activate Meeting
 
 Meeting --> AddMeetingCommand : toAdd

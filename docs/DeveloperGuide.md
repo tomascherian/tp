@@ -178,6 +178,8 @@ The sequence diagram below shows the execution of the above example:
 ![Interactions Inside the Logic Component for the `addm mn/2103 Meeting d/25/03/2022 st/1600 et/1800 t/Important pt/2 pt/3` Command](images/AddMeetingSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddMeetingCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:**The arguments for methods and constructors have been shortened for clarity in the diagram.
+</div>
 
 #### Activity Diagram
 
