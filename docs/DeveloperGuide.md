@@ -187,6 +187,18 @@ The activity diagram below shows the execution of the above example:
 
 ![Add Meeting activity diagram](images/AddMeetingActivityDiagram.png)
 
+#### Design Considerations
+
+**Aspect: How `Participant` is constructed**
+
+* **Alternative 1 (current choice):** `Participant` constructed using a `Contact`.
+  * Pros: Better extensibility as it will be possible to implement features that can interact with the `Participant` in each meeting.
+  * Cons: More difficult to implement as a `Participant` would need to change if changes are made to the corresponding `Contact`.
+* **Alternative 2:** `Participant` constructed using a `String`.
+  * Pros: `Participant` has less dependence on `Contact`. Better flexibility as each `Participant` no longer needs to be a `Contact`.
+  * Cons: Less extensibility as `Participant` does not have any link to `Contact`. Changes to each `Contact` that is in a `Meeting` will require a separate command to change the `Participant` as well.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
