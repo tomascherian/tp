@@ -1,0 +1,24 @@
+@startuml
+start
+
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+
+    while () is ([There is a participant index remaining])
+    if () then ([Index is valid])
+
+    :The contact specified by the index is obtained;
+    :A participant referencing the contact is created
+    and added to the meeting's set of participants;
+    else ([else])
+    :Command is not executed and
+    an error message is shown ;
+    stop
+    endif
+    endwhile ([else])
+    stop
+stop
+
+@enduml

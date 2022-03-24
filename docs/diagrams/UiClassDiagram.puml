@@ -10,15 +10,18 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class StatusBarFooter
+Class CommandBox
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
-Class StatusBarFooter
-Class CommandBox
+Class MeetingListPanel
+Class MeetingCard
 }
 
 package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+Class Contact
+Class Meeting
 }
 
 package Logic <<Rectangle>> {
@@ -30,27 +33,34 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" MeetingListPanel
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow --> "1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+MeetingListPanel --down-> "*" MeetingCard
 
-MainWindow -left-|> UiPart
+MainWindow --down--|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
+MeetingListPanel --|> UiPart
+MeetingCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+MeetingCard ..> Meeting
+PersonCard ..> Contact
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
+MeetingCard -[hidden]left- PersonCard
+MeetingListPanel -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
