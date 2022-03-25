@@ -148,6 +148,11 @@ public class ModelManager implements Model {
         addressBook.setMeeting(target, editedMeeting);
     }
 
+    @Override
+    public void sortMeeting() {
+        addressBook.sortMeet();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

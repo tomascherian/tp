@@ -19,7 +19,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.commands.RemindCommand;
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortContactCommand;
+import seedu.address.logic.commands.SortMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,8 +77,11 @@ public class AddressBookParser {
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommand();
+        case SortMeetingCommand.COMMAND_WORD:
+            return new SortMeetingCommand();
+
+        case SortContactCommand.COMMAND_WORD:
+            return new SortContactCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -5,19 +5,19 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all meetings in the address book.
  */
-public class SortCommand extends Command {
+public class SortMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort";
+    public static final String COMMAND_WORD = "sortm";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all contacts";
+    public static final String MESSAGE_SUCCESS = "Sorted all meetings based on date and time";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortContact();
+        model.sortMeeting();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
