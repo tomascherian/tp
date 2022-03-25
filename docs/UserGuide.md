@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**.
+AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and add meetings**.
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you're a student who can type fast, AddresSoC can get your contact and schedule management tasks done faster than traditional GUI apps.
 
@@ -30,7 +30,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
-   * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
+   * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Adds a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
    * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
@@ -98,7 +98,7 @@ Format: `deletec CONTACT_INDEX`
 
 * Deletes the person at the specified CONTACT_INDEX
 * The index refers to the index number shown in the displayed contact list
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deletec 2` deletes the 2nd person in the address book
@@ -109,13 +109,20 @@ Examples:
 
 Edits an existing contact in the contact list.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`
+Format: `editc CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** 
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+</div>
 
 Examples:
 * `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -147,20 +154,23 @@ Examples:
 
 Adds a meeting to the meeting list.
 
-Format: `addm mn/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
 
-* Schedules a meeting with a specified date, start time and end time to the address book.
+* Adds a meeting with a specified date, start time and end time to the address book.
 * Optionally, the people involved in the meeting can also be specified.
-* `DATE` requires the format **DD/MM/YYYY** e.g. 20/02/2022
+* `DATE` requires the format **DD/MM/YYYY** or **DD-MM-YYYY** e.g. 20/02/2022 or 20-02-2022
 * `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
+* `START_TIME` needs to be earlier than `END_TIME`
 
 Examples:
-* `addm mn/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
+* `addm n/CS2103 Project Discussion d/2002/2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
   Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
-* `addm mn/JAVA Workshop d/23/02/2022 st/1030 et/1230`
+* `addm n/JAVA Workshop d/23/02/2022 st/1030 et/1230`
   Adds meeting "JAVA Workshop" with given date and time.
-* `addm mn/Job Interview st/1500 et/1700`
+* `addm n/Job Interview st/1500 et/1700`
   Returns error message as d/DATE is missing.
+* `addm n/CS2102 Project Discussion d/25/03/2022 st/1500 et/1400`
+  Returns error message as et/1400 is earlier than st/1500.
 
 
 ### Deleting a meeting : `deletem`
@@ -220,7 +230,7 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddresSoc home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -232,7 +242,7 @@ Action | Format, Examples
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Edit contact** | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Meeting** | `addm mn/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm mn/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Clear** | `clear`
 **List** | `list`
