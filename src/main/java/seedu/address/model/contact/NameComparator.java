@@ -9,15 +9,14 @@ public class NameComparator implements Comparator<Contact> {
      *
      * @param s1
      * @param s2
-     * @return
+     * @returns a negative, zero or positive integer based on whether the first argument is
+     * less than, equal to or greater than the second.
      */
 
     @Override
     public int compare(Contact s1, Contact s2) {
 
-        Long big = Long.parseLong(s1.getName().fullName, 35);
-        Long next = Long.parseLong(s2.getName().fullName, 35);
-        return big.compareTo(next);
+        return s1.getName().fullName.toLowerCase().compareTo(s2.getName().fullName.toLowerCase());
 
     }
 }

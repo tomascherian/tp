@@ -23,7 +23,6 @@ public class Contact {
     private final Telegram telegramUsername;
 
     // Data fields
-
     private final Set<Tag> tags = new HashSet<>();
 
     /**

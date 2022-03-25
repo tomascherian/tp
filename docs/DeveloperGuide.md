@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Contact` objects and `Meeting` objects residing in the `Model`.
 
 ### Logic component
 
@@ -114,19 +114,20 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Contact` objects and all `Meeting` objects (which are contained in a `UniquePersonList` object and a `UniqueMeetingList` respectively).
+* stores the currently 'selected' `Contact` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has two `Tag` lists in the `AddressBook`, which `Person` and `Meeting` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` and each `Meeting` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -135,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -234,7 +235,68 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Managing meeting participants
+
+#### Implementation
+
+A `Meeting` object in AddresSoc has a set containing 0 or more participants, each represented by a 
+`Participant` object. Each `Participant` holds a reference to a `Contact` that exists in the 
+`UniquePersonList` of the `AddressBook`. This design is summarized below:
+
+![MeetingParticipantClassDiagram](images/MeetingParticipantClassDiagram.png)
+
+Users can directly modify the set of `Participants` of a `Meeting` during commands that allow them to specify 
+participant indexes, such as `AddMeetingCommand` and `EditMeetingCommand`. When entering these commands, the user optionally specifies the indexes of contacts in the 
+currently displayed contact list to participate in the meeting.  During such commands, the 
+general process of creating and adding `Participants` to a `Meeting`'s participant set is as follows:
+1. If an index is specified, the validity of the index is checked.
+    * If the index is invalid, the command execution is stopped.
+    * If the index is valid, proceed to step 2.
+2. The `Contact` specified by the index is obtained.
+3. A `Participant` is created from the `Contact` and added to the `Meeting`'s participant set.
+4. Repeat steps 1 to 3 for all indexes given by the user.
+
+This process is summarised in the activity diagram below.
+
+![CreateParticipantActivityDiagram](images/CreateParticipantActivityDiagram.png)
+
+Another scenario when a `Meeting` may have its set of `Participants` modified is when a `Contact` object 
+is replaced by another `Contact` object in the `UniquePersonList` (ie. during the execution of `EditContactCommand`). 
+In this case, the `Participant` referencing the original `Contact` object is updated. Each `Meeting` that 
+this `Participant` participates in is replaced with a new `Meeting` containing the updated `Participant`. 
+
+It is important to note here that the **entire `UniqueMeetingList`** is looped through during this operation to check whether each `Meeting` is participated by this 
+`Participant`. The following activity diagram summarises this process:
+
+![UpdateParticipantActivityDiagram](images/UpdateParticipantActivityDiagram.png)
+
+Similarly, the deletion of a `Contact` from `UniquePersonList` during the execution of `DeleteContactCommand` also 
+updates participant sets by looping through the entire `UniqueMeetingList`. The process is identical to the above, 
+except that no replacement participant is created and added to the meeting's participant set.
+
+#### Design considerations:
+
+**Aspect: Whether each `Contact` should keep track of a list of `Meetings` it participates in:**
+
+* **Alternative 1 (current choice):** `Contacts` do not keep track of the `Meetings` they participate in.
+    * Pros: More testable. The `Contact` class does not depend on `Meeting`, which reduces the 
+      chance of regressions.
+    * Cons: Slower as every meeting in the `UniqueMeetingList` must be checked whenever a `Contact` 
+      is updated or deleted. The poor performance would be noticeable when there is a large number of meetings scheduled.
+
+* **Alternative 2:** Each `Contact` keeps track of the `Meetings` it participates in.
+    * Pros: When updating or deleting contacts, the meetings whose participant sets need to be updated 
+      can be directly accessed from the contact. Thus, these operations are faster.
+    * Cons: Harder to implement. Moreover, the `Meeting` and `Contact` classes will now depend on each other. The cyclic dependency makes the code 
+      less testable.
+
+Reasons for choosing Alternative 1:
+* It reduces regressions by preventing cyclic dependencies.
+* The number of meetings that the target user (a busy NUS School of Computing student) would realistically schedule is 
+  not expected to be so large that the slower performance of alternative 1 is noticeable.   
+* Hence, testability was prioritised over performance.
+
+### \[Proposed\] Data archiving 
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -279,18 +341,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                                   | add a contact                                                | I can look it up if I need to find the contact.                 |
 | `* * *`  | user                                                   | delete a contact                                             | I can remove contacts I no longer need or had added wrongly.    |
 | `* * *`  | user                                                   | view all my contacts                                         | I can see my full list of contacts at once.                     |
+| `* * *`  | user                                                   | add a meeting                                                | I can look it up if I need to find the meeting.                 |
+| `* * *`  | user                                                   | delete a meeting                                             | I can remove meetings that I had added wrongly or are already done.    |
+| `* * *`  | user                                                   | view all my meetings                                         | I can see my full list of meetings at once.                     |
 | `* * *`  | user who wants to contact a specific person            | view a single contact and its details                        |                                                                 |
 | `* * *`  | user who needs to meet my peers                        | schedule a meeting with specific contacts in my contact list | I can keep track of my meetings                                 |
-| `* *`    | careless user who keyed in wrong information for a  contact / meeting       | edit the contact / meeting              | I can correct the wrong information                             |
+| `* *`    | careless user who keyed in wrong information for a contact | edit the contact                                        | I can correct the wrong information                             |
+| `* *`    | careless user who keyed in wrong information for a meeting | edit the meeting                                        | I can correct the wrong information                             |
 | `* *`    | careless user                                          | undo my previous action(s)                                   | I can correct mistakes I made (eg. recover a deleted meeting).  |
-| `* *`    | user who wants to schedule meetings with various people| label meetings with specific types (e.g. lunch, project)     | I can keep track of what each meeting is for.                   |
+| `* *`    | user who wants to schedule meetings with various people| tag meetings with specific types (e.g. lunch, project)       | I can keep track of what each meeting is for.                   |
 | `* *`    | user who has many contacts                             | add tags to each contact                                     | I can keep track of any notable information about the contact.  |
 | `* *`    | user who wants to contact a specific person            | search for that specific contact                             | I do not need to look through the entire list to find it.       |
+| `* *`    | user who wants to schedule a meeting on a specific day | search for meetings occurring that day                       | I can see what time I am free that day.                         |
+| `* *`    | busy user with many meetings                           | search for meetings by name or tags                          | I can find specific meetings or groups of meetings easily.      |
 | `* *`    | busy user with many meetings                           | be reminded of meetings happening in the next few days       | I do not forget these meetings.                                 |
-| `* *`    | user who needs to manage a variety of contacts         | categorise my contacts into subgroups                        | I can keep track of what group each contact is from.            |
+| `* *`    | user who needs to manage a variety of contacts         | categorize my contacts into subgroups                        | I can keep track of what group each contact is from.            |
+| `* *`    | user who needs to manage a variety of contacts         | search for contacts by their tags / grouping                 | I can find all contacts from a specific group / with a specific tag.            |
+| `* *`    | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily.                                   |
+| `* *`    | user with many meetings in my contact list             | sort meetings by date and time                               | I can see my earliest upcoming meetings.                        |
 | `*`      | long-term user of the app                              | archive contacts that may no longer be relevant              | my contact list is less cluttered.                              |
 | `*`      | user who wants to add many new contacts quickly        | add many contacts at once                                    | I do not have to spend time adding them individually.           |
-| `*`      | user with many contacts in my contact list             | sort contacts by name                                        | I can locate a person easily                                    |
 | `*`      | new user who already has a contact list on another app | import all my contacts into AddresSoC                        | I do not have to spend time adding them individually.           |
 
 *{More to be added}*
@@ -298,29 +368,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 (For all use cases below, the **System** is the `AddresSoc` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 **Use case: Add a contact**
 
@@ -392,8 +439,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
-
 
 **Use case: Add a meeting**
 
@@ -421,6 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
+*{More to be added}*
 
 ### Non-Functional Requirements
 

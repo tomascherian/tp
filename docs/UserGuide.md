@@ -12,7 +12,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -28,13 +28,13 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
    * **`list`** : Lists all contacts.
 
-   * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/@johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
+   * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
 
    * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
 
    * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts and meetings.
 
    * **`exit`** : Exits the app.
 
@@ -42,14 +42,14 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add contact n/NAME`, `NAME` is a parameter which can be used as `add contact n/John Doe`.
+  e.g. in `addc n/NAME`, `NAME` is a parameter which can be used as `addc n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g.  `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -68,13 +68,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+## Contact
 
 ### Listing all persons : `list`
 
@@ -95,6 +89,7 @@ Examples:
 * `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags
 * `addc n/Bob Tan p/91234567` gives an error message as e/EMAIL and th/TELEGRAM is not optional
 
+
 ### Deleting a contact : `deletec`
 
 Removes the specified person from the contact list
@@ -106,15 +101,47 @@ Format: `deletec CONTACT_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-*`deletec 2` deletes the 2nd person in the address book
-*`deletec 0` returns an error for invalid input
+* `deletec 2` deletes the 2nd person in the address book
+* `deletec 0` returns an error for invalid input
 
 
-### Clearing all entries : `clear`
+### Editing a contact : `editc`
 
-Clears all entries from the address book.
+Edits an existing contact in the contact list.
 
-Format: `clear`
+Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+
+### Locating persons by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+
+## Meeting
 
 ### Adding a meeting : `addm`
 
@@ -150,40 +177,23 @@ Examples:
 * `deletem 3` deletes the 3rd meeting in the displayed meeting list.
 * `deletem -1` returns an error for invalid input.
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
+## Common
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Clearing all entries : `clear`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Clears all contacts and meetings from AddresSoC.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Format: `clear`
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+### Viewing help : `help`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Shows a message explaning how to access the help page.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+![help message](images/helpMessage.png)
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Format: `help`
 
 ### Exiting the program : `exit`
 
@@ -220,10 +230,10 @@ Action | Format, Examples
 --------|------------------
 **Add contact** | `addc n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
-**Clear** | `clear`
+**Edit contact** | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Add Meeting** | `addm mn/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm mn/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Clear** | `clear`
 **List** | `list`
 **Help** | `help`

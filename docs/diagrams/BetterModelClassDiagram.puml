@@ -4,18 +4,32 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+AddressBook *-down--> "1" UniquePersonList
+AddressBook *-down-> "1" UniquePersonTagList
+UniquePersonTagList -[hidden]left- UniquePersonList
 
-UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
+AddressBook *-down-> "1" UniqueMeetingList
+AddressBook *-down-> "1" UniqueMeetingTagList
+UniqueMeetingTagList -[hidden]right- UniqueMeetingList
 
-Person -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+UniquePersonTagList *-right-> "*" Tag
+UniquePersonList -down-> Contact
+
+UniqueMeetingTagList *-left-> "*" Tag
+UniqueMeetingList -down-> Meeting
+
+Contact -up-> "*" Tag
+Meeting -up-> "*" Tag
+
+Contact *--> Name
+Contact *--> Phone
+Contact *--> Email
+Contact *--> Address
+
+Meeting *--> MeetingName
+Meeting *--> MeetingDate
+Meeting *--> StartTime
+Meeting *--> EndTime
+Meeting *--> Participant
 @enduml

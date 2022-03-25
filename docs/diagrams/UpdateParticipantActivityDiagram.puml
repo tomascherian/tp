@@ -1,0 +1,24 @@
+@startuml
+
+start
+:Original contact is replaced by the  \n edited contact in UniquePersonList;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+    while () is ([A meeting in UniqueMeetingList \n has yet to be checked])
+
+    if () then ([Original contact is referenced \n by  a participant of the meeting])
+
+    :The original Participant is removed
+    from the meeting's set of participant;
+    :A Participant referencing the edited contact is created;
+    :The new Participant is added to
+    the meeting's set of participants;
+    else ([else])
+    endif
+    endwhile ([else])
+    stop
+stop
+
+@enduml

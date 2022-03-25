@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -22,8 +23,8 @@ public class Meeting {
     private final EndTime endTime;
 
     // Data fields
-    private final Set<Participant> participants = new HashSet<Participant>();
-    private final Set<Tag> tags = new HashSet<Tag>();
+    private final Set<Participant> participants = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -57,6 +58,47 @@ public class Meeting {
 
     public Set<Participant> getParticipants() {
         return Collections.unmodifiableSet(participants);
+    }
+
+    /**
+     * Replaces a participant of this meeting with the {@code editedParticipant}.
+     *
+     * @param target the participant to be replaced
+     * @param editedParticipant the updated participant that will replace {@code target}
+     * @return
+     */
+    public Meeting setParticipant(Participant target, Participant editedParticipant) {
+        requireAllNonNull(target, editedParticipant);
+        assert participants.contains(target) : "The given participant is not participating in this meeting";
+
+        Set<Participant> newParticipants = new HashSet<>(participants);
+        newParticipants.remove(target);
+        newParticipants.add(editedParticipant);
+        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+    }
+
+    /**
+     * Removes a participant from this meeting's participant list
+     *
+     * @param toRemove the participant to remove.
+     * @return a new meeting instance with the participant removed
+     */
+    public Meeting removeParticipant(Participant toRemove) {
+        requireAllNonNull(toRemove);
+        assert participants.contains(toRemove) : "The given participant is not participating in this meeting";
+
+        Set<Participant> newParticipants = participants.stream()
+                .filter(p -> !p.isSameParticipant(toRemove))
+                .collect(Collectors.toSet());
+        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+    }
+
+    /**
+     * Returns true if the participant {@code toCheck} is in
+     * this meeting's participant list.
+     */
+    public boolean hasParticipant(Participant toCheck) {
+        return participants.contains(toCheck);
     }
 
     /**
