@@ -14,12 +14,9 @@ import seedu.address.model.meeting.Meeting;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
 
+    /** {@code Predicates} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
-
-
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
 

@@ -40,7 +40,6 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        // UPDATE WITH MODEL'S CLASSES
         MeetingName meetingName = ParserUtil.parseMeetingName(argMultimap.getValue(PREFIX_MEETING_NAME).get());
         MeetingDate date = ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_DATE).get());
         StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());

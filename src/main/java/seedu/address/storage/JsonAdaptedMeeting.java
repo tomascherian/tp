@@ -59,7 +59,7 @@ public class JsonAdaptedMeeting {
      */
     public JsonAdaptedMeeting(Meeting source) {
         name = source.getName().meetingName;
-        date = source.getDate().value;
+        date = source.getDate().toString();
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
         participants.addAll(source.getParticipants().stream().map(participant -> participant.contact)

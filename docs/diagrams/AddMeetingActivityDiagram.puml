@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters addm command in the command box;
+:AddressBookParser parses the command;
+:AddMeetingCommandParser parses the arguments;
+if () then ([arguments are valid])
+:Creates AddMeetingCommand object for execution;
+:LogicManager calls AddMeetingCommand.execute();
+if () then ([endTime > startTime])
+:Create Participant ⋔;
+:New meeting is constructed with the given arguments and set of Participants;
+if () then ([meeting does not exist in meeting list])
+else ([else])
+:Throw CommandException with\nduplicate meeting message;
+endif
+else ([else])
+:Throw CommandException with\ninvalid time message;
+endif
+else ([else])
+:Throws ParseException with invalid command\nformat message and command usage;
+endif
+
+stop
+
+@enduml

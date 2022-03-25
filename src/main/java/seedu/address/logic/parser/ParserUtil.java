@@ -199,4 +199,18 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     *
+     * Parses String days into int days
+     * @throws ParseException
+     */
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+
+        if (!StringUtil.isNonZeroUnsignedInteger(days.trim())) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(days.trim());
+    }
 }
