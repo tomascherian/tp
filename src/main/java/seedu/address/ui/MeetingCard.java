@@ -49,7 +49,7 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         name.setText(meeting.getName().meetingName);
-        date.setText(meeting.getDate().value);
+        date.setText(meeting.getDate().toString());
         startToEndTime.setText(meeting.getStartTime().value + " - " + meeting.getEndTime().value);
         meeting.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

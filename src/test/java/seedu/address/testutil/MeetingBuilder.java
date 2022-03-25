@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class MeetingBuilder {
     public static final String DEFAULT_NAME = "Project Meeting";
-    public static final String DEFAULT_DATE = "01/02/2022";
+    public static final String DEFAULT_DATE = "01/04/2022";
     public static final String DEFAULT_START_TIME = "1800";
     public static final String DEFAULT_END_TIME = "1900";
 
