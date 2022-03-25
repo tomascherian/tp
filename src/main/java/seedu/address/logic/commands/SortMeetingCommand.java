@@ -5,9 +5,9 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all meetings in the address book.
  */
-public class SortMCommand extends Command {
+public class SortMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "sortm";
 
