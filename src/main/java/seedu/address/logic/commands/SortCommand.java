@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  */
 public class SortCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort";
+    public static final String COMMAND_WORD = "sortc";
 
     public static final String MESSAGE_SUCCESS = "Sorted all contacts";
 
