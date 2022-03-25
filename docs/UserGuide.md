@@ -119,7 +119,8 @@ Format: `editc CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** 
+:bulb: **Tip:**
+
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </div>
