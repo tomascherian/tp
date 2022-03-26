@@ -22,12 +22,11 @@ import seedu.address.model.meeting.Meeting;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final VersionedAddresSoc versionedAddresSoc;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
 
     private final FilteredList<Contact> filteredPersons;
-
-
     private final FilteredList<Meeting> filteredMeetings;
 
     /**
@@ -38,6 +37,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.versionedAddresSoc = new VersionedAddresSoc(addressBook);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -95,6 +95,30 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    @Override
+    public void commitAddressBook() {
+        versionedAddresSoc.commit(this.addressBook);
+    }
+
+    @Override
+    public void undoAddressBook() {
+
+    }
+
+    @Override
+    public void redoAddressBook() {
+
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return true;
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return true;
+    }
     @Override
     public boolean hasPerson(Contact person) {
         requireNonNull(person);
