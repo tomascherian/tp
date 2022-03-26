@@ -107,6 +107,7 @@ public class AddMeetingCommand extends Command {
         }
 
         model.addMeeting(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

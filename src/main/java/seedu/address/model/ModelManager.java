@@ -97,28 +97,36 @@ public class ModelManager implements Model {
 
     @Override
     public void commitAddressBook() {
+        System.out.println("committed");
         versionedAddresSoc.commit(this.addressBook);
     }
 
     @Override
     public void undoAddressBook() {
-
+        if (canUndoAddressBook()) {
+            System.out.println("undo");
+            versionedAddresSoc.undo();
+        }
     }
 
     @Override
     public void redoAddressBook() {
-
+        if (canRedoAddressBook()) {
+            System.out.println("redo");
+            versionedAddresSoc.redo();
+        }
     }
 
     @Override
     public boolean canUndoAddressBook() {
-        return true;
+        return versionedAddresSoc.canUndo();
     }
 
     @Override
     public boolean canRedoAddressBook() {
-        return true;
+        return versionedAddresSoc.canRedo();
     }
+
     @Override
     public boolean hasPerson(Contact person) {
         requireNonNull(person);

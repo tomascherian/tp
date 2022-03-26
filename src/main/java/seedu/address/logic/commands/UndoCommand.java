@@ -5,20 +5,19 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Undo previous change to AddresSoc.
  */
-public class SortCommand extends Command {
+public class UndoCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort";
+    public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all contacts";
+    public static final String MESSAGE_SUCCESS = "Previous change to AddresSoc has been reverted.";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortContact();
-        model.commitAddressBook();
+        model.undoAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
