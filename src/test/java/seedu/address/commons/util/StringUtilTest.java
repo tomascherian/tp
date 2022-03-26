@@ -123,6 +123,46 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    //---------------- Tests for containsPhraseIgnoreCase --------------------------------------
+
+    @Test
+    public void containsPhraseIgnoreCase_nullPhrase_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPhraseIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsPhraseIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsPhraseIgnoreCase(null, "typical phrase"));
+    }
+
+    @Test
+    public void containsPhraseIgnoreCase_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsPhraseIgnoreCase("", "abc 123"));
+        assertFalse(StringUtil.containsPhraseIgnoreCase("    ", "123 abc"));
+
+        // Matches a partial word
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa bbb ccc", "aaa bb")); // Sentence word bigger than query word
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa bbb ccc", "aaa bbbb")); // Query word bigger than sentence word
+
+        // Matches full words but not full phrase
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa bbb ccc", "aaa ccc")); // Missing word in phrase
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa bbb", "bbb aaa")); // Different ordering of words
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa  bbb  ccc", "aaa bbb")); // Sentence has extra spaces between words
+        assertFalse(StringUtil.containsPhraseIgnoreCase("aaa bbb ccc", "aaa  bbb")); // Phrase has extra spaces
+
+        // Matches phrase in the sentence, different upper/lower case letters
+        assertTrue(StringUtil.containsPhraseIgnoreCase("Aaa bbb", "aaa bbb")); // Same phrase and sentence, except case
+        assertTrue(StringUtil.containsPhraseIgnoreCase("aaa bBb ccc", "Aaa Bbb"));
+        assertTrue(StringUtil.containsPhraseIgnoreCase("aaa bBb ccc@1", "Bbb CCc@1"));
+        assertTrue(StringUtil.containsPhraseIgnoreCase("  AAA bBb ccc ddd ", "bbb ccc")); // Sentence has leading/trailing spaces
+        assertTrue(StringUtil.containsPhraseIgnoreCase("aaa bbb ccc", "  bbb ccc  ")); // Phrase has leading/trailing spaces
+
+        // Matches multiple phrases in sentence
+        assertTrue(StringUtil.containsPhraseIgnoreCase("AAA bBb aAa BbB ccc  aaa bbb", "aaa bbB"));
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
