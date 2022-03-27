@@ -166,6 +166,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings.removeFromParticipantLists(new Participant(key));
     }
 
+    public void sortMeet() {
+        meetings.sortMeetingList();
+    }
     //// util methods
 
     @Override

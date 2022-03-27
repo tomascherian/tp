@@ -98,6 +98,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         internalList.setAll(meetings);
     }
 
+    public void sortMeetingList() {
+        internalList.sort(new MeetingComparator());
+    }
+
     /**
      * Replaces a participant {@code target} in all meetings it is
      * participating in with {@code editedParticipant}.
