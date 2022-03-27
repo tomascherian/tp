@@ -96,7 +96,6 @@ public class ModelManager implements Model {
 
     @Override
     public void commitAddressBook() {
-        System.out.println("committed");
         versionedAddresSoc.commit(this.addressBook);
     }
 
