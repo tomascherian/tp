@@ -256,7 +256,6 @@ public class AddContactCommandTest {
 
         @Override
         public void commitAddressBook() {
-                
         }
 
         @Override
