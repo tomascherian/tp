@@ -36,9 +36,8 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.versionedAddresSoc = new VersionedAddresSoc(addressBook);
         this.addressBook = new AddressBook(addressBook);
+        this.versionedAddresSoc = new VersionedAddresSoc(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
@@ -103,18 +102,12 @@ public class ModelManager implements Model {
 
     @Override
     public void undoAddressBook() {
-        if (canUndoAddressBook()) {
-            System.out.println("undo");
-            versionedAddresSoc.undo();
-        }
+        versionedAddresSoc.undo();
     }
 
     @Override
     public void redoAddressBook() {
-        if (canRedoAddressBook()) {
-            System.out.println("redo");
-            versionedAddresSoc.redo();
-        }
+        versionedAddresSoc.redo();
     }
 
     @Override

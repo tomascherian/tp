@@ -2,13 +2,14 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 
-public class VersionedAddresSoc extends AddressBook {
-    private ArrayList<ReadOnlyAddressBook> addressBookStateList;
+public class VersionedAddresSoc {
+    private final ArrayList<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
+    AddressBook initialAddressBook;
 
 
-    public VersionedAddresSoc(ReadOnlyAddressBook initialAddressBook) {
-        super(initialAddressBook);
+    public VersionedAddresSoc(AddressBook initialAddressBook) {
+        this.initialAddressBook = initialAddressBook;
         ReadOnlyAddressBook initialState = new AddressBook(initialAddressBook);
         addressBookStateList = new ArrayList<ReadOnlyAddressBook>();
         addressBookStateList.add(initialState);
@@ -17,23 +18,29 @@ public class VersionedAddresSoc extends AddressBook {
 
     public void commit(ReadOnlyAddressBook currentAddressBook) {
         ReadOnlyAddressBook currentState = new AddressBook(currentAddressBook);
-        addressBookStateList.add(currentState);
-        currentStatePointer++;
         if (addressBookStateList.size() > currentStatePointer + 1) {
             addressBookStateList.subList(currentStatePointer + 1, addressBookStateList.size()).clear();
         }
+        currentStatePointer++;
+        addressBookStateList.add(currentState);
+        System.out.println(currentStatePointer);
+        System.out.println(addressBookStateList.size());
     }
 
     public void undo() {
         currentStatePointer--;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
-        resetData(newState);
+        initialAddressBook.resetData(newState);
+        System.out.println(currentStatePointer);
+        System.out.println(addressBookStateList.size());
     }
 
     public void redo() {
         currentStatePointer++;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
-        resetData(newState);
+        initialAddressBook.resetData(newState);
+        System.out.println(currentStatePointer);
+        System.out.println(addressBookStateList.size());
     }
 
     public boolean canUndo() {
@@ -41,6 +48,6 @@ public class VersionedAddresSoc extends AddressBook {
     }
 
     public boolean canRedo() {
-        return (currentStatePointer <= addressBookStateList.size());
+        return (currentStatePointer < addressBookStateList.size() - 1);
     }
 }
