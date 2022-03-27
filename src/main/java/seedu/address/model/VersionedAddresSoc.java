@@ -2,12 +2,19 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 
+/**
+ * Keeps track of changes to AddresSoc and implements
+ * the Undo and Redo functions.
+ */
 public class VersionedAddresSoc {
     private final ArrayList<ReadOnlyAddressBook> addressBookStateList;
+    private final AddressBook initialAddressBook;
     private int currentStatePointer;
-    AddressBook initialAddressBook;
 
 
+    /**
+     * Initializes VersionedAddresSoc with the initial AddressBook.
+     */
     public VersionedAddresSoc(AddressBook initialAddressBook) {
         this.initialAddressBook = initialAddressBook;
         ReadOnlyAddressBook initialState = new AddressBook(initialAddressBook);
@@ -16,6 +23,10 @@ public class VersionedAddresSoc {
         currentStatePointer = 0;
     }
 
+    /**
+     * Commits current AddressBook to the StateList as a State.
+     * @param currentAddressBook to be saved in the StateList
+     */
     public void commit(ReadOnlyAddressBook currentAddressBook) {
         ReadOnlyAddressBook currentState = new AddressBook(currentAddressBook);
         if (addressBookStateList.size() > currentStatePointer + 1) {
@@ -23,24 +34,24 @@ public class VersionedAddresSoc {
         }
         currentStatePointer++;
         addressBookStateList.add(currentState);
-        System.out.println(currentStatePointer);
-        System.out.println(addressBookStateList.size());
     }
 
+    /**
+     * Decrement pointer and resets the AddressBook to its previous state.
+     */
     public void undo() {
         currentStatePointer--;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);
-        System.out.println(currentStatePointer);
-        System.out.println(addressBookStateList.size());
     }
 
+    /**
+     * Increment pointer and sets the AddressBook to its next state.
+     */
     public void redo() {
         currentStatePointer++;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);
-        System.out.println(currentStatePointer);
-        System.out.println(addressBookStateList.size());
     }
 
     public boolean canUndo() {
