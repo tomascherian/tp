@@ -216,7 +216,7 @@ Format: `exit`
 
 AddresSoC data (both your contact list and meeting list) is saved in your hard disk automatically after
 any command that changes the data. There is no need for you to save manually.
-![img.png](img.png)
+
 ### Editing the data file
 
 If you are an advanced user, you are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the
