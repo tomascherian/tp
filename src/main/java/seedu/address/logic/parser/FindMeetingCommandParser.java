@@ -3,17 +3,18 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.MeetingNameHasKeywordsPredicate;
+import seedu.address.model.meeting.MeetingOccursOnDatesPredicate;
+import seedu.address.model.meeting.MeetingTagHasKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,19 +29,22 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
      */
     public FindMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_PARTICIPANTS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_TAG);
 
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_PARTICIPANTS, PREFIX_TAG)
+        if (!isAnyPrefixPresent(argMultimap, PREFIX_MEETING_NAME, PREFIX_DATE, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMeetingCommand.MESSAGE_USAGE));
         }
 
         Set<MeetingName> nameKeywords = ParserUtil.parseMeetingNames(argMultimap.getAllValues(PREFIX_MEETING_NAME));
         Set<MeetingDate> dates = ParserUtil.parseMeetingDates(argMultimap.getAllValues(PREFIX_DATE));
-        Set<Index> participantsIndex = ParserUtil.parseParticipants(argMultimap.getAllValues(PREFIX_PARTICIPANTS));
         Set<Tag> tagKeywords = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new FindMeetingCommand(nameKeywords, dates, participantsIndex, tagKeywords);
+        MeetingNameHasKeywordsPredicate namePredicate = new MeetingNameHasKeywordsPredicate(nameKeywords);
+        MeetingOccursOnDatesPredicate datePredicate = new MeetingOccursOnDatesPredicate(dates);
+        MeetingTagHasKeywordsPredicate tagPredicate = new MeetingTagHasKeywordsPredicate(tagKeywords);
+
+        return new FindMeetingCommand(namePredicate, datePredicate, tagPredicate);
     }
 
     /**
