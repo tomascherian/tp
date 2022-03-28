@@ -10,6 +10,7 @@ import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
+import seedu.address.model.meeting.ArchiveStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,11 +23,13 @@ public class MeetingBuilder {
     public static final String DEFAULT_DATE = "01/04/2022";
     public static final String DEFAULT_START_TIME = "1800";
     public static final String DEFAULT_END_TIME = "1900";
+    public static final boolean DEFAULT_ARCHIVESTATUS = false;
 
     private MeetingName name;
     private MeetingDate date;
     private StartTime startTime;
     private EndTime endTime;
+    private ArchiveStatus archiveStatus;
     private Set<Participant> participants;
     private Set<Tag> tags;
 
@@ -38,6 +41,7 @@ public class MeetingBuilder {
         date = new MeetingDate(DEFAULT_DATE);
         startTime = new StartTime(DEFAULT_START_TIME);
         endTime = new EndTime(DEFAULT_END_TIME);
+        archiveStatus = new ArchiveStatus(DEFAULT_ARCHIVESTATUS);
         participants = new HashSet<>();
         tags = new HashSet<>();
     }
@@ -50,6 +54,7 @@ public class MeetingBuilder {
         date = meetingToCopy.getDate();
         startTime = meetingToCopy.getStartTime();
         endTime = meetingToCopy.getEndTime();
+        archiveStatus = meetingToCopy.getArchiveStatus();
         participants = new HashSet<Participant>(meetingToCopy.getParticipants());
         tags = new HashSet<Tag>(meetingToCopy.getTags());
     }
@@ -87,6 +92,14 @@ public class MeetingBuilder {
     }
 
     /**
+     * Sets the {@code Archive} of the {@code Person} that we are building.
+     */
+    public MeetingBuilder withArchiveStatus(String state) {
+        this.archiveStatus = new ArchiveStatus(Boolean.valueOf(state));
+        return this;
+    }
+
+    /**
      * Sets the {@code ParticipantsList} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withParticipants(Contact ... contacts) {
@@ -103,6 +116,6 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(name, date, startTime, endTime, participants, tags);
+        return new Meeting(name, date, startTime, endTime, participants, archiveStatus, tags);
     }
 }

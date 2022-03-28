@@ -16,6 +16,7 @@ import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.ArchiveStatus;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.tag.Tag;
@@ -31,6 +32,7 @@ public class JsonAdaptedMeeting {
     private final String date;
     private final String startTime;
     private final String endTime;
+    private final String archiveStatus;
     private final List<JsonAdaptedPerson> participants = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -40,12 +42,14 @@ public class JsonAdaptedMeeting {
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("name") String name, @JsonProperty("date") String date,
                               @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
+                              @JsonProperty("archiveStatus") String archiveStatus,
                               @JsonProperty("participants") List<JsonAdaptedPerson> participants,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.archiveStatus = archiveStatus;
         if (!Objects.isNull(participants)) {
             this.participants.addAll(participants);
         }
@@ -62,6 +66,7 @@ public class JsonAdaptedMeeting {
         date = source.getDate().toString();
         startTime = source.getStartTime().value;
         endTime = source.getEndTime().value;
+        archiveStatus = source.getArchiveStatus().toString();
         participants.addAll(source.getParticipants().stream().map(participant -> participant.contact)
                 .map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
@@ -77,10 +82,11 @@ public class JsonAdaptedMeeting {
         final MeetingDate modelDate = toModelDate(date);
         final StartTime modelStartTime = toModelStartTime(startTime);
         final EndTime modelEndTime = toModelEndTime(endTime);
+        final ArchiveStatus modelArchiveStatus = toModelArchiveStatus(archiveStatus);
         final Set<Participant> modelParticipants = toModelParticipants(participants);
         final Set<Tag> modelTags = toModelTags(tags);
 
-        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime, modelParticipants, modelTags);
+        return new Meeting(modelName, modelDate, modelStartTime, modelEndTime,  modelParticipants, modelArchiveStatus, modelTags);
     }
 
     private MeetingName toModelName(String name) throws IllegalValueException {
@@ -125,6 +131,13 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(EndTime.MESSAGE_CONSTRAINTS);
         }
         return new EndTime(time);
+    }
+
+    private ArchiveStatus toModelArchiveStatus(String status) throws IllegalValueException {
+        if (!ArchiveStatus.isValidArchiveStatus(archiveStatus)) {
+            throw new IllegalValueException(ArchiveStatus.MESSAGE_CONSTRAINTS);
+        }
+           return new ArchiveStatus(Boolean.parseBoolean(status));
     }
 
     private Set<Participant> toModelParticipants(List<JsonAdaptedPerson> participants) throws IllegalValueException {
