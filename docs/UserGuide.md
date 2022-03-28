@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and schedule meetings**.
+AddresSoC is a desktop app for School of Computing (SoC) students to **keep track of their student network and add meetings**.
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you're a student who can type fast, AddresSoC can get your contact and schedule management tasks done faster than traditional GUI apps.
 
@@ -16,29 +16,29 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressoc.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-3/tp/releases).
+2. Download the latest `addressoc.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddresSoC.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddresSoC.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all your contacts.
 
-   * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/johnd` : Adds a contact named `John Doe` to the AddresSoC contact list
+   * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/johnd` : Adds a contact named `John Doe` to your contact list.
 
-   * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Schedules a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs
+   * **`addm`**` n/SE Team Meeting d/23/03/2022 st/1415 et/1615` : Adds a meeting called "SE Team Meeting" on 23 March 2022 from 1415hrs to 1615hrs.
 
-   * **`deletec`**`3` : Deletes the 3rd contact shown in the current contact list.
+   * **`deletec`**`3` : Deletes the 3rd contact shown in your currently displayed contact list.
 
-   * **`clear`** : Deletes all contacts and meetings.
+   * **`clear`** : Deletes all your contacts and meetings.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. You may refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addc n/NAME`, `NAME` is a parameter which can be used as `addc n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -70,19 +70,19 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 ## Contact
 
-### Listing all persons : `list`
+### Listing all contacts : `list`
 
-Shows a list of all persons in the contact list.
+Shows you a list of all contacts in your contact list.
 
 Format: `list`
 
 ### Adding a contact : `addc`
 
-Adds the specified contact to the contact list.
+Adds the specified contact to your contact list.
 
 Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
-* Adds a person into the contact list with given email, phone number, telegram handle.
+* Adds a person into your contact list with given email, phone number, telegram handle.
 * Optionally Tags can also be specified
 
 Examples:
@@ -92,39 +92,45 @@ Examples:
 
 ### Deleting a contact : `deletec`
 
-Removes the specified person from the contact list
+Removes the specified person from your currently displayed contact list.
 
 Format: `deletec CONTACT_INDEX`
 
-* Deletes the person at the specified CONTACT_INDEX
-* The index refers to the index number shown in the displayed contact list
-* The index must be a positive integer 1, 2, 3, …​
+* Deletes the contact at the specified CONTACT_INDEX.
+* CONTACT_INDEX refers to the index number shown in your currently displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletec 2` deletes the 2nd person in the address book
-* `deletec 0` returns an error for invalid input
+* `deletec 2` deletes the 2nd person in your currently displayed contact list.
+* `deletec 0` returns an error for invalid input as 0 is not a positive integer.
 
 
 ### Editing a contact : `editc`
 
-Edits an existing contact in the contact list.
+Edits an existing contact in your currently displayed contact list.
 
-Format: `editc INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`
+Format: `editc CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the contact at the specified `CONTACT_INDEX`. 
+* `CONTACT_INDEX` refers to the index number shown in your currently displayed contact list. 
+* `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* Existing contact details will be updated according to your input fields.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+</div>
 
 Examples:
-* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 
-### Locating persons by name: `find`
+### Locating contacts by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds contact whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -132,7 +138,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Contacts matching at least one keyword will be returned.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -145,51 +151,56 @@ Examples:
 
 ### Adding a meeting : `addm`
 
-Adds a meeting to the meeting list.
+Adds a meeting to your meeting list.
 
-Format: `addm mn/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
 
-* Schedules a meeting with a specified date, start time and end time to the address book.
-* Optionally, the people involved in the meeting can also be specified.
-* `DATE` requires the format **DD/MM/YYYY** e.g. 20/02/2022
-* `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359
+* Adds a meeting with a specified date, start time and end time to your meeting list.
+* `DATE` requires the format **DD/MM/YYYY** or **DD-MM-YYYY** e.g. 20/02/2022 or 20-02-2022.
+* `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359.
+* `START_TIME` needs to be earlier than `END_TIME`.
+* Optionally, the contacts involved in the meeting can also be specified by a `PARTICIPANTS_INDEX`.
+* `PARTICIPANTS_INDEX` refers to the index number shown in your currently displayed contact list.
+* `PARTICIPANTS_INDEX` **must be a positive integer** 1, 2, 3, …​ 
 
 Examples:
-* `addm mn/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
-  Adds the meeting "CS2103 Project Meeting" with the given date, time and contacts.
-* `addm mn/JAVA Workshop d/23/02/2022 st/1030 et/1230`
-  Adds meeting "JAVA Workshop" with given date and time.
-* `addm mn/Job Interview st/1500 et/1700`
+* `addm n/CS2103 Project Discussion d/23-02-2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
+  Adds the meeting "CS2103 Project Discussion" with your given date, time and participants.
+* `addm n/JAVA Workshop d/23-02-2022 st/1030 et/1230`
+  Adds meeting "JAVA Workshop" with your given date and time.
+* `addm n/Job Interview st/1500 et/1700`
   Returns error message as d/DATE is missing.
+* `addm n/CS2102 Project Discussion d/25/03/2022 st/1500 et/1400`
+  Returns error message as your end time input `et/1400` is earlier than your start time input `st/1500`.
 
 
 ### Deleting a meeting : `deletem`
 
-Deletes the specified meeting from the displayed meeting list
+Deletes the specified meeting from your currently displayed meeting list.
 
 Format: `deletem MEETING_INDEX`
 
 * Deletes the meeting at the specified `MEETING_INDEX`.
-* The index refers to the index number shown in the displayed meetings list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `MEETING_INDEX` refers to the index number shown in your currently displayed meetings list.
+* `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deletem 3` deletes the 3rd meeting in the displayed meeting list.
-* `deletem -1` returns an error for invalid input.
+* `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
+* `deletem -1` returns an error for invalid input as -1 is not a positive integer.
 
 
 ## Common
 
 ### Clearing all entries : `clear`
 
-Clears all contacts and meetings from AddresSoC.
+Clears all your contacts and meetings from AddresSoC.
 
 Format: `clear`
 
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows you a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -203,16 +214,16 @@ Format: `exit`
 
 ### Saving the data
 
-AddresSoC data (both the contact list and the meeting list) is saved in the hard disk automatically after
-any command that changes the data. There is no need to save manually.
+AddresSoC data (both your contact list and meeting list) is saved in your hard disk automatically after
+any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-Advanced users are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the
+If you are an advanced user, you are welcome to update data directly by editing the JSON file where the data is saved. To do so, navigate to the
 folder containing the `addressoc.jar` file to find a folder called `data`. Access the folder and edit the `addressoc.json` file found inside.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressSoC will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressSoC will discard all data and start with an empty data file the next time you run the app.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -220,7 +231,7 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: When you install the app in the other computer, you may overwrite the empty data file it creates with the file that contains the data of your previous AddresSoc home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -228,11 +239,11 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add contact** | `addc n/NAME e/EMAIL [p/PHONE_NUMBER] [th/TELEGRAM_HANDLE] [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
+**Add contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
-**Edit contact** | `editc INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
+**Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Add Meeting** | `addm mn/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm mn/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Clear** | `clear`
 **List** | `list`
