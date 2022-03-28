@@ -1,28 +1,36 @@
 package seedu.address.model.meeting;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Tests whether a {@code Meeting's} name matches any of the {@code MeetingNames} given.
+ * If no {@code MeetingName} is given, the test returns true.
+ */
 public class MeetingNameHasKeywordsPredicate implements Predicate<Meeting> {
-    private final List<String> keywords;
+    private final Set<MeetingName> nameKeywords;
 
-    public MeetingNameHasKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public MeetingNameHasKeywordsPredicate(Set<MeetingName> nameKeywords) {
+        this.nameKeywords = nameKeywords;
     }
 
     @Override
     public boolean test(Meeting meeting) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPhraseIgnoreCase(meeting.getName().meetingName, keyword));
+        if (nameKeywords.isEmpty()) {
+            return true;
+        }
+        return nameKeywords.stream()
+                .anyMatch(nameKeyword ->
+                        StringUtil.containsPhraseIgnoreCase(meeting.getName().meetingName, nameKeyword.meetingName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MeetingNameHasKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((MeetingNameHasKeywordsPredicate) other).keywords)); // state check
+                && nameKeywords.equals(((MeetingNameHasKeywordsPredicate) other).nameKeywords)); // state check
     }
 
 }

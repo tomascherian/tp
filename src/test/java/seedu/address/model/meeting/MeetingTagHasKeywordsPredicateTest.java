@@ -3,30 +3,40 @@ package seedu.address.model.meeting;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.MeetingBuilder;
 
 public class MeetingTagHasKeywordsPredicateTest {
+    private final String firstTagName = "Academic";
+    private final String secondTagName = "Internship";
+    private final String thirdTagName = "Leisure";
 
+    private final String mixedCaseFirstTagName = "AcaDeMiC";
+    private final String mixedCaseSecondTagName = "iNTernShIp";
+
+    private final Tag firstTag = new Tag(firstTagName);
+    private final Tag secondTag = new Tag(secondTagName);
+    private final Tag thirdTag = new Tag(thirdTagName);
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        Set<Tag> firstPredicateKeywordSet = Collections.singleton(firstTag);
+        Set<Tag> secondPredicateKeywordSet = Set.of(firstTag, secondTag);
 
-        MeetingTagHasKeywordsPredicate firstPredicate = new MeetingTagHasKeywordsPredicate(firstPredicateKeywordList);
-        MeetingTagHasKeywordsPredicate secondPredicate = new MeetingTagHasKeywordsPredicate(secondPredicateKeywordList);
+        MeetingTagHasKeywordsPredicate firstPredicate = new MeetingTagHasKeywordsPredicate(firstPredicateKeywordSet);
+        MeetingTagHasKeywordsPredicate secondPredicate = new MeetingTagHasKeywordsPredicate(secondPredicateKeywordSet);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        MeetingTagHasKeywordsPredicate firstPredicateCopy = new MeetingTagHasKeywordsPredicate(firstPredicateKeywordList);
+        MeetingTagHasKeywordsPredicate firstPredicateCopy =
+                new MeetingTagHasKeywordsPredicate(firstPredicateKeywordSet);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,45 +50,44 @@ public class MeetingTagHasKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword, one tag
-        MeetingTagHasKeywordsPredicate predicate =
-                new MeetingTagHasKeywordsPredicate(Collections.singletonList("Academic"));
-        assertTrue(predicate.test(new MeetingBuilder().withTags("Academic Stuff").build()));
-
-        // One keyword, multiple tags
-        predicate = new MeetingTagHasKeywordsPredicate(Collections.singletonList("Academic"));
-        assertTrue(predicate.test(new MeetingBuilder().withTags("Internship", "Academic").build()));
-
-        // Multiple keywords
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("Academic", "Internship"));
-        assertTrue(predicate.test(new MeetingBuilder().withTags("Academic Internship").build()));
-
-        // Only one matching keyword
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("Academic", "Internship"));
-        assertTrue(predicate.test(new MeetingBuilder().withTags("Internship").build()));
-
-        // Mixed-case keywords
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("aCAdeMic", "InTernShip"));
-        assertTrue(predicate.test(new MeetingBuilder().withTags("Academic Internship").build()));
+    public void test_emptyKeywords_returnsTrue() {
+        MeetingTagHasKeywordsPredicate predicate = new MeetingTagHasKeywordsPredicate(Collections.emptySet());
+        assertTrue(predicate.test(new MeetingBuilder().withTags(firstTagName).build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        MeetingTagHasKeywordsPredicate predicate = new MeetingTagHasKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new MeetingBuilder().withTags("Academic").build()));
+    public void test_tagHasKeywords_returnsTrue() {
+        // One keyword, one tag
+        MeetingTagHasKeywordsPredicate predicate = new MeetingTagHasKeywordsPredicate(Collections.singleton(firstTag));
+        assertTrue(predicate.test(new MeetingBuilder().withTags(firstTagName).build()));
+
+        // One keyword, multiple tags
+        predicate = new MeetingTagHasKeywordsPredicate(Collections.singleton(firstTag));
+        assertTrue(predicate.test(new MeetingBuilder().withTags(firstTagName, secondTagName).build()));
+
+        // Multiple matching keywords
+        predicate = new MeetingTagHasKeywordsPredicate(Set.of(firstTag, secondTag));
+        assertTrue(predicate.test(new MeetingBuilder().withTags(firstTagName + " " + secondTagName).build()));
+
+        // Only one matching keyword
+        predicate = new MeetingTagHasKeywordsPredicate(Set.of(firstTag, secondTag));
+        assertTrue(predicate.test(new MeetingBuilder().withTags(firstTagName).build()));
+
+        // Mixed-case meeting tag
+        predicate = new MeetingTagHasKeywordsPredicate(Set.of(firstTag, secondTag));
+        assertTrue(predicate.test(
+                new MeetingBuilder().withTags(mixedCaseFirstTagName, mixedCaseSecondTagName).build()));
+    }
+
+    @Test
+    public void test_tagDoesNotHaveKeywords_returnsFalse() {
 
         // Non-matching keyword
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("Leisure"));
-        assertFalse(predicate.test(new MeetingBuilder().withTags("Academic", "Internship").build()));
-
-        // Non-matching keyword due to whitespace
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("Academic Internship"));
-        assertFalse(predicate.test(new MeetingBuilder().withTags("Academic", "Internship").build()));
+        MeetingTagHasKeywordsPredicate predicate = new MeetingTagHasKeywordsPredicate(Set.of(thirdTag));
+        assertFalse(predicate.test(new MeetingBuilder().withTags(firstTagName, secondTagName).build()));
 
         // Non-matching keyword due to non-full match
-        predicate = new MeetingTagHasKeywordsPredicate(Arrays.asList("Academic Internship"));
-        assertFalse(predicate.test(new MeetingBuilder().withTags("Academic Int", "mic Internship").build()));
+        predicate = new MeetingTagHasKeywordsPredicate(Set.of(new Tag(firstTagName + " " + secondTagName)));
+        assertFalse(predicate.test(new MeetingBuilder().withTags(firstTagName, secondTagName).build()));
     }
 }

@@ -1,22 +1,33 @@
 package seedu.address.model.meeting;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Tests whether a {@code Meeting's} tags matches any of the {@code Tags} given.
+ * If no {@code Tag} is given, the test returns true.
+ */
 public class MeetingTagHasKeywordsPredicate implements Predicate<Meeting> {
-    private final List<String> tagKeywords;
+    private final Set<Tag> tagKeywords;
 
-    public MeetingTagHasKeywordsPredicate(List<String> tagKeywords) {
+    public MeetingTagHasKeywordsPredicate(Set<Tag> tagKeywords) {
         this.tagKeywords = tagKeywords;
     }
 
     @Override
     public boolean test(Meeting meeting) {
+        if (tagKeywords.isEmpty()) {
+            return true;
+        }
+
         return tagKeywords.stream()
-                .anyMatch(keyword -> meeting.getTags().stream()
-                        .anyMatch(tag -> StringUtil.containsPhraseIgnoreCase(tag.tagName, keyword)));
+                .anyMatch(tagKeyword ->
+                        meeting.getTags()
+                                .stream()
+                                .anyMatch(tag -> StringUtil.containsPhraseIgnoreCase(tag.tagName, tagKeyword.tagName)));
     }
 
     @Override

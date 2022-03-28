@@ -1,18 +1,25 @@
 package seedu.address.model.meeting;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
+/**
+ * Tests whether a {@code Meeting} has any of the {@code Participants} given.
+ * If no {@code Participant} is given, the test returns true.
+ */
 public class MeetingHasParticipantsPredicate implements Predicate<Meeting> {
-    private final List<Participant> participants;
+    private final Set<Participant> participants;
 
-    public MeetingHasParticipantsPredicate(List<Participant> participants) {
+    public MeetingHasParticipantsPredicate(Set<Participant> participants) {
         this.participants = participants;
     }
 
     @Override
     public boolean test(Meeting meeting) {
-        return participants.stream().anyMatch(participant ->meeting.hasParticipant(participant));
+        if (participants.isEmpty()) {
+            return true;
+        }
+        return participants.stream().anyMatch(participant -> meeting.hasParticipant(participant));
     }
 
     @Override
