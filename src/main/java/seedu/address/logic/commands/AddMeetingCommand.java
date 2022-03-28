@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -88,9 +89,10 @@ public class AddMeetingCommand extends Command {
         List<Contact> lastShownList = model.getFilteredPersonList();
         final Set<Participant> participants = new HashSet<>();
 
-        if (startTime.isAfter(endTime)) {
+        if (!startTime.isBefore(endTime)) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
+        ObservableList<Meeting> meetingList = model.getFilteredMeetingList();
 
         for (Index targetIndex : participantsIndex) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -101,6 +103,13 @@ public class AddMeetingCommand extends Command {
         }
 
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, tagList);
+
+        for (int i = 0; i < meetingList.size(); i++) {
+            Meeting otherMeeting = meetingList.get(i);
+            if (toAdd.isTimingClash(otherMeeting) || otherMeeting.isTimingClash(toAdd)) {
+                System.out.println("meeting clash!");
+            }
+        }
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);

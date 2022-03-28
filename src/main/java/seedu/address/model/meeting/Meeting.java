@@ -123,6 +123,21 @@ public class Meeting {
                 && otherMeeting.getDate().equals(getDate());
     }
 
+    public boolean isTimingClash(Meeting otherMeeting) {
+        if (this.date.equals(otherMeeting.getDate())) {
+            if (this.startTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())) {
+                return true;
+            }
+            if (this.endTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())) {
+                return true;
+            }
+            if (this.startTime.equals(otherMeeting.getStartTime()) && this.endTime.equals(otherMeeting.getEndTime())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.

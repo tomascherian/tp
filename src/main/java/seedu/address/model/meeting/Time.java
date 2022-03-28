@@ -39,8 +39,19 @@ public class Time implements Comparable<Time> {
      * @param time
      * @return true if this time is later than given time
      */
+    public boolean isBefore(Time time) {
+        return this.value.compareTo(time.value) < 0;
+    }
+
     public boolean isAfter(Time time) {
-        return !(this.value.compareTo(time.value) < 0);
+        return this.value.compareTo(time.value) > 0;
+    }
+
+    public boolean isWithin(Time start, Time end) {
+        if(this.isBefore(end)) {
+            return this.isAfter(start);
+        }
+        return false;
     }
 
     @Override
