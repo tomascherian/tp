@@ -32,7 +32,7 @@ public class ArchiveMeetingCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Constructs an SnoozeMeetingCommand.
+     * Constructs an ArchiveMeetingCommand.
      *
      * @param targetIndex the index number shown in the  meeting list.
      */
