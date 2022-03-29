@@ -123,6 +123,10 @@ public class Meeting {
                 && otherMeeting.getDate().equals(getDate());
     }
 
+    /**
+     * Returns true if a meeting's startTime or endTime falls within
+     * another meeting.
+     */
     public boolean isTimingClash(Meeting otherMeeting) {
         if (this.date.equals(otherMeeting.getDate())) {
             if (this.startTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())) {
