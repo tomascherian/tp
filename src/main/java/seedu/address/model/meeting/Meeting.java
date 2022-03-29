@@ -21,7 +21,7 @@ public class Meeting {
     private final MeetingDate date;
     private final StartTime startTime;
     private final EndTime endTime;
-    private final ArchiveStatus archiveStatus;
+    private final MeetingArchiveStatus archiveStatus;
 
     // Data fields
     private final Set<Participant> participants = new HashSet<>();
@@ -31,7 +31,7 @@ public class Meeting {
      * Every field must be present and not null.
      */
     public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime,
-                   Set<Participant> participants, ArchiveStatus archiveStatus, Set<Tag> tags) {
+                   Set<Participant> participants, MeetingArchiveStatus archiveStatus, Set<Tag> tags) {
         requireAllNonNull(name, date, startTime, endTime, participants, tags, archiveStatus);
         this.name = name;
         this.date = date;
@@ -62,7 +62,7 @@ public class Meeting {
         return Collections.unmodifiableSet(participants);
     }
 
-    public ArchiveStatus getArchiveStatus() {
+    public MeetingArchiveStatus getArchiveStatus() {
         return archiveStatus;
     }
 
@@ -153,9 +153,10 @@ public class Meeting {
                 && otherMeeting.getArchiveStatus().equals(getArchiveStatus());
     }
 
-
+    /** This method return a meeting that has been archived */
     public Meeting archive() {
-        return new Meeting(this.name, this.date, this.startTime, this.endTime, this.participants, new ArchiveStatus(true),
+        return new Meeting(this.name, this.date, this.startTime, this.endTime,
+                this.participants, new MeetingArchiveStatus(true),
                 this.tags);
     }
 

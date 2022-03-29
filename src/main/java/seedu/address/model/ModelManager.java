@@ -41,7 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), Model.PREDICATE_SHOW_ALL_ACTIVE_MEETINGS);
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), Model.PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     public ModelManager() {
@@ -138,7 +138,7 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
-        updateFilteredMeetingList(PREDICATE_SHOW_ALL_ACTIVE_MEETINGS);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override

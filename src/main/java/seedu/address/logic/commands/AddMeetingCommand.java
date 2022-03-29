@@ -19,8 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 import seedu.address.model.meeting.MeetingDate;
-import seedu.address.model.meeting.ArchiveStatus;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
@@ -57,7 +57,7 @@ public class AddMeetingCommand extends Command {
     private final MeetingDate meetingDate;
     private final StartTime startTime;
     private final EndTime endTime;
-    private final ArchiveStatus archiveStatus;
+    private final MeetingArchiveStatus archiveStatus;
     private final Set<Tag> tagList;
     private final Set<Index> participantsIndex;
     private Meeting toAdd;
@@ -66,7 +66,8 @@ public class AddMeetingCommand extends Command {
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
 
-    public AddMeetingCommand(MeetingName meetingName, MeetingDate meetingDate, StartTime startTime, EndTime endTime, ArchiveStatus archiveStatus,
+    public AddMeetingCommand(MeetingName meetingName, MeetingDate meetingDate, StartTime startTime,
+                             EndTime endTime, MeetingArchiveStatus archiveStatus,
             Set<Index> participantsIndex, Set<Tag> tagList) {
         requireNonNull(meetingName);
         requireNonNull(meetingDate);

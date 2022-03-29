@@ -15,7 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.EndTime;
-import seedu.address.model.meeting.ArchiveStatus;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.StartTime;
@@ -45,7 +45,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         MeetingDate date = ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_DATE).get());
         StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
         EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_END_TIME).get());
-        ArchiveStatus archiveStatus = new ArchiveStatus(false);
+        MeetingArchiveStatus archiveStatus = new MeetingArchiveStatus(false);
         Set<Index> participantsIndex = ParserUtil.parseParticipants(argMultimap.getAllValues(PREFIX_PARTICIPANTS));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

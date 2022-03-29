@@ -14,7 +14,7 @@ public class ListArchivedCommand extends Command {
 
     public static final String COMMAND_WORD = "archivelist";
 
-    public static final String MESSAGE_SUCCESS = "Listed all archived meetings in meeting list.";
+    public static final String MESSAGE_SUCCESS = "Listed all archived meetings";
 
     @Override
     public CommandResult execute(Model model) {

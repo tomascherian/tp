@@ -53,7 +53,8 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullMeetingName_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(null, VALID_DATE, VALID_START_TIME, VALID_END_TIME, VALID_ARCHIVESTATUS,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(null, VALID_DATE, VALID_START_TIME,
+                VALID_END_TIME, VALID_ARCHIVESTATUS,
                 VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -62,7 +63,8 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_MEETING_NAME, INVALID_DATE, VALID_START_TIME, VALID_END_TIME, VALID_ARCHIVESTATUS,
+                new JsonAdaptedMeeting(VALID_MEETING_NAME, INVALID_DATE, VALID_START_TIME,
+                        VALID_END_TIME, VALID_ARCHIVESTATUS,
                         VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = MeetingDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -79,7 +81,8 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_invalidStartTime_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, INVALID_START_TIME, VALID_END_TIME, VALID_ARCHIVESTATUS,
+                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, INVALID_START_TIME,
+                        VALID_END_TIME, VALID_ARCHIVESTATUS,
                         VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = StartTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -87,7 +90,8 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullStartTime_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, null, VALID_END_TIME, VALID_ARCHIVESTATUS,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, null,
+                VALID_END_TIME, VALID_ARCHIVESTATUS,
                 VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -96,7 +100,8 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_invalidEndTime_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME, INVALID_END_TIME, VALID_ARCHIVESTATUS,
+                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME,
+                        INVALID_END_TIME, VALID_ARCHIVESTATUS,
                         VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = EndTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -104,7 +109,8 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullEndTime_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME, null, VALID_ARCHIVESTATUS,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE,
+                VALID_START_TIME, null, VALID_ARCHIVESTATUS,
                 VALID_PARTICIPANTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
@@ -115,7 +121,8 @@ public class JsonAdaptedMeetingTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE, VALID_START_TIME, VALID_END_TIME, VALID_ARCHIVESTATUS,
+                new JsonAdaptedMeeting(VALID_MEETING_NAME, VALID_DATE,
+                VALID_START_TIME, VALID_END_TIME, VALID_ARCHIVESTATUS,
                         VALID_PARTICIPANTS, invalidTags);
         assertThrows(IllegalValueException.class, meeting::toModelType);
     }

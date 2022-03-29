@@ -6,11 +6,11 @@ import java.util.Set;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.StartTime;
-import seedu.address.model.meeting.ArchiveStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,7 +29,7 @@ public class MeetingBuilder {
     private MeetingDate date;
     private StartTime startTime;
     private EndTime endTime;
-    private ArchiveStatus archiveStatus;
+    private MeetingArchiveStatus archiveStatus;
     private Set<Participant> participants;
     private Set<Tag> tags;
 
@@ -41,7 +41,7 @@ public class MeetingBuilder {
         date = new MeetingDate(DEFAULT_DATE);
         startTime = new StartTime(DEFAULT_START_TIME);
         endTime = new EndTime(DEFAULT_END_TIME);
-        archiveStatus = new ArchiveStatus(DEFAULT_ARCHIVESTATUS);
+        archiveStatus = new MeetingArchiveStatus(DEFAULT_ARCHIVESTATUS);
         participants = new HashSet<>();
         tags = new HashSet<>();
     }
@@ -95,7 +95,7 @@ public class MeetingBuilder {
      * Sets the {@code Archive} of the {@code Person} that we are building.
      */
     public MeetingBuilder withArchiveStatus(String state) {
-        this.archiveStatus = new ArchiveStatus(Boolean.valueOf(state));
+        this.archiveStatus = new MeetingArchiveStatus(Boolean.valueOf(state));
         return this;
     }
 

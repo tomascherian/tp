@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Person's archive status in the address book.
  */
-public class ArchiveStatus {
+public class MeetingArchiveStatus {
     public static final String MESSAGE_CONSTRAINTS = "Archive status should only be true or false";
 
     public static final String VALIDATION_REGEX = "^(true|false)$";
@@ -16,7 +16,7 @@ public class ArchiveStatus {
     /**
      * Constructs a false {@code archiveStatus} of archival if no parameter passed in.
      */
-    public ArchiveStatus() {
+    public MeetingArchiveStatus() {
         this.archiveStatus = false;
     }
 
@@ -25,7 +25,7 @@ public class ArchiveStatus {
      *
      * @param archiveStatus A valid archiveStatus of archival.
      */
-    public ArchiveStatus(boolean archiveStatus) {
+    public MeetingArchiveStatus(boolean archiveStatus) {
         requireNonNull(archiveStatus);
         this.archiveStatus = archiveStatus;
     }
@@ -48,8 +48,8 @@ public class ArchiveStatus {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ArchiveStatus
-                && archiveStatus == ((ArchiveStatus) other).archiveStatus);
+                || (other instanceof MeetingArchiveStatus
+                && archiveStatus == ((MeetingArchiveStatus) other).archiveStatus);
     }
 
     @Override

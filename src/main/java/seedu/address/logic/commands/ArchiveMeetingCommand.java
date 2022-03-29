@@ -8,10 +8,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.ArchiveStatus;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 
 /**
- * Snoozes a meeting using the meeting index
+ * Archives a meeting using the meeting index
  */
 
 public class ArchiveMeetingCommand extends Command {
@@ -19,14 +19,14 @@ public class ArchiveMeetingCommand extends Command {
     public static final String COMMAND_WORD = "archive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-                                             + ": Archives the meeting identified by the index number in the displayed meeting list.\n"
+                                             + ": Archives the meeting identified by the index.\n"
                                              + "Parameters: INDEX (must be a positive integer)\n"
                                              + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ARCHIVE_MEETING_SUCCESS = "Archived Meeting: %1$s";
 
     public static final String MESSAGE_ALREADY_ARCHIVED = "This meeting has already been archived"
-                                                         + "/n To view all archive meetings, use command 'archivelist'. ";
+                                                         + "/n To view all archive meetings, use command 'archivelist'";
     public static final String MESSAGE_INVALID_INDEX = "The given index is invalid";
 
     private final Index targetIndex;
@@ -34,7 +34,7 @@ public class ArchiveMeetingCommand extends Command {
     /**
      * Constructs an SnoozeMeetingCommand.
      *
-     * @param targetIndex the index number shown in the displayed meeting list.
+     * @param targetIndex the index number shown in the  meeting list.
      */
     public ArchiveMeetingCommand(Index targetIndex) {
         requireNonNull(targetIndex);
@@ -52,16 +52,16 @@ public class ArchiveMeetingCommand extends Command {
         }
 
         Meeting meetingToArchive = lastShownList.get(targetIndex.getZeroBased());
-        ArchiveStatus currentStateOfPerson = meetingToArchive.getArchiveStatus();
+        MeetingArchiveStatus currentState = meetingToArchive.getArchiveStatus();
 
-        if (currentStateOfPerson.archiveStatus) {
+        if (currentState.archiveStatus) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ARCHIVED,
                     meetingToArchive));
         }
 
-        Meeting snoozedMeeting = meetingToArchive.archive();
-        model.setMeeting(meetingToArchive, snoozedMeeting);
-        model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_ACTIVE_MEETINGS);
+        Meeting toarchiveMeeting = meetingToArchive.archive();
+        model.setMeeting(meetingToArchive, toarchiveMeeting);
+        model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_MEETING_SUCCESS, meetingToArchive.getName()));
     }
 

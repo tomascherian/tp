@@ -14,7 +14,7 @@ public class ArchiveMeetingParser implements Parser<ArchiveMeetingCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ArchiveMeetingCommand
      * and returns a ArchiveMeetingCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not have the expected format
      */
     public ArchiveMeetingCommand parse(String args) throws ParseException {
         try {
