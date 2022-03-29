@@ -59,6 +59,7 @@ public class AddMeetingCommand extends Command {
     private final EndTime endTime;
     private final Set<Tag> tagList;
     private final Set<Index> participantsIndex;
+    private boolean isClash;
     private Meeting toAdd;
 
     /**
@@ -80,6 +81,7 @@ public class AddMeetingCommand extends Command {
         this.endTime = endTime;
         this.tagList = tagList;
         this.participantsIndex = participantsIndex;
+        this.isClash = false;
     }
 
     @Override
@@ -104,10 +106,9 @@ public class AddMeetingCommand extends Command {
 
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, tagList);
 
-        for (int i = 0; i < meetingList.size(); i++) {
-            Meeting otherMeeting = meetingList.get(i);
+        for (Meeting otherMeeting : meetingList) {
             if (toAdd.isTimingClash(otherMeeting) || otherMeeting.isTimingClash(toAdd)) {
-                System.out.println("meeting clash!");
+                isClash = true;
             }
         }
 
@@ -116,7 +117,7 @@ public class AddMeetingCommand extends Command {
         }
 
         model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, isClash, false);
     }
 
     @Override
