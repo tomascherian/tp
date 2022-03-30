@@ -44,7 +44,7 @@
     "tagged" : [ ]
   } ], "meetings" : [ {
   "name" : "CS2103T project",
-  "date" : "12/03/2022",
+  "date" : "12/04/2022",
   "startTime" : "1600",
   "endTime" : "1700",
   "participants" : [ {
@@ -63,7 +63,7 @@
   "tags" : [ "v1point2" ]
 }, {
   "name" : "CS2101 project",
-  "date" : "15/03/2022",
+  "date" : "15/05/2022",
   "startTime" : "1900",
   "endTime" : "2000",
   "participants" : [ {
@@ -82,7 +82,7 @@
   "tags" : [ "OP2" ]
 }, {
   "name" : "NUSSU meeting",
-  "date" : "20/03/2022",
+  "date" : "20/06/2022",
   "startTime" : "1600",
   "endTime" : "1700",
   "participants" : [ {
@@ -101,14 +101,14 @@
   "tags" : [ "important" ]
 }, {
   "name" : "Dance exco meeting",
-  "date" : "22/03/2022",
+  "date" : "22/07/2022",
   "startTime" : "1700",
   "endTime" : "1800",
   "participants" : [ ],
   "tags" : [ ]
 }, {
   "name" : "Computing club meeting",
-  "date" : "30/03/2022",
+  "date" : "30/08/2022",
   "startTime" : "1600",
   "endTime" : "1700",
   "participants" : [ {
