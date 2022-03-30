@@ -12,7 +12,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class MeetingClashWindow extends UiPart<Stage> {
 
-    public static final String CLASH_MESSAGE = "WARNING: There is a clash in timing with another Meeting!";
+    public static final String CLASH_MESSAGE = "WARNING: There is a clash in timing with another Meeting! "
+            + "Refer to the display box for details regarding these clash(es).";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "MeetingClashWindow.fxml";

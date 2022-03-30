@@ -8,9 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -50,6 +52,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_TAG + "discussion for v1.2";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
+    public static final String MESSAGE_SUCCESS_WITH_CLASH = "New meeting added: %1$s. Clashes with:\n%2$s.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting list";
     public static final String MESSAGE_INVALID_TIME = "Meeting end time should be later meeting start time";
 
@@ -59,8 +62,8 @@ public class AddMeetingCommand extends Command {
     private final EndTime endTime;
     private final Set<Tag> tagList;
     private final Set<Index> participantsIndex;
-    private boolean isClash;
     private Meeting toAdd;
+    private ArrayList<Meeting> clashingMeetings;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
@@ -81,7 +84,6 @@ public class AddMeetingCommand extends Command {
         this.endTime = endTime;
         this.tagList = tagList;
         this.participantsIndex = participantsIndex;
-        this.isClash = false;
     }
 
     @Override
@@ -106,18 +108,22 @@ public class AddMeetingCommand extends Command {
 
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, tagList);
 
-        for (Meeting otherMeeting : meetingList) {
-            if (toAdd.isTimingClash(otherMeeting)) {
-                isClash = true;
-            }
-        }
+        clashingMeetings = model.checkMeetingClash(toAdd);
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, isClash, false);
+
+        if (clashingMeetings.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } else {
+            String clashMessage = clashingMeetings.stream().map(Meeting::toString)
+                    .collect(Collectors.joining(",\n"));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_WITH_CLASH, toAdd, clashMessage),
+                    false, true, false);
+        }
     }
 
     @Override

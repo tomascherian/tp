@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -129,6 +130,19 @@ public class ModelManager implements Model {
         requireNonNull(meeting);
         return addressBook.hasMeeting(meeting);
     }
+
+    @Override
+    public ArrayList<Meeting> checkMeetingClash(Meeting toAdd) {
+        ObservableList<Meeting> meetingList = addressBook.getMeetingList();
+        ArrayList<Meeting> clashingMeetings = new ArrayList<Meeting>();
+        for (Meeting otherMeeting : meetingList) {
+            if (toAdd.isTimingClash(otherMeeting)) {
+                clashingMeetings.add(otherMeeting);
+            }
+        }
+        return clashingMeetings;
+    }
+
 
     @Override
     public void deleteMeeting(Meeting target) {
