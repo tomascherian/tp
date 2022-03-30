@@ -17,7 +17,14 @@ public interface Model {
 
     /** {@code Predicates} that always evaluate to true */
     Predicate<Contact> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    /** {@code Predicate} that evaluates to true if meeting's archive status is false. */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = meeting ->
+            !(meeting.getArchiveStatus().archiveStatus);
+
+    /** {@code Predicate} that evaluates to true if meeting's archive status is true. */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_ARCHIVED_MEETINGS = meeting -> (
+            meeting.getArchiveStatus().archiveStatus);
 
 
     /**
@@ -57,6 +64,16 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
