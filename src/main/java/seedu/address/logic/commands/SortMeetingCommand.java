@@ -18,6 +18,7 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortMeeting();
+        model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

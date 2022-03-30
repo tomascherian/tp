@@ -62,9 +62,9 @@ public class ArchiveMeetingCommand extends Command {
         Meeting toarchiveMeeting = meetingToArchive.archive();
         model.setMeeting(meetingToArchive, toarchiveMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ARCHIVE_MEETING_SUCCESS, meetingToArchive.getName()));
     }
-
 
     @Override
     public boolean equals(Object other) {
