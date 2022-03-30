@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 import seedu.address.model.meeting.Meeting;
 
 

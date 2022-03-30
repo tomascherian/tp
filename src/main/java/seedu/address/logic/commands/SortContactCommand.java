@@ -18,6 +18,7 @@ public class SortContactCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortContact();
+        model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

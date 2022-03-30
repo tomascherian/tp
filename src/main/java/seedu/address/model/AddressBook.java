@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.UniquePersonList;
+import seedu.address.logic.commands.exceptions.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.UniquePersonList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.Participant;
 import seedu.address.model.meeting.UniqueMeetingList;

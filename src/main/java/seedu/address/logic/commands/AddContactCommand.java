@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 
 
 
@@ -57,6 +57,7 @@ public class AddContactCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

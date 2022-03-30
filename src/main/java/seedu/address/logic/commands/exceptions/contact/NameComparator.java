@@ -1,4 +1,4 @@
-package seedu.address.model.contact;
+package seedu.address.logic.commands.exceptions.contact;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package seedu.address.model.contact.exceptions;
+package seedu.address.logic.commands.exceptions.contact.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified person.

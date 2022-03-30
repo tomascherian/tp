@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -41,6 +41,7 @@ public class DeleteContactCommand extends Command {
 
         Contact personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

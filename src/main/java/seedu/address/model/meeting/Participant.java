@@ -2,7 +2,7 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 
 /**
  * Represents the Meeting participants in the address book.

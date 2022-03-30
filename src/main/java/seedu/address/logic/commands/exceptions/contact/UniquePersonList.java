@@ -1,4 +1,4 @@
-package seedu.address.model.contact;
+package seedu.address.logic.commands.exceptions.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.contact.exceptions.ContactNotFoundException;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
+import seedu.address.logic.commands.exceptions.contact.exceptions.ContactNotFoundException;
+import seedu.address.logic.commands.exceptions.contact.exceptions.DuplicateContactException;
 
 
 

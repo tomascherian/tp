@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.contact.Contact;
 import seedu.address.testutil.PersonBuilder;
 
 

@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Phone;
-import seedu.address.model.contact.Telegram;
+import seedu.address.logic.commands.exceptions.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Email;
+import seedu.address.logic.commands.exceptions.contact.Name;
+import seedu.address.logic.commands.exceptions.contact.Phone;
+import seedu.address.logic.commands.exceptions.contact.Telegram;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
@@ -53,19 +54,24 @@ public class SampleDataUtil {
         return new Meeting[] {
             new Meeting(new MeetingName("CS2103T project"), new MeetingDate("12/03/2022"),
                         new StartTime("1600"), new EndTime("1700"),
-                        getParticipantSet(samplePersons[0], samplePersons[1]), getTagSet("v1point2")),
+                        getParticipantSet(samplePersons[0], samplePersons[1]), new MeetingArchiveStatus(false),
+                    getTagSet("v1point2")),
             new Meeting(new MeetingName("CS2101 project"), new MeetingDate("15/03/2022"),
                         new StartTime("1900"), new EndTime("2000"),
-                        getParticipantSet(samplePersons[0], samplePersons[1]), getTagSet("OP2")),
+                        getParticipantSet(samplePersons[0], samplePersons[1]), new MeetingArchiveStatus(false),
+                    getTagSet("OP2")),
             new Meeting(new MeetingName("NUSSU meeting"), new MeetingDate("20/03/2022"),
                         new StartTime("1600"), new EndTime("1700"),
-                        getParticipantSet(samplePersons[3], samplePersons[1]), getTagSet("important")),
+                        getParticipantSet(samplePersons[3], samplePersons[1]), new MeetingArchiveStatus(false),
+                    getTagSet("important")),
             new Meeting(new MeetingName("Dance exco meeting"), new MeetingDate("22/03/2022"),
                         new StartTime("1700"), new EndTime("1800"),
-                        getParticipantSet(samplePersons[0], samplePersons[3]), getTagSet()),
+                        getParticipantSet(samplePersons[0], samplePersons[3]), new MeetingArchiveStatus(false),
+                    getTagSet()),
             new Meeting(new MeetingName("Computing club meeting"), new MeetingDate("30/03/2022"),
                         new StartTime("1600"), new EndTime("1700"),
-                        getParticipantSet(samplePersons[4], samplePersons[2]), getTagSet()),
+                        getParticipantSet(samplePersons[4], samplePersons[2]), new MeetingArchiveStatus(false),
+                    getTagSet()),
 
 
         };

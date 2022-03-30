@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 

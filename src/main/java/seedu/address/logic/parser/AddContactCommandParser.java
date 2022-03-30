@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Phone;
-import seedu.address.model.contact.Telegram;
+import seedu.address.logic.commands.exceptions.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Email;
+import seedu.address.logic.commands.exceptions.contact.Name;
+import seedu.address.logic.commands.exceptions.contact.Phone;
+import seedu.address.logic.commands.exceptions.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
 

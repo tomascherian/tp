@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 import seedu.address.model.meeting.Meeting;
 
 /**

@@ -19,9 +19,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Contact;
+import seedu.address.logic.commands.exceptions.contact.Contact;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingArchiveStatus;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Participant;
@@ -60,6 +61,7 @@ public class AddMeetingCommand extends Command {
     private final MeetingDate meetingDate;
     private final StartTime startTime;
     private final EndTime endTime;
+    private final MeetingArchiveStatus archiveStatus;
     private final Set<Tag> tagList;
     private final Set<Index> participantsIndex;
     private Meeting toAdd;
@@ -69,12 +71,14 @@ public class AddMeetingCommand extends Command {
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
 
-    public AddMeetingCommand(MeetingName meetingName, MeetingDate meetingDate, StartTime startTime, EndTime endTime,
+    public AddMeetingCommand(MeetingName meetingName, MeetingDate meetingDate, StartTime startTime,
+                             EndTime endTime, MeetingArchiveStatus archiveStatus,
             Set<Index> participantsIndex, Set<Tag> tagList) {
         requireNonNull(meetingName);
         requireNonNull(meetingDate);
         requireNonNull(startTime);
         requireNonNull(endTime);
+        requireNonNull(archiveStatus);
         requireNonNull(tagList);
         requireNonNull(participantsIndex);
 
@@ -82,6 +86,7 @@ public class AddMeetingCommand extends Command {
         this.meetingDate = meetingDate;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.archiveStatus = archiveStatus;
         this.tagList = tagList;
         this.participantsIndex = participantsIndex;
     }
@@ -106,7 +111,7 @@ public class AddMeetingCommand extends Command {
             participants.add(new Participant(participatingContact));
         }
 
-        toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, tagList);
+        toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, archiveStatus, tagList);
 
         clashingMeetings = model.checkMeetingClash(toAdd);
 
@@ -115,6 +120,7 @@ public class AddMeetingCommand extends Command {
         }
 
         model.addMeeting(toAdd);
+        model.commitAddressBook();
 
         if (clashingMeetings.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
