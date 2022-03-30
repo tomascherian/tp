@@ -6,12 +6,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Undo previous change to AddresSoc.
+ * Reverts the previous change to AddresSoc.
  */
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_INVALID_UNDO = "There is no more changes to be reverted.";
+    public static final String MESSAGE_INVALID_UNDO = "There are no more changes to be reverted.";
     public static final String MESSAGE_SUCCESS = "Previous change to AddresSoc has been reverted.";
 
 

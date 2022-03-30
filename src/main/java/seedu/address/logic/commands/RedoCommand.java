@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Undo previous change to AddresSoc.
+ * Reverts the previous Undo.
  */
 public class RedoCommand extends Command {
 

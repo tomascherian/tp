@@ -37,18 +37,24 @@ public class VersionedAddresSoc {
     }
 
     /**
-     * Decrement pointer and resets the AddressBook to its previous state.
+     * Decrements pointer and resets the AddressBook to its previous state.
+     *
+     * {@code addressBookStateList} must contain previous states to revert to.
      */
     public void undo() {
+        assert(canUndo()) : "AddresSoc has no states to undo!";
         currentStatePointer--;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);
     }
 
     /**
-     * Increment pointer and sets the AddressBook to its next state.
+     * Increments pointer and sets the AddressBook to its next state.
+     *
+     * {@code addressBookStateList} must contain undone states to revert to.
      */
     public void redo() {
+        assert(canRedo()) : "AddresSoc has no states to redo!";
         currentStatePointer++;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);
