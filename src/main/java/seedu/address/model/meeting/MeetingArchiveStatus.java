@@ -12,14 +12,6 @@ public class MeetingArchiveStatus {
 
     public final boolean archiveStatus;
 
-
-    /**
-     * Constructs a false {@code archiveStatus} of archival if no parameter passed in.
-     */
-    public MeetingArchiveStatus() {
-        this.archiveStatus = false;
-    }
-
     /**
      * Constructs a {@code archiveStatus} based on the archiveStatus passed in.
      *

@@ -153,10 +153,17 @@ public class Meeting {
                 && otherMeeting.getArchiveStatus().equals(getArchiveStatus());
     }
 
-    /** This method return a meeting that has been archived */
+    /** Return a meeting that has been archived */
     public Meeting archive() {
         return new Meeting(this.name, this.date, this.startTime, this.endTime,
                 this.participants, new MeetingArchiveStatus(true),
+                this.tags);
+    }
+
+    /** Return a meeting that has been unarchived */
+    public Meeting unarchive() {
+        return new Meeting(this.name, this.date, this.startTime, this.endTime,
+                this.participants, new MeetingArchiveStatus(false),
                 this.tags);
     }
 
