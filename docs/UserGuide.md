@@ -147,6 +147,17 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
+### Sorting contacts : `sortc`
+
+Sorts contactss in the displayed meeting list according to name.
+
+Format: `sortc`
+
+* Sort contacts according to name.
+
+![example](images/sort_contacts.png)
+
+
 ## Meeting
 
 ### Adding a meeting : `addm`
@@ -187,6 +198,60 @@ Format: `deletem MEETING_INDEX`
 Examples:
 * `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
 * `deletem -1` returns an error for invalid input as -1 is not a positive integer.
+
+### Sorting meetings : `sortm`
+
+Sorts meetings in the displayed meeting list according to date and time.
+
+Format: `sortm`
+
+* Sorts meeting according to date
+* Meetings on same day are sorted according to time
+
+### Reminder : reminder
+
+Format: `reminder MEETING_INDEX`
+
+Reminds you of meetings that occur with the given number of days
+
+Examples:
+* `Reminder 2` lists meetings that occur within 2 days
+* `Reminder 100` lists meetings that occur within 100 days
+
+![example](images/reminder_example.png)
+
+
+### Archive : archive
+
+Format: `archive MEETING_INDEX`
+
+Archives the meeting specified by the meeting index
+
+Examples:
+* `archive 2` archives 2nd meeting in the displayed meeting list
+* `archive 10` archives 10th meeting in the displayed meeting list
+
+![example](images/archive-example.png)
+
+
+### Unarchive : unarchive
+
+Format: `unarchive MEETING_INDEX`
+
+Unarchives the meeting specified by the meeting index
+
+Examples:
+* `unarchive 2` archives 2nd meeting in the archive meeting list
+* `unarchive 5` archives 5th meeting in the archive meeting list
+
+
+### Archive list : archivelist
+
+Format: `archivelist`
+
+Lists the archived meeting.
+
+
 
 
 ## Common
