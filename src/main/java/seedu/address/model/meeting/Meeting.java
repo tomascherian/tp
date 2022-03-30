@@ -21,6 +21,7 @@ public class Meeting {
     private final MeetingDate date;
     private final StartTime startTime;
     private final EndTime endTime;
+    private final MeetingArchiveStatus archiveStatus;
 
     // Data fields
     private final Set<Participant> participants = new HashSet<>();
@@ -30,13 +31,14 @@ public class Meeting {
      * Every field must be present and not null.
      */
     public Meeting(MeetingName name, MeetingDate date, StartTime startTime, EndTime endTime,
-                   Set<Participant> participants, Set<Tag> tags) {
-        requireAllNonNull(name, date, startTime, endTime, participants, tags);
+                   Set<Participant> participants, MeetingArchiveStatus archiveStatus, Set<Tag> tags) {
+        requireAllNonNull(name, date, startTime, endTime, participants, tags, archiveStatus);
         this.name = name;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.participants.addAll(participants);
+        this.archiveStatus = archiveStatus;
         this.tags.addAll(tags);
     }
 
@@ -60,6 +62,10 @@ public class Meeting {
         return Collections.unmodifiableSet(participants);
     }
 
+    public MeetingArchiveStatus getArchiveStatus() {
+        return archiveStatus;
+    }
+
     /**
      * Replaces a participant of this meeting with the {@code editedParticipant}.
      *
@@ -74,7 +80,7 @@ public class Meeting {
         Set<Participant> newParticipants = new HashSet<>(participants);
         newParticipants.remove(target);
         newParticipants.add(editedParticipant);
-        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+        return new Meeting(name, date, startTime, endTime, newParticipants, archiveStatus, tags);
     }
 
     /**
@@ -90,7 +96,7 @@ public class Meeting {
         Set<Participant> newParticipants = participants.stream()
                 .filter(p -> !p.isSameParticipant(toRemove))
                 .collect(Collectors.toSet());
-        return new Meeting(name, date, startTime, endTime, newParticipants, tags);
+        return new Meeting(name, date, startTime, endTime, newParticipants, archiveStatus, tags);
     }
 
     /**
@@ -143,13 +149,21 @@ public class Meeting {
                 && otherMeeting.getStartTime().equals(getStartTime())
                 && otherMeeting.getEndTime().equals(getEndTime())
                 && otherMeeting.getParticipants().equals(getParticipants())
-                && otherMeeting.getTags().equals(getTags());
+                && otherMeeting.getTags().equals(getTags())
+                && otherMeeting.getArchiveStatus().equals(getArchiveStatus());
+    }
+
+    /** This method return a meeting that has been archived */
+    public Meeting archive() {
+        return new Meeting(this.name, this.date, this.startTime, this.endTime,
+                this.participants, new MeetingArchiveStatus(true),
+                this.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, startTime, endTime, participants, tags);
+        return Objects.hash(name, date, startTime, endTime, participants, archiveStatus, tags);
     }
 
     @Override
@@ -177,4 +191,3 @@ public class Meeting {
         return builder.toString();
     }
 }
-
