@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -151,4 +152,11 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
+    /**
+     * Checks for any clashes in Meeting timings.
+     *
+     * @param toAdd Meeting to check against current list of meetings.
+     * @return List of meetings that clash with meeting to be added.
+     */
+    ArrayList<Meeting> checkMeetingClash(Meeting toAdd);
 }

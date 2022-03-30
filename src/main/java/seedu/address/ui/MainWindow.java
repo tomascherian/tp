@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MeetingClashWindow meetingClashWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        meetingClashWindow = new MeetingClashWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -154,6 +156,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the meeting clash window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleWarning() {
+        if (!meetingClashWindow.isShowing()) {
+            meetingClashWindow.show();
+        } else {
+            meetingClashWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -167,6 +181,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        meetingClashWindow.hide();
         primaryStage.hide();
     }
 
@@ -187,6 +202,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowWarning()) {
+                handleWarning();
             }
 
             if (commandResult.isExit()) {
