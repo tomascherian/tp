@@ -21,7 +21,7 @@ import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.RemindCommand;
+import seedu.address.logic.commands.ReminderCommand;
 import seedu.address.logic.commands.SortContactCommand;
 import seedu.address.logic.commands.SortMeetingCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -94,8 +94,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case RemindCommand.COMMAND_WORD:
-            return new RemindCommandParser().parse(arguments);
+        case ReminderCommand.COMMAND_WORD:
+            return new ReminderCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
