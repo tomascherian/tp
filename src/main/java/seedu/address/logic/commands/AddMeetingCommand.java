@@ -107,7 +107,7 @@ public class AddMeetingCommand extends Command {
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, tagList);
 
         for (Meeting otherMeeting : meetingList) {
-            if (toAdd.isTimingClash(otherMeeting) || otherMeeting.isTimingClash(toAdd)) {
+            if (toAdd.isTimingClash(otherMeeting)) {
                 isClash = true;
             }
         }

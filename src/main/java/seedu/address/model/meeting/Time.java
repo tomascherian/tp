@@ -62,10 +62,7 @@ public class Time implements Comparable<Time> {
      * @return true if time falls between the two given timings.
      */
     public boolean isWithin(Time start, Time end) {
-        if (this.isBefore(end)) {
-            return this.isAfter(start);
-        }
-        return false;
+        return isAfter(start) && isBefore(end);
     }
 
     @Override

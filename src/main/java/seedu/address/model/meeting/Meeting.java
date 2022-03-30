@@ -129,10 +129,12 @@ public class Meeting {
      */
     public boolean isTimingClash(Meeting otherMeeting) {
         if (this.date.equals(otherMeeting.getDate())) {
-            if (this.startTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())) {
+            if (this.startTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())
+                    || otherMeeting.getStartTime().isWithin(this.startTime, this.endTime)) {
                 return true;
             }
-            if (this.endTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())) {
+            if (this.endTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())
+                    || otherMeeting.getEndTime().isWithin(this.startTime, this.endTime)) {
                 return true;
             }
             if (this.startTime.equals(otherMeeting.getStartTime()) && this.endTime.equals(otherMeeting.getEndTime())) {
