@@ -55,6 +55,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> namesSet = new HashSet<>();
+        for (String name : names) {
+            namesSet.add(parseName(name));
+        }
+        return namesSet;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
