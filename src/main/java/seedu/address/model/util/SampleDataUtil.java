@@ -55,7 +55,7 @@ public class SampleDataUtil {
             new Meeting(new MeetingName("CS2103T project"), new MeetingDate("12/03/2022"),
                         new StartTime("1600"), new EndTime("1700"),
                         getParticipantSet(samplePersons[0], samplePersons[1]), new MeetingArchiveStatus(false),
-                    getTagSet("v1point2")),
+                    getTagSet("v1.2")),
             new Meeting(new MeetingName("CS2101 project"), new MeetingDate("15/03/2022"),
                         new StartTime("1900"), new EndTime("2000"),
                         getParticipantSet(samplePersons[0], samplePersons[1]), new MeetingArchiveStatus(false),
