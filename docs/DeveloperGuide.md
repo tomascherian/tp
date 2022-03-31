@@ -349,10 +349,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Reminder
 
-### Implementation
-
-This section describes how the reminder feature can be used for users to be reminded of meetings that will occur 
+This section describes how the reminder feature can be used for users to be reminded of meetings that will occur
 within a certain time frame which the users can specify.
+
+### Implementation
 
 The reminder feature uses the `ReminderDatePredicate`.The condition to locate the meetings is provided through this.
 The meetings in AddresSoc are extracted and stored in the `FilteredList`.
@@ -373,6 +373,8 @@ The following sequence diagram shows how this works:
 
 ![ReminderSequenceDiagram](images/ReminderSequenceDiagram.png)
 
+**Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 
 
 
