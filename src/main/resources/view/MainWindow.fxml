@@ -44,7 +44,7 @@
         </SplitPane>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="110" prefHeight="110" maxHeight="110" />
+                   minHeight="150" prefHeight="150" maxHeight="150" />
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" />
 
