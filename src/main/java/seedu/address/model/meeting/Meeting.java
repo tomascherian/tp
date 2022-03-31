@@ -130,6 +130,27 @@ public class Meeting {
     }
 
     /**
+     * Returns true if a meeting's startTime or endTime falls within
+     * another meeting.
+     */
+    public boolean isTimingClash(Meeting otherMeeting) {
+        if (this.date.equals(otherMeeting.getDate())) {
+            if (this.startTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())
+                    || otherMeeting.getStartTime().isWithin(this.startTime, this.endTime)) {
+                return true;
+            }
+            if (this.endTime.isWithin(otherMeeting.getStartTime(), otherMeeting.getEndTime())
+                    || otherMeeting.getEndTime().isWithin(this.startTime, this.endTime)) {
+                return true;
+            }
+            if (this.startTime.equals(otherMeeting.getStartTime()) && this.endTime.equals(otherMeeting.getEndTime())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.
      */
@@ -153,10 +174,17 @@ public class Meeting {
                 && otherMeeting.getArchiveStatus().equals(getArchiveStatus());
     }
 
-    /** This method return a meeting that has been archived */
+    /** Return a meeting that has been archived */
     public Meeting archive() {
         return new Meeting(this.name, this.date, this.startTime, this.endTime,
                 this.participants, new MeetingArchiveStatus(true),
+                this.tags);
+    }
+
+    /** Return a meeting that has been unarchived */
+    public Meeting unarchive() {
+        return new Meeting(this.name, this.date, this.startTime, this.endTime,
+                this.participants, new MeetingArchiveStatus(false),
                 this.tags);
     }
 

@@ -216,6 +216,10 @@ public class AddContactCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ArrayList<Meeting> checkMeetingClash(Meeting toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
