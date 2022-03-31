@@ -208,7 +208,8 @@ public class Meeting {
         Set<Participant> participants = getParticipants();
         if (!participants.isEmpty()) {
             builder.append("; Participants: ");
-            participants.forEach(builder::append);
+            builder.append(participants.stream().map(Participant::toString)
+                    .collect(Collectors.joining(", ")));
         }
 
         Set<Tag> tags = getTags();
