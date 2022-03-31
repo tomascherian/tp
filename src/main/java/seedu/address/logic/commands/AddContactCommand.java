@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 
-
 /**
  * Adds a person to the address book.
  */

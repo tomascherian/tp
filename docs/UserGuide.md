@@ -145,6 +145,17 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
 
+### Sorting contacts : `sortc`
+
+Sort contacts in the displayed contact list according to name.
+
+Format: `sortc`
+
+* Sort contacts according to name.
+
+![example](images/sort_contacts.png)
+
+
 ## Meeting
 
 ### Adding a meeting : `addm`
@@ -186,6 +197,7 @@ Examples:
 * `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
 * `deletem -1` returns an error for invalid input as -1 is not a positive integer.
 
+
 ### Editing a meeting : `editm`
 
 Edits an existing meeting in your currently displayed meeting list.
@@ -201,6 +213,59 @@ Format: `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt
 Examples:
 * `editm 1 n/cs2103 project et/1930` Edits the meeting name and end time of the 1st meeting to be `cs2103 project` and  `1930` respectively.
 * `editm 2 pt/ t/` Clears all existing participants and all existing tags of the 2nd meeting.
+
+
+### Sorting meetings : `sortm`
+
+Sorts meetings in the displayed meeting list according to date and time.
+
+Format: `sortm`
+
+* Sorts meeting according to date
+* Meetings on same day are sorted according to time
+
+### Reminder : `reminder`
+
+Format: `reminder NUM_OF_DAYS`
+
+Reminds you of meetings that occur within the given number of days
+
+Examples:
+* `Reminder 2` lists meetings that occur within 2 days
+* `Reminder 100` lists meetings that occur within 100 days
+
+![example](images/reminder_example.png)
+
+
+### Archive : `archive`
+
+Format: `archive MEETING_INDEX`
+
+Archives the meeting specified by the meeting index
+
+Examples:
+* `archive 2` archives 2nd meeting in the displayed meeting list
+* `archive 10` archives 10th meeting in the displayed meeting list
+
+![example](images/archive-example.png)
+
+
+### Unarchive : `unarchive`
+
+Format: `unarchive MEETING_INDEX`
+
+Unarchives the meeting specified by the meeting index
+
+Examples:
+* `unarchive 2` archives 2nd meeting in the archive meeting list
+* `unarchive 5` archives 5th meeting in the archive meeting list
+
+
+### Archive list : archivelist
+
+Format: `archivelist`
+
+Lists the archived meetings.
 
 ## Common
 

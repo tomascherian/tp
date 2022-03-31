@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -20,11 +21,11 @@ public interface Model {
 
     /** {@code Predicate} that evaluates to true if meeting's archive status is false. */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = meeting ->
-            !(meeting.getArchiveStatus().archiveStatus);
+            !(meeting.getArchiveStatus().isArchive);
 
     /** {@code Predicate} that evaluates to true if meeting's archive status is true. */
     Predicate<Meeting> PREDICATE_SHOW_ALL_ARCHIVED_MEETINGS = meeting -> (
-            meeting.getArchiveStatus().archiveStatus);
+            meeting.getArchiveStatus().isArchive);
 
 
     /**
@@ -151,4 +152,11 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
+    /**
+     * Checks for any clashes in Meeting timings.
+     *
+     * @param toAdd Meeting to check against current list of meetings.
+     * @return List of meetings that clash with meeting to be added.
+     */
+    ArrayList<Meeting> checkMeetingClash(Meeting toAdd);
 }
