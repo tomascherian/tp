@@ -1,6 +1,6 @@
 package seedu.address.model.contact;
 
-import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -9,23 +9,28 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Contact> {
-    private final List<String> keywords;
+    private final Set<Name> nameKeywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public NameContainsKeywordsPredicate(Set<Name> nameKeywords) {
+        this.nameKeywords = nameKeywords;
     }
 
     @Override
     public boolean test(Contact person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        if (nameKeywords.isEmpty()) {
+            return true;
+        }
+
+        return nameKeywords.stream()
+                .anyMatch(nameKeyword ->
+                        StringUtil.containsPhraseIgnoreCase(person.getName().fullName, nameKeyword.fullName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && nameKeywords.equals(((NameContainsKeywordsPredicate) other).nameKeywords)); // state check
     }
 
 }

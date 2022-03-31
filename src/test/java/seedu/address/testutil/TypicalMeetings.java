@@ -38,7 +38,7 @@ public class TypicalMeetings {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns a {@code List} with all the typical meetings.
      */
     public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(CS2103T, CS2101, NUSSU, DANCE_CLUB, COMPUTING_CLUB));

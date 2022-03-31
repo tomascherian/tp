@@ -7,7 +7,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.meeting.Meeting;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Person} and {@code Meeting} objects to be used in tests.
  */
 public class TypicalAddressBook {
 
@@ -18,7 +18,7 @@ public class TypicalAddressBook {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical persons and meetings.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
