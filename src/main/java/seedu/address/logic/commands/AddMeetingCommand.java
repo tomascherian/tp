@@ -65,7 +65,6 @@ public class AddMeetingCommand extends Command {
     private final Set<Tag> tagList;
     private final Set<Index> participantsIndex;
     private Meeting toAdd;
-    private ArrayList<Meeting> clashingMeetings;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
@@ -113,7 +112,7 @@ public class AddMeetingCommand extends Command {
 
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, archiveStatus, tagList);
 
-        clashingMeetings = model.checkMeetingClash(toAdd);
+        ArrayList<Meeting> clashingMeetings = model.checkMeetingClash(toAdd);
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);

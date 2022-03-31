@@ -39,6 +39,7 @@ public class AddContactCommand extends Command {
 
     private final Contact toAdd;
 
+
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
