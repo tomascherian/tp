@@ -128,23 +128,39 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 
-### Locating contacts by name: `find`
+### Locating contacts by name and tag: `findc`
 
 Finds contact whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findc [n/NAME]... [t/TAGS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match `n/Bo n/Hans`
+* Only the name and tag are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned.
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* If only `n/NAME` is provided, contacts matching at least one of `n/NAME` will be returned.
+* If only `t/TAGS` is provided, contacts matching at least one of `t/TAGS` will be returned.
+* If both `n/NAME` and `t/TAGS` are provided, contacts matching at least one of `n/NAME` 
+  and at least one of `t/TAGS` will be returned.
+  
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findc n/John n/jane` returns `john`, `John Doe` and `Jane Doe`
+* `findc t/friends t/family` returns contacts containing the `friends` tag or the `family` tag or both 
+* `findc n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
+* `findc n/Hans n/Bo t/family t/friends` will return `Hans Gruber`, `Bo Yang` if both Contacts contain either
+  the `family` tag or the `friends` tag or both.
+
+
+### Sorting contacts : `sortc`
+
+Sort contacts in the displayed contact list according to name.
+
+Format: `sortc`
+
+* Sort contacts according to name.
+
+![example](images/sort_contacts.png)
 
 
 ## Meeting
@@ -188,6 +204,83 @@ Examples:
 * `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
 * `deletem -1` returns an error for invalid input as -1 is not a positive integer.
 
+
+### Editing a meeting : `editm`
+
+Edits an existing meeting in your currently displayed meeting list.
+
+Format: `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+
+* Edits the meeting at the specified `MEETING_INDEX`.
+* `MEETING_INDEX` refers to the index number shown in your currently displayed meeting list.
+* `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing meeting details will be updated according to your input fields.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+When editing participants and tags, the existing participants and tags of the contact will be removed i.e.
+adding of participants and tags is not cumulative. You can remove all the meeting’s participants and tags by typing 
+`pt/` `t/` without specifying any participants and tags after it respectively.
+</div>
+
+Examples:
+* `editm 1 n/cs2103 project et/1930` Edits the meeting name and end time of the 1st meeting to be `cs2103 project` and  `1930` respectively.
+* `editm 2 pt/ t/` Clears all existing participants and all existing tags of the 2nd meeting.
+
+
+### Sorting meetings : `sortm`
+
+Sorts meetings in the displayed meeting list according to date and time.
+
+Format: `sortm`
+
+* Sorts meeting according to date
+* Meetings on same day are sorted according to time
+
+### Reminder : `reminder`
+
+Format: `reminder NUM_OF_DAYS`
+
+Reminds you of meetings that occur within the given number of days
+
+Examples:
+* `Reminder 2` lists meetings that occur within 2 days
+* `Reminder 100` lists meetings that occur within 100 days
+
+![example](images/reminder_example.png)
+
+
+### Archive : `archive`
+
+Format: `archive MEETING_INDEX`
+
+Archives the meeting specified by the meeting index
+
+Examples:
+* `archive 2` archives 2nd meeting in the displayed meeting list
+* `archive 10` archives 10th meeting in the displayed meeting list
+
+![example](images/archive-example.png)
+
+
+### Unarchive : `unarchive`
+
+Format: `unarchive MEETING_INDEX`
+
+Unarchives the meeting specified by the meeting index
+
+Examples:
+* `unarchive 2` archives 2nd meeting in the archive meeting list
+* `unarchive 5` archives 5th meeting in the archive meeting list
+
+
+### Archive list : archivelist
+
+Format: `archivelist`
+
+Lists the archived meetings.
 
 ## Common
 
@@ -242,9 +335,10 @@ Action | Format, Examples
 **Add contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
 **Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
+**Edit Meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
 **Clear** | `clear`
 **List** | `list`
 **Help** | `help`

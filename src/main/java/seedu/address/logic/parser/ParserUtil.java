@@ -55,6 +55,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> namesSet = new HashSet<>();
+        for (String name : names) {
+            namesSet.add(parseName(name));
+        }
+        return namesSet;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -115,6 +127,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> meetingNames} into a {@code Set<MeetingName>}.
+     */
+    public static Set<MeetingName> parseMeetingNames(Collection<String> meetingNames) throws ParseException {
+        requireNonNull(meetingNames);
+        final Set<MeetingName> meetingNamesSet = new HashSet<>();
+        for (String meetingName : meetingNames) {
+            meetingNamesSet.add(parseMeetingName(meetingName));
+        }
+        return meetingNamesSet;
+    }
+
+    /**
      * Parses a {@code String meetingDate} into a {@code MeetingDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -127,6 +151,18 @@ public class ParserUtil {
             throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
         }
         return new MeetingDate(trimmedMeetingDate);
+    }
+
+    /**
+     * Parses {@code Collection<String> meetingDates} into a {@code Set<MeetingDate>}.
+     */
+    public static Set<MeetingDate> parseMeetingDates(Collection<String> meetingDates) throws ParseException {
+        requireNonNull(meetingDates);
+        final Set<MeetingDate> meetingDatesSet = new HashSet<>();
+        for (String meetingDate : meetingDates) {
+            meetingDatesSet.add(parseMeetingDate(meetingDate));
+        }
+        return meetingDatesSet;
     }
 
     /**

@@ -10,15 +10,7 @@ public class MeetingArchiveStatus {
 
     public static final String VALIDATION_REGEX = "^(true|false)$";
 
-    public final boolean archiveStatus;
-
-
-    /**
-     * Constructs a false {@code archiveStatus} of archival if no parameter passed in.
-     */
-    public MeetingArchiveStatus() {
-        this.archiveStatus = false;
-    }
+    public final boolean isArchive;
 
     /**
      * Constructs a {@code archiveStatus} based on the archiveStatus passed in.
@@ -27,7 +19,7 @@ public class MeetingArchiveStatus {
      */
     public MeetingArchiveStatus(boolean archiveStatus) {
         requireNonNull(archiveStatus);
-        this.archiveStatus = archiveStatus;
+        this.isArchive = archiveStatus;
     }
 
     /**
@@ -42,18 +34,18 @@ public class MeetingArchiveStatus {
 
     @Override
     public String toString() {
-        return String.valueOf(archiveStatus);
+        return String.valueOf(isArchive);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MeetingArchiveStatus
-                && archiveStatus == ((MeetingArchiveStatus) other).archiveStatus);
+                && isArchive == ((MeetingArchiveStatus) other).isArchive);
     }
 
     @Override
     public int hashCode() {
-        return String.valueOf(archiveStatus).hashCode();
+        return String.valueOf(isArchive).hashCode();
     }
 }
