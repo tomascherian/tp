@@ -54,7 +54,7 @@ public class ArchiveMeetingCommand extends Command {
         Meeting meetingToArchive = lastShownList.get(targetIndex.getZeroBased());
         MeetingArchiveStatus currentState = meetingToArchive.getArchiveStatus();
 
-        if (currentState.archiveStatus) {
+        if (currentState.isArchive) {
             throw new CommandException(String.format(MESSAGE_ALREADY_ARCHIVED,
                     meetingToArchive));
         }

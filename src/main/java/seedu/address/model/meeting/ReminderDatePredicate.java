@@ -40,7 +40,7 @@ public class ReminderDatePredicate implements Predicate<Meeting> {
         LocalDate dateToday = LocalDate.now();
         LocalDate acceptableDate = dateToday.plusDays(days + 1);
         return toTest.isAfter(dateToday.minusDays(1L)) && toTest.isBefore(acceptableDate)
-                && !(meeting.getArchiveStatus().archiveStatus);
+                && !(meeting.getArchiveStatus().isArchive);
     }
 
     @Override
