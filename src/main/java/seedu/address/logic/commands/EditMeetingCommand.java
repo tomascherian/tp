@@ -114,23 +114,31 @@ public class EditMeetingCommand extends Command {
 
         MeetingArchiveStatus archiveStatus = meetingToEdit.getArchiveStatus();
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
-
         final Set<Participant> updatedParticipants = new HashSet<>();
 
         if (editMeetingDescriptor.getParticipantsIndex().isPresent()) {
-            for (Index targetIndex : editMeetingDescriptor.participantsIndex) {
-                if (targetIndex.getZeroBased() >= contactList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
-                Contact participatingContact = contactList.get(targetIndex.getZeroBased());
-                updatedParticipants.add(new Participant(participatingContact));
-            }
+            updatedParticipants.addAll(getParticipantsFromIndexes(editMeetingDescriptor, contactList));
         } else {
             updatedParticipants.addAll(meetingToEdit.getParticipants());
         }
 
         return new Meeting(updatedMeetingName, updatedMeetingDate, updatedStartTime,
                 updatedEndTime, updatedParticipants, archiveStatus, updatedTags);
+    }
+
+    public static Set<Participant> getParticipantsFromIndexes(EditMeetingDescriptor editMeetingDescriptor,
+                                                       List<Contact> contactList) throws CommandException {
+        final Set<Participant> participantsSet = new HashSet<>();
+
+        for (Index targetIndex : editMeetingDescriptor.participantsIndex) {
+            if (targetIndex.getZeroBased() >= contactList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            Contact participatingContact = contactList.get(targetIndex.getZeroBased());
+            participantsSet.add(new Participant(participatingContact));
+        }
+
+        return participantsSet;
     }
 
     @Override
@@ -255,7 +263,7 @@ public class EditMeetingCommand extends Command {
         }
 
         @Override
-        public boolean equals(Object other) {
+            public boolean equals(Object other) {
             // short circuit if same object
             if (other == this) {
                 return true;
