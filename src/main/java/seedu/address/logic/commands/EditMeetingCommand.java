@@ -108,7 +108,7 @@ public class EditMeetingCommand extends Command {
         StartTime updatedStartTime = editMeetingDescriptor.getStartTime().orElse(meetingToEdit.getStartTime());
         EndTime updatedEndTime = editMeetingDescriptor.getEndTime().orElse(meetingToEdit.getEndTime());
 
-        if (updatedStartTime.isAfter(updatedEndTime)) {
+        if (updatedStartTime.isAfter(updatedEndTime) || updatedStartTime.equals(updatedEndTime)) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
 
