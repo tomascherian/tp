@@ -128,7 +128,7 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 
-### Locating contacts by name: `findc`
+### Locating contacts by name and tag: `findc`
 
 Finds contact whose names contain any of the given keywords.
 
@@ -138,12 +138,19 @@ Format: `findc [n/NAME]... [t/TAGS]...`
 * The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match `n/Bo n/Hans`
 * Only the name and tag are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned.
-  e.g. `n/Hans n/Bo` will return `Hans Gruber`, `Bo Yang`
+* If only `n/NAME` is provided, contacts matching at least one of `n/NAME` will be returned.
+* If only `t/TAGS` is provided, contacts matching at least one of `t/TAGS` will be returned.
+* If both `n/NAME` and `t/TAGS` are provided, contacts matching at least one of `n/NAME` 
+  and at least one of `t/TAGS` will be returned.
+  
 
 Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
+* `findc n/John n/jane` returns `john`, `John Doe` and `Jane Doe`
+* `findc t/friends t/family` returns contacts containing the `friends` tag or the `family` tag or both 
+* `findc n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
+* `findc n/Hans n/Bo t/family t/friends` will return `Hans Gruber`, `Bo Yang` if both Contacts contain either
+  the `family` tag or the `friends` tag or both.
+
 
 ### Sorting contacts : `sortc`
 
@@ -209,6 +216,14 @@ Format: `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt
 * `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing meeting details will be updated according to your input fields.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+When editing participants and tags, the existing participants and tags of the contact will be removed i.e.
+adding of participants and tags is not cumulative. You can remove all the meeting’s participants and tags by typing 
+`pt/` `t/` without specifying any participants and tags after it respectively.
+</div>
 
 Examples:
 * `editm 1 n/cs2103 project et/1930` Edits the meeting name and end time of the 1st meeting to be `cs2103 project` and  `1930` respectively.
