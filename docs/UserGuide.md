@@ -128,7 +128,7 @@ Examples:
 * `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 
-### Locating contacts by name: `find`
+### Locating contacts by name: `findc`
 
 Finds contact whose names contain any of the given keywords.
 
@@ -188,6 +188,21 @@ Examples:
 * `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
 * `deletem -1` returns an error for invalid input as -1 is not a positive integer.
 
+### Editing a meeting : `editm`
+
+Edits an existing meeting in your currently displayed meeting list.
+
+Format: `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+
+* Edits the meeting at the specified `MEETING_INDEX`.
+* `MEETING_INDEX` refers to the index number shown in your currently displayed meeting list.
+* `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing meeting details will be updated according to your input fields.
+
+Examples:
+* `editm 1 n/cs2103 project et/1930` Edits the meeting name and end time of the 1st meeting to be `cs2103 project` and  `1930` respectively.
+* `editm 2 pt/ t/` Clears all existing participants and all existing tags of the 2nd meeting.
 
 ## Common
 
@@ -242,9 +257,10 @@ Action | Format, Examples
 **Add contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
 **Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
+**Edit Meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
 **Clear** | `clear`
 **List** | `list`
 **Help** | `help`
