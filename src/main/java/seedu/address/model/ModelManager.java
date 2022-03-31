@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,12 +23,11 @@ import seedu.address.model.meeting.Meeting;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final VersionedAddresSoc versionedAddresSoc;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
 
     private final FilteredList<Contact> filteredPersons;
-
-
     private final FilteredList<Meeting> filteredMeetings;
 
     /**
@@ -37,11 +37,11 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
         this.addressBook = new AddressBook(addressBook);
+        this.versionedAddresSoc = new VersionedAddresSoc(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), Model.PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     public ModelManager() {
@@ -96,6 +96,31 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void commitAddressBook() {
+        versionedAddresSoc.commit(this.addressBook);
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddresSoc.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddresSoc.redo();
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddresSoc.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddresSoc.canRedo();
+    }
+
+    @Override
     public boolean hasPerson(Contact person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -129,6 +154,19 @@ public class ModelManager implements Model {
         requireNonNull(meeting);
         return addressBook.hasMeeting(meeting);
     }
+
+    @Override
+    public ArrayList<Meeting> checkMeetingClash(Meeting toAdd) {
+        ObservableList<Meeting> meetingList = addressBook.getMeetingList();
+        ArrayList<Meeting> clashingMeetings = new ArrayList<Meeting>();
+        for (Meeting otherMeeting : meetingList) {
+            if (toAdd.isTimingClash(otherMeeting)) {
+                clashingMeetings.add(otherMeeting);
+            }
+        }
+        return clashingMeetings;
+    }
+
 
     @Override
     public void deleteMeeting(Meeting target) {

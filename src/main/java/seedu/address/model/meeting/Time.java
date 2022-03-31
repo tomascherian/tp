@@ -34,13 +34,35 @@ public class Time implements Comparable<Time> {
     }
 
     /**
-     * Used to compare if time is later than a given time.
+     * Compares if time is later than a given time.
      *
-     * @param time
-     * @return true if this time is later than given time
+     * @param time A valid meeting time.
+     * @return true if this time is later than given time.
+     */
+    public boolean isBefore(Time time) {
+        return this.value.compareTo(time.value) < 0;
+    }
+
+    /**
+     * Compares if time is earlier than a given time.
+     *
+     * @param time A valid meeting time.
+     * @return true if this time is earlier than given time.
      */
     public boolean isAfter(Time time) {
-        return !(this.value.compareTo(time.value) < 0);
+        return this.value.compareTo(time.value) > 0;
+    }
+
+
+    /**
+     * Checks if time falls between two given timings.
+     *
+     * @param start A valid meeting time.
+     * @param end A valid meeting time.
+     * @return true if time falls between the two given timings.
+     */
+    public boolean isWithin(Time start, Time end) {
+        return isAfter(start) && isBefore(end);
     }
 
     @Override

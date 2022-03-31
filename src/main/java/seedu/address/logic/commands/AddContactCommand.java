@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 
-
 /**
  * Adds a person to the address book.
  */
@@ -57,6 +56,7 @@ public class AddContactCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

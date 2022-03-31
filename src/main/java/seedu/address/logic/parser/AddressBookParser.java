@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.ArchiveMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
@@ -17,12 +18,16 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SortContactCommand;
 import seedu.address.logic.commands.SortMeetingCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -95,6 +100,18 @@ public class AddressBookParser {
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case ArchiveMeetingCommand.COMMAND_WORD:
+            return new ArchiveMeetingParser().parse(arguments);
+
+        case ListArchivedCommand.COMMAND_WORD:
+            return new ListArchivedCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
