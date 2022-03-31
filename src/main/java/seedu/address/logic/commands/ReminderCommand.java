@@ -13,7 +13,7 @@ import seedu.address.model.meeting.ReminderDatePredicate;
  *
  */
 
-public class RemindCommand extends Command {
+public class ReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder";
 
@@ -37,7 +37,7 @@ public class RemindCommand extends Command {
      * @param predicate of the number of days from the current date, to return true for meetings
      * which dates fall within the date range.
      */
-    public RemindCommand(ReminderDatePredicate predicate) {
+    public ReminderCommand(ReminderDatePredicate predicate) {
         assert predicate != null;
         this.predicate = predicate;
     }
@@ -54,7 +54,7 @@ public class RemindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemindCommand // instanceof handles nulls
-                && predicate.equals(((RemindCommand) other).predicate)); // state check
+                || (other instanceof ReminderCommand // instanceof handles nulls
+                && predicate.equals(((ReminderCommand) other).predicate)); // state check
     }
 }

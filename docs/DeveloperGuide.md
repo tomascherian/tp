@@ -347,6 +347,37 @@ Reasons for choosing Alternative 1:
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Reminder
+
+This section describes how the reminder feature can be used for users to be reminded of meetings that will occur
+within a certain time frame which the users can specify.
+
+### Implementation
+
+The reminder feature uses the `ReminderDatePredicate`.The condition to locate the meetings is provided through this.
+The meetings in AddresSoc are extracted and stored in the `FilteredList`.
+It is then used to update `FilteredList` using `FilteredList#setPredicate`.
+The updated `FilteredList` is then displayed.
+This operation uses the `Model` for `Model#UpdateFilteredMeetingList`.
+
+Given below is an example usage scenario and how the Reminder mechanism behaves at each step.
+
+1. The user keys in and executes the command `reminder 2` to locate all meetings within 2 days.
+2. The command is parsed by `ReminderCommandParser`. The prefixes and their respective keywords are
+    extracted and saved in an `ArgumentMultimap`. 
+3. The inputs are then checked for their validity. If no exceptions are detected, a `ReminderDatePredicate` and a `ReminderCommand` will be created.
+
+4. The `ReminderCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
+
+The following sequence diagram shows how this works:
+
+![ReminderSequenceDiagram](images/ReminderSequenceDiagram.png)
+
+**Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
