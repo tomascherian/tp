@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
@@ -19,7 +19,7 @@ public class FindContactCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts that matches the given parameters. "
             + "Parameters: "
-            + "[" + PREFIX_MEETING_NAME + "MEETING NAME]... "
+            + "[" + PREFIX_NAME + "NAME]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "family ";
 
