@@ -160,7 +160,7 @@ public class ModelManager implements Model {
         ObservableList<Meeting> meetingList = addressBook.getMeetingList();
         ArrayList<Meeting> clashingMeetings = new ArrayList<Meeting>();
         for (Meeting otherMeeting : meetingList) {
-            if (toAdd.isTimingClash(otherMeeting)) {
+            if (toAdd.isTimingClash(otherMeeting) && !otherMeeting.getArchiveStatus().isArchive) {
                 clashingMeetings.add(otherMeeting);
             }
         }

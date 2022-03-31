@@ -9,11 +9,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -53,6 +55,7 @@ public class EditMeetingCommand extends Command {
             + PREFIX_START_TIME + "1800";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
+    public static final String MESSAGE_EDIT_SUCCESS_WITH_CLASH = "Edited Meeting: %1$s. Clashes with:\n%2$s.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
     public static final String MESSAGE_INVALID_TIME = "Meeting end time should be later meeting start time";
@@ -89,10 +92,19 @@ public class EditMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
+        ArrayList<Meeting> clashingMeetings = model.checkMeetingClash(editedMeeting);
+
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
+        if (clashingMeetings.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
+        } else {
+            String clashMessage = clashingMeetings.stream().map(Meeting::toString)
+                    .collect(Collectors.joining(",\n"));
+            return new CommandResult(String.format(MESSAGE_EDIT_SUCCESS_WITH_CLASH, editedMeeting, clashMessage),
+                    false, true, false);
+        }
     }
 
     /**
