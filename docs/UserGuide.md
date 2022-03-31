@@ -199,6 +199,28 @@ Examples:
 * `deletem 3` deletes the 3rd meeting in your currently displayed meeting list.
 * `deletem -1` returns an error for invalid input as -1 is not a positive integer.
 
+### Locating meetings by date, name or tags: `findm`
+
+Finds meetings that match your search criteria as explained below:
+
+Format: `findm [d/DATES]... [n/NAMES]... [t/TAGS]...`
+* If you specify only `d/DATES`, meetings occurring on any of the `DATES` will be returned.
+  Note that the `DATES` must be specified in either the **DD-MM-YYYY** or **DD/MM/YYYY** format
+* If you specify only `n/NAMES`, meetings matching at least one of `n/NAME` will be returned.
+* If you specify only `t/TAGS`, meetings matching at least one of `t/TAGS` will be returned.
+* For `NAMES` and `TAGS`: 
+    * The search is case-insensitive e.g. `t/planning` matches `Planning`
+    * Only full words are matched e.g. `n/proj` matches `proj meeting` but not `project meeting`
+* If you specify more than one type of input, meetings matching at least **one of each type** will be returned. 
+  
+  eg. If you specify both `n/NAMES` and `t/TAGS`, meetings matching at least one of `NAMES`
+  **and** at least one of `TAGS` will be returned.
+
+Examples:
+* `findc n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc.
+* `findc n/event d/18-06-2022 t/important` returns a meeting that occurs on `18-06-2022`, is named `event planning` 
+  **and** has a tag called `important`
+* `findc n/event n/project d/01-06-2022` returns meetings that occur on `01-06-2022` and are named `event planning` or  `project`, etc. 
 ### Sorting meetings : `sortm`
 
 Sorts meetings in the displayed meeting list according to date and time.
@@ -310,6 +332,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
+**Find Meeting** | `findm [d/DATES]... [n/NAMES]... [t/TAGS]...` <br>e.g., `findm n/project n/event d/18-06-2022` 
 **Clear** | `clear`
 **List** | `list`
 **Help** | `help`
