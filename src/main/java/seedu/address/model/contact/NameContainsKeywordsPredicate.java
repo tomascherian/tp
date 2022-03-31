@@ -23,7 +23,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Contact> {
 
         return nameKeywords.stream()
                 .anyMatch(nameKeyword ->
-                        StringUtil.containsWordIgnoreCase(person.getName().fullName, nameKeyword.fullName));
+                        StringUtil.containsPhraseIgnoreCase(person.getName().fullName, nameKeyword.fullName));
     }
 
     @Override

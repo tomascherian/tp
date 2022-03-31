@@ -22,7 +22,7 @@ public class ContactTagContainsKeywordsPredicate implements Predicate<Contact> {
         return tagKeywords.stream()
                 .anyMatch(tagKeyword ->
                         person.getTags().stream()
-                .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, tagKeyword.tagName)));
+                .anyMatch(tag -> StringUtil.containsPhraseIgnoreCase(tag.tagName, tagKeyword.tagName)));
     }
 
     @Override
