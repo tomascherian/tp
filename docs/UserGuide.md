@@ -149,7 +149,7 @@ Examples:
 
 ### Sorting contacts : `sortc`
 
-Sorts contactss in the displayed meeting list according to name.
+Sort contacts in the displayed contact list according to name.
 
 Format: `sortc`
 
@@ -208,11 +208,11 @@ Format: `sortm`
 * Sorts meeting according to date
 * Meetings on same day are sorted according to time
 
-### Reminder : reminder
+### Reminder : `reminder`
 
-Format: `reminder MEETING_INDEX`
+Format: `reminder NUM_OF_DAYS`
 
-Reminds you of meetings that occur with the given number of days
+Reminds you of meetings that occur within the given number of days
 
 Examples:
 * `Reminder 2` lists meetings that occur within 2 days
@@ -221,7 +221,7 @@ Examples:
 ![example](images/reminder_example.png)
 
 
-### Archive : archive
+### Archive : `archive`
 
 Format: `archive MEETING_INDEX`
 
@@ -234,7 +234,7 @@ Examples:
 ![example](images/archive-example.png)
 
 
-### Unarchive : unarchive
+### Unarchive : `unarchive`
 
 Format: `unarchive MEETING_INDEX`
 
@@ -249,7 +249,7 @@ Examples:
 
 Format: `archivelist`
 
-Lists the archived meeting.
+Lists the archived meetings.
 
 
 
