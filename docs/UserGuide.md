@@ -262,6 +262,32 @@ Clears all your contacts and meetings from AddresSoC.
 
 Format: `clear`
 
+### Undoing a change : `undo`
+
+You can use the `undo` command to revert a change to your meeting or contact lists.
+
+Format: `undo`
+
+Examples:
+* `undo` after `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9` 
+removes the added contact from your contact list.
+* `undo` after `deletem 3` restores the Meeting that was deleted.
+* `undo` after `findc t/family` will not revert the filtering of the contact list as
+`findc` does not change your contact list.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+If you would like to revert a `findc` command, you may use `listc` to return to the full contact list.
+</div>
+
+### Redoing an undo : `redo`
+
+You can use the `redo` command to revert an `undo` command.
+
+Format: `redo`
+
+Examples:
+* `redo` after an `undo` that reverts a `deletem 3` command will delete the meeting restored by `undo`.
 
 ### Viewing help : `help`
 
@@ -311,5 +337,7 @@ Action | Format, Examples
 **Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Clear** | `clear`
+**Undo** | `undo`
+**Redo** | `redo`
 **List** | `list`
 **Help** | `help`
