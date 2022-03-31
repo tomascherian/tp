@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+ !include style.puml
+
+ box Logic LOGIC_COLOR_T1
+ participant ":ReminderCommandParser" as ReminderCommandParser LOGIC_COLOR
+ participant ":ReminderDatePredicate" as ReminderDatePredicate LOGIC_COLOR
+ participant ":ReminderCommand" as ReminderCommand LOGIC_COLOR
+ participant ":CommandResult" as CommandResult LOGIC_COLOR
+ end box
+
+ box Model MODEL_COLOR_T1
+ participant ":Model" as Model MODEL_COLOR
+ end box
+
+ [-> ReminderCommandParser : parse("userInput")
+ activate ReminderCommandParser
+
+ create ReminderDatePredicate
+ ReminderCommandParser -> ReminderDatePredicate
+ activate ReminderDatePredicate
+
+ ReminderDatePredicate --> ReminderCommandParser : c
+ deactivate ReminderDatePredicate
+
+ create ReminderCommand
+ ReminderCommandParser -> ReminderCommand : ReminderCommand(c)
+ activate ReminderCommand
+
+ ReminderCommand --> ReminderCommandParser : r
+ deactivate ReminderCommand
+
+ [<-- ReminderCommandParser : r
+ deactivate ReminderCommandParser
+ [<-[hidden]- ReminderCommandParser
+ destroy ReminderCommandParser
+
+ [-> ReminderCommand : execute()
+ activate ReminderCommand
+
+ ReminderCommand -> Model : updateFilteredMeetingList(c)
+ activate Model
+
+ deactivate Model
+
+ create CommandResult
+ ReminderCommand -> CommandResult
+ activate CommandResult
+
+ CommandResult --> ReminderCommand : result
+ deactivate CommandResult
+
+ [<-- ReminderCommand : result
+ deactivate ReminderCommand
+
+ @enduml
