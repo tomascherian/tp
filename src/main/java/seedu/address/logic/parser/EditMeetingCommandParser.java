@@ -67,6 +67,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
         }
+
         return new EditMeetingCommand(index, editMeetingDescriptor);
     }
 
@@ -85,6 +86,11 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    /**
+     * Parses {@code Collection<String> participants} into a {@code Set<Index>} if {@code participants} is non-empty.
+     * If {@code participants} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Index>} containing zero participants.
+     */
     private Optional<Set<Index>> parseParticipantsIndexForEdit(Collection<String> participants) throws ParseException {
         assert participants != null;
 
