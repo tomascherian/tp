@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +81,7 @@ public class AddressBookParserTest {
             nameSet.add(new Name(name));
         }
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
-                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindContactCommand.COMMAND_WORD + " n/foo n/bar n/baz");
         assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(nameSet),
                         new ContactTagContainsKeywordsPredicate(Collections.emptySet())), command);
     }
