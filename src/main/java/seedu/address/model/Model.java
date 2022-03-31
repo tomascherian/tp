@@ -21,11 +21,11 @@ public interface Model {
 
     /** {@code Predicate} that evaluates to true if meeting's archive status is false. */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = meeting ->
-            !(meeting.getArchiveStatus().archiveStatus);
+            !(meeting.getArchiveStatus().isArchive);
 
     /** {@code Predicate} that evaluates to true if meeting's archive status is true. */
     Predicate<Meeting> PREDICATE_SHOW_ALL_ARCHIVED_MEETINGS = meeting -> (
-            meeting.getArchiveStatus().archiveStatus);
+            meeting.getArchiveStatus().isArchive);
 
 
     /**

@@ -14,8 +14,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListArchivedCommand;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SortContactCommand;
 import seedu.address.logic.commands.SortMeetingCommand;
+import seedu.address.logic.commands.UnarchiveMeetingCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -68,14 +70,17 @@ public class AddressBookParser {
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
 
+        case EditMeetingCommand.COMMAND_WORD:
+            return new EditMeetingCommandParser().parse(arguments);
+
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindContactCommand.COMMAND_WORD:
+            return new FindContactCommandParser().parse(arguments);
 
         case FindMeetingCommand.COMMAND_WORD:
             return new FindMeetingCommandParser().parse(arguments);
@@ -112,6 +117,9 @@ public class AddressBookParser {
 
         case ListArchivedCommand.COMMAND_WORD:
             return new ListArchivedCommand();
+
+        case UnarchiveMeetingCommand.COMMAND_WORD:
+            return new UnarchiveMeetingParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
