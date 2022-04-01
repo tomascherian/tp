@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.RemindCommand.MESSAGE_REMINDER;
+import static seedu.address.logic.commands.ReminderCommand.MESSAGE_REMINDER;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalMeetings.COMPUTING_CLUB;
 import static seedu.address.testutil.TypicalMeetings.CS2101;
@@ -37,11 +37,11 @@ public class ReminderCommandTest {
         ReminderDatePredicate firstPredicate = new ReminderDatePredicate(5);
         ReminderDatePredicate secondPredicate = new ReminderDatePredicate(6);
 
-        RemindCommand remindFirstCommand = new RemindCommand(firstPredicate);
-        RemindCommand remindSecondCommand = new RemindCommand(secondPredicate);
+        ReminderCommand remindFirstCommand = new ReminderCommand(firstPredicate);
+        ReminderCommand remindSecondCommand = new ReminderCommand(secondPredicate);
 
         // same values return true
-        RemindCommand copy = new RemindCommand(firstPredicate);
+        ReminderCommand copy = new ReminderCommand(firstPredicate);
         assertTrue(remindFirstCommand.equals(copy));
 
         // different types return false
@@ -58,7 +58,7 @@ public class ReminderCommandTest {
     @Test
     public void execute_invalidRange_noMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 0, -1);
-        RemindCommand command = new RemindCommand(new ReminderDatePredicate(-1));
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(-1));
         expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(-1));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredMeetingList());
@@ -68,7 +68,7 @@ public class ReminderCommandTest {
     @Test
     public void execute_smallRange_noMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 0, 10);
-        RemindCommand command = new RemindCommand(new ReminderDatePredicate(10));
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(10));
         expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(10));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredMeetingList());
@@ -78,7 +78,7 @@ public class ReminderCommandTest {
     @Test
     public void execute_largeRange_allMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 5, 76820);
-        RemindCommand command = new RemindCommand(new ReminderDatePredicate(76820));
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(76820));
         expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(76820));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
@@ -90,7 +90,7 @@ public class ReminderCommandTest {
     @Test
     public void execute_bigRange_allMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 5, 607);
-        RemindCommand command = new RemindCommand(new ReminderDatePredicate(607));
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(607));
         expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(607));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
