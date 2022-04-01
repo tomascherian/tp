@@ -35,11 +35,12 @@ public class ReminderDatePredicate implements Predicate<Meeting> {
     /**
      * Returns true if the meeting is within X days of the current date.
      */
-    public boolean limit(Meeting order) {
-        LocalDate toTest = order.getDate().value;
+    public boolean limit(Meeting meeting) {
+        LocalDate toTest = meeting.getDate().value;
         LocalDate dateToday = LocalDate.now();
         LocalDate acceptableDate = dateToday.plusDays(days + 1);
-        return toTest.isAfter(dateToday.minusDays(1L)) && toTest.isBefore(acceptableDate);
+        return toTest.isAfter(dateToday.minusDays(1L)) && toTest.isBefore(acceptableDate)
+                && !(meeting.getArchiveStatus().isArchive);
     }
 
     @Override

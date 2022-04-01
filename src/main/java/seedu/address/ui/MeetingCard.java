@@ -3,10 +3,15 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -15,7 +20,12 @@ import seedu.address.model.meeting.Meeting;
 public class MeetingCard extends UiPart<Region> {
 
     private static final String FXML = "MeetingListCard.fxml";
-
+    private static final String LABEL_ARCHIVED = "ARCHIVED";
+    private static final Background BACKGROUND_ARCHIVED =
+            new Background(new BackgroundFill(
+                    Color.rgb(128, 96, 0, 0.7),
+                    new CornerRadii(0),
+                    new Insets(0)));
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -32,6 +42,8 @@ public class MeetingCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
+    @FXML
+    private Label archiveStatus;
     @FXML
     private Label id;
     @FXML
@@ -58,6 +70,10 @@ public class MeetingCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(participant -> participant.contact.getName().fullName))
                 .forEach(participant -> participants.getChildren().add(
                         new Label(participant.contact.getName().fullName)));
+        if (meeting.getArchiveStatus().isArchive) {
+            archiveStatus.setText(LABEL_ARCHIVED);
+            archiveStatus.setBackground(BACKGROUND_ARCHIVED);
+        }
     }
 
     @Override

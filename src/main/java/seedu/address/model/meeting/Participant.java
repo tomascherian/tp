@@ -23,7 +23,7 @@ public class Participant {
 
     @Override
     public String toString() {
-        return contact.toString();
+        return contact.getName() + " @" + contact.getTelegram();
     }
 
     /**

@@ -12,7 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 
-
 /**
  * Adds a person to the address book.
  */
@@ -39,6 +38,7 @@ public class AddContactCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This contact already exists in the address book";
 
     private final Contact toAdd;
+
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
