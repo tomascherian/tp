@@ -157,7 +157,7 @@ Format: `sortc`
 
 * Sort contacts according to name.
 
-![example](images/Sort_contacts.png)
+![example](images/Sort_contact.png)
 
 
 ### Listing all contacts : `listc`
@@ -253,7 +253,7 @@ Format: `findm [d/DATES]... [n/NAMES]... [t/TAGS]...`
   **and** at least one of `TAGS` will be returned.
 
 Examples:
-* `findm n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc.
+* `findm n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc. <br><br>
   ![example](images/Find_meeting_example2.png)
 * `findm n/event d/18-06-2022 t/important` returns a meeting that occurs on `18-06-2022`, is named `event planning` 
   **and** has a tag called `important` <br><br>
