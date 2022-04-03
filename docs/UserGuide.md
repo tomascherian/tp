@@ -63,7 +63,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listc`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -77,17 +77,17 @@ Adds the specified contact to your contact list.
 
 Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
-* Adds a person into your contact list with given email, phone number, telegram handle.
+* Adds a contact into your contact list with given email, phone number, telegram handle.
 * Optionally Tags can also be specified
 
 Examples:
-* `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags
-* `addc n/Bob Tan p/91234567` gives an error message as e/EMAIL and th/TELEGRAM is not optional
+* `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram id and tags
+* `addc n/Bob Tan p/91234567` gives an error message as `e/EMAIL` and `th/TELEGRAM_HANDLE` are not optional
 
 
 ### Deleting a contact : `deletec`
 
-Removes the specified person from your currently displayed contact list.
+Removes the specified contact from your currently displayed contact list.
 
 Format: `deletec CONTACT_INDEX`
 
@@ -116,7 +116,7 @@ Format: `editc CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [
 
 :bulb: **Tip:**
 When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative. 
-You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+You can remove all the tags of the contact by typing `t/` without specifying any tags after it.
 </div>
 
 Examples:
@@ -192,7 +192,7 @@ Examples:
 * `addm n/Job Interview st/1500 et/1700`
   Returns error message as d/DATE is missing.
 * `addm n/CS2102 Project Discussion d/25/03/2022 st/1500 et/1400`
-  Returns error message as your end time input `et/1400` is earlier than your start time input `st/1500`.
+  Returns error message as your end time input `et/1400` is earlier than your start time input `st/1500`. <br><br>
 
 
 ### Deleting a meeting : `deletem`
@@ -280,19 +280,19 @@ Format: `listm`
 
 ### Reminder : `reminder`
 
-Reminds you of meetings that occur within the given number of days
+Reminds you of meetings that occur within the given number of days.
 
 Format: `reminder NUMBER_OF_DAYS`
 
 Examples:
-* `Reminder 2` lists meetings that occur within 2 days
-* `Reminder 100` lists meetings that occur within 100 days
+* `reminder 2` lists meetings that occur within 2 days
+* `reminder 100` lists meetings that occur within 100 days
 
 ![example](images/Reminder.png)
 
 ### Archive : `archive`
 
-Archives the meeting specified by the meeting index
+Archives the meeting specified by the meeting index.
 
 Format: `archive MEETING_INDEX`
 
@@ -300,11 +300,10 @@ Examples:
 * `archive 2` archives 2nd meeting in the displayed meeting list
 * `archive 10` archives 10th meeting in the displayed meeting list
 
-![example](images/Archive.png)
 
 ### Unarchive : `unarchive`
 
-Unarchives the meeting specified by the meeting index
+Unarchives the meeting specified by the meeting index.
 
 Format: `unarchive MEETING_INDEX`
 
