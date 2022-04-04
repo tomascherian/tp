@@ -178,7 +178,7 @@ Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/T
 * Optionally, the contacts involved in the meeting can also be specified by a `CONTACT_INDEX`.
 * `CONTACT_INDEX` refers to the index number shown in your currently displayed contact list.
 * `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
-  <div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting.<br>
 
