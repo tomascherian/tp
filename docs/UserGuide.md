@@ -169,16 +169,20 @@ Format: `sortc`
 
 Adds a meeting to your meeting list.
 
-Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/TAGS]...`
 
 * Adds a meeting with a specified date, start time and end time to your meeting list.
 * `DATE` requires the format **DD/MM/YYYY** or **DD-MM-YYYY** e.g. 20/02/2022 or 20-02-2022.
 * `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359.
 * `START_TIME` needs to be earlier than `END_TIME`.
-* Optionally, the contacts involved in the meeting can also be specified by a `PARTICIPANTS_INDEX`.
-* `PARTICIPANTS_INDEX` refers to the index number shown in your currently displayed contact list.
-* `PARTICIPANTS_INDEX` **must be a positive integer** 1, 2, 3, …​ 
+* Optionally, the contacts involved in the meeting can also be specified by a `CONTACT_INDEX`.
+* `CONTACT_INDEX` refers to the index number shown in your currently displayed contact list.
+* `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
+  <div markdown="block" class="alert alert-info">
 
+**:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting.<br>
+
+</div>
 Examples:
 * `addm n/CS2103 Project Discussion d/23-02-2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
   Adds the meeting "CS2103 Project Discussion" with your given date, time and participants.
