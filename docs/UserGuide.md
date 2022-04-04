@@ -180,7 +180,7 @@ Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/T
 * `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting.<br>
+**:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting.
 
 </div>
 Examples:
