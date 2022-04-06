@@ -70,9 +70,9 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 ## Contact
 
-### Listing all contacts : `list`
+### Listing all contacts : `listc`
 
-Shows you a list of all contacts in your contact list.
+Shows you all the contacts in your contact list.
 
 Format: `list`
 
@@ -130,26 +130,28 @@ Examples:
 
 ### Locating contacts by name and tag: `findc`
 
-Finds contact whose names contain any of the given keywords.
+Finds the contacts that match your search criteria as explained below:
 
-Format: `findc [n/NAME]... [t/TAGS]...`
+Format: `findc [n/NAMES]... [t/TAGS]...`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `n/Hans n/Bo` will match `n/Bo n/Hans`
-* Only the name and tag are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* If only `n/NAME` is provided, contacts matching at least one of `n/NAME` will be returned.
-* If only `t/TAGS` is provided, contacts matching at least one of `t/TAGS` will be returned.
-* If both `n/NAME` and `t/TAGS` are provided, contacts matching at least one of `n/NAME` 
+* For both `NAMES` and `TAGS`:
+    * The search is case-insensitive e.g. `t/friends` matches `Friends`
+    * Only full words are matched e.g. `n/alex` matches `Alex Yeoh` but not `Alexander Yeoh`
+* If you specify only `n/NAMES`, contacts matching at least one of `n/NAMES` will be returned.
+* If you specify only `t/TAGS`, contacts matching at least one of `t/TAGS` will be returned.
+* If you specify both `n/NAMES` and `t/TAGS`, contacts matching at least one of `n/NAMES`
   and at least one of `t/TAGS` will be returned.
-  
 
 Examples:
-* `findc n/John n/jane` returns `john`, `John Doe` and `Jane Doe`
-* `findc t/friends t/family` returns contacts containing the `friends` tag or the `family` tag or both 
+* `findc n/alex n/roy` returns the contacts named `alex` or `roy`
+  ![example](images/Find_Contact_example1.png)
+* `findc t/friends t/family` returns the contacts matching the `friends` tag or the `family` tag or both 
+  ![example](images/Find_Contact_example2.png)
 * `findc n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
-* `findc n/Hans n/Bo t/family t/friends` will return `Hans Gruber`, `Bo Yang` if both Contacts contain either
+* `findc n/Alex n/David t/family t/friends` will return `Hans Gruber`, `Bo Yang` if both Contacts contain either
   the `family` tag or the `friends` tag or both.
+  ![example](images/Find_Contact_example3.png)
+  
 
 
 ### Sorting contacts : `sortc`
@@ -297,7 +299,7 @@ Examples:
 * `unarchive 5` archives 5th meeting in the archive meeting list
 
 
-### Archive list : archivelist
+### Archive list : `archivelist`
 
 Format: `archivelist`
 
@@ -379,10 +381,11 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
-**Add contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
-**Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
-**Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
-**Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
+**Add Contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
+**Delete Contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
+**Edit Contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
+**Find Contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
+**List Contacts** | `listc`
 **Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Edit Meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
@@ -390,5 +393,4 @@ Action | Format, Examples
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**List** | `list`
 **Help** | `help`
