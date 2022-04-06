@@ -376,6 +376,26 @@ The following sequence diagram shows how this works:
 **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
+#### Design considerations:
+
+##### Aspect: How to allow users to receive reminders
+
+* **Alternative 1 (current choice):** Create a `reminder` command that allows users to specify the number of days to
+  return the result of upcoming meetings.
+    * Pros:
+        * Gives users flexibility in specifying the time frame they want to receive reminders for
+        * Easy to implement.
+    * Cons:
+        * User has to manually specify number of days.
+
+* **Alternative 2:** Set number of days reminders, so that when user call reminder command meetings 
+upcoming in a fixed number of days will be displayed.
+    * Pros:
+        * User does not have to manually specify number of days since it is fixed.
+    * Cons:
+        * User has no flexibility to specify the time range he wants to receive reminders for.
+        
+
 
 ### Archive
 
