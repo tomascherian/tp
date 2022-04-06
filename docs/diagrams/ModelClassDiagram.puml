@@ -18,6 +18,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Telegram
 
 Class Tag
 
@@ -27,6 +28,7 @@ Class MeetingName
 Class MeetingDate
 Class StartTime
 Class EndTime
+Class ArchiveStatus
 Class Participant
 
 }
@@ -52,6 +54,7 @@ Contact *--> Name
 Contact *--> Phone
 Contact *--> Email
 Contact *--> Address
+Contact *--> Telegram
 Contact *-down--> "*" Tag
 
 UniqueMeetingList ---> "~* all" Meeting
@@ -59,6 +62,7 @@ Meeting *--> MeetingName
 Meeting *--> MeetingDate
 Meeting *--> StartTime
 Meeting *--> EndTime
+Meeting *--> ArchiveStatus
 Meeting *--> "*" Participant
 Meeting *-down--> "*" Tag
 
@@ -70,6 +74,7 @@ MeetingName -[hidden]right- MeetingDate
 MeetingDate -[hidden]right- StartTime
 StartTime -[hidden]right- EndTime
 EndTime -[hidden]right- Participant
+Participant -[hidden]right- ArchiveStatus
 
 
 Participant -[hidden]->Tag

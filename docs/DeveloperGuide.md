@@ -377,6 +377,83 @@ The following sequence diagram shows how this works:
 the lifeline reaches the end of diagram.
 
 
+### Archive
+
+#### 1. Archive
+
+This section describes how the archive feature can be used for users to be archive meetings that they do not
+want to appear in the meeting list , but still want to save the data. This feature also has the unarchive command
+reverts the archive command.
+
+### Implementation
+
+
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
+
+Users can archive a specific meeting by entering the `archive index` command. The following steps describe how this 
+behaviour is implemented
+
+The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
+is already archived or not.
+The meetings in AddresSoc are extracted and stored in the `FilteredList`.
+It is then used to update `FilteredList` using `FilteredList#PREDICATE_SHOW_ALL_MEETINGS`.
+The updated `FilteredList` is then displayed.
+This operation uses the `Model` for `Model#UpdateFilteredMeetingList`.
+
+The following sequence diagram shows how this works:
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+**Note:** The lifeline for `ArchiveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+
+1. The user archives a `Meeting` in the observable `MeetingList` with command `archive index`.The index is parsed and
+ archive command is executed.
+
+2. The meeting's `ArchiveStatus` will be checked . If it is true, an error message will be displayed.
+
+3. Otherwise the meeting's `ArchiveStatus` will be set to true by the `Meeting#archive()` method.
+
+4. The current `FilteredList` will be updated showing only the unarchived meetings, facilitated by 
+`Model#PREDICATE_SHOW_ALL_MEETINGS`
+
+#### 2. Unarchive
+
+This section shows how the archive feature can be reverted. The user can use the unarchive command so
+that the unarchived  meeting appear in the meeting list. 
+
+### Implementation
+
+
+![UnArchiveActivityDiagram](images/UnArchiveActivityDiagram.png)
+
+Users can unarchive a specific meeting by entering the `unarchive index` command. The following steps describe how this
+behaviour is implemented
+
+The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
+is already archived or not.
+The meetings in AddresSoc are extracted and stored in the `FilteredList`.
+It is then used to update `FilteredList` using `FilteredList#PREDICATE_SHOW_ALL_MEETINGS`.
+The updated `FilteredList` is then displayed.
+This operation uses the `Model` for `Model#UpdateFilteredMeetingList`.
+
+
+1. The user unarchives a `Meeting` in the observable `archivelist` with command `unarchive index`.The index is parsed and
+   unarchive command is executed.
+
+2. The meeting's `ArchiveStatus` will be checked . If it is false, an error message will be displayed.
+
+3. Otherwise the meeting's `ArchiveStatus` will be set to false by the `Meeting#archive()` method.
+
+4. The current `FilteredList` will be updated showing all the unarchived meetings, facilitated by
+   `Model#PREDICATE_SHOW_ALL_MEETINGS`
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

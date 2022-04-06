@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters archive command in the command box;
+:AddressBookParser parses the command;
+:ArchiveCommandParser parses the arguments
+                    (meeting index);
+
+if () then ([arguments are valid])
+if () then ([is archived])
+    :AddresSoc displays
+    error message;
+else ([else])
+    :Archive Meeting;
+
+endif
+else ([else])
+:Throws ParseException with invalid command\nformat message and command usage;
+endif
+stop
+@enduml
