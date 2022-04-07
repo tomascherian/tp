@@ -67,9 +67,9 @@ public class ReminderCommandTest {
     // returns zero meetings as no meeting starts in 10 days
     @Test
     public void execute_smallRange_noMeetingFound() {
-        String expectedMessage = String.format(MESSAGE_REMINDER, 0, 10);
-        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(10));
-        expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(10));
+        String expectedMessage = String.format(MESSAGE_REMINDER, 0, 1);
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(1));
+        expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(1));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredMeetingList());
     }
