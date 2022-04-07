@@ -22,7 +22,7 @@ class MeetingOccursOnDatesPredicateTest {
     private final MeetingDate thirdMeetingDate = new MeetingDate(thirdSearchDate);
 
     @Test
-    void equals() {
+    public void equals() {
         Set<MeetingDate> firstPredicateDateSet = Collections.singleton(firstMeetingDate);
         Set<MeetingDate> secondPredicateDateSet = Set.of(firstMeetingDate, secondMeetingDate);
 
@@ -48,13 +48,13 @@ class MeetingOccursOnDatesPredicateTest {
     }
 
     @Test
-    void test_emptyKeywords_returnsTrue() {
+    public void test_emptyKeywords_returnsTrue() {
         MeetingOccursOnDatesPredicate predicate = new MeetingOccursOnDatesPredicate(Collections.emptySet());
         assertTrue(predicate.test(new MeetingBuilder().build()));
     }
 
     @Test
-    void test_meetingOccursOnDates_returnsTrue() {
+    public void test_meetingOccursOnDates_returnsTrue() {
         // One date
         MeetingOccursOnDatesPredicate predicate =
                 new MeetingOccursOnDatesPredicate(Collections.singleton(firstMeetingDate));
@@ -71,7 +71,7 @@ class MeetingOccursOnDatesPredicateTest {
     }
 
     @Test
-    void test_meetingDoesNotOccurOnDate_returnsFalse() {
+    public void test_meetingDoesNotOccurOnDate_returnsFalse() {
         // Non-matching date
         MeetingOccursOnDatesPredicate predicate =
                 new MeetingOccursOnDatesPredicate(Set.of(secondMeetingDate, thirdMeetingDate));

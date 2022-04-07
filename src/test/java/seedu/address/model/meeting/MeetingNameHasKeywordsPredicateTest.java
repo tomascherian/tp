@@ -23,7 +23,7 @@ class MeetingNameHasKeywordsPredicateTest {
 
 
     @Test
-    void equals() {
+    public void equals() {
         Set<MeetingName> firstPredicateKeywordSet = Collections.singleton(firstMeetingName);
         Set<MeetingName> secondPredicateKeywordSet = Set.of(firstMeetingName, secondMeetingName);
 
@@ -50,13 +50,13 @@ class MeetingNameHasKeywordsPredicateTest {
     }
 
     @Test
-    void test_emptyKeywords_returnsTrue() {
+    public void test_emptyKeywords_returnsTrue() {
         MeetingNameHasKeywordsPredicate predicate = new MeetingNameHasKeywordsPredicate(Collections.emptySet());
         assertTrue(predicate.test(new MeetingBuilder().build()));
     }
 
     @Test
-    void test_meetingNameHasKeywords_returnsTrue() {
+    public void test_meetingNameHasKeywords_returnsTrue() {
         // One keyword
         MeetingNameHasKeywordsPredicate predicate =
                 new MeetingNameHasKeywordsPredicate(Collections.singleton(firstMeetingName));
@@ -76,7 +76,7 @@ class MeetingNameHasKeywordsPredicateTest {
     }
 
     @Test
-    void test_meetingNameDoesNotHaveKeywords_returnsFalse() {
+    public void test_meetingNameDoesNotHaveKeywords_returnsFalse() {
         // Non-matching keywords
         MeetingNameHasKeywordsPredicate predicate =
                 new MeetingNameHasKeywordsPredicate(Set.of(secondMeetingName, thirdMeetingName));
