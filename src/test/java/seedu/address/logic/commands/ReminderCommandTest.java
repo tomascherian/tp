@@ -64,17 +64,17 @@ public class ReminderCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredMeetingList());
     }
 
-    // returns zero meetings as no meeting starts in 10 days
+    // returns zero meetings as no meeting starts in 10 days. This test will fail after 29/4/2022
     @Test
     public void execute_smallRange_noMeetingFound() {
-        String expectedMessage = String.format(MESSAGE_REMINDER, 0, 10);
-        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(10));
-        expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(10));
+        String expectedMessage = String.format(MESSAGE_REMINDER, 0, 1);
+        ReminderCommand command = new ReminderCommand(new ReminderDatePredicate(1));
+        expectedModel.updateFilteredMeetingList(new ReminderDatePredicate(1));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredMeetingList());
     }
 
-    // returns all meeting due to large range. This test will fail after 12/4/2022.
+    // returns all meeting due to large range. This test will fail after 30/4/2022.
     @Test
     public void execute_largeRange_allMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 5, 76820);
@@ -86,7 +86,7 @@ public class ReminderCommandTest {
                 model.getFilteredMeetingList());
     }
 
-    // returns all meeting due to big range. This test will fail after 12/4/2022
+    // returns all meeting due to big range. This test will fail after 30/4/2022
     @Test
     public void execute_bigRange_allMeetingFound() {
         String expectedMessage = String.format(MESSAGE_REMINDER, 5, 607);
