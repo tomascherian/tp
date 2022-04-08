@@ -198,6 +198,21 @@ The activity diagram below shows the execution of the above example:
   * Pros: `Participant` has less dependence on `Contact`. Better flexibility as each `Participant` no longer needs to be a `Contact`.
   * Cons: Less extensibility as `Participant` does not have any link to `Contact`. Changes to each `Contact` that is in a `Meeting` will require a separate command to change the `Participant` as well.
 
+**Aspect: How to deal with clash in `Meeting` timings**
+
+* **Alternative 1 (current choice)** A clash in timings will notify the user of the clash
+  * Pros: User is still allowed to add meetings regardless of the timing of other meetings in the list.
+  * Cons: Clash in meetings are left in the meeting list until the user deals with it. May cause confusion for the user if not dealt with.
+* **Alternative 2** A clash in timings will throw an exception
+  * Pros: Meetings that clash will not be added and will not cause confusion for the user. The user can edit or remove clashing meetings before attempting to add the meeting again.
+  * Cons: Will require more steps to adding a meeting with time clash. User will have to edit or remove clashing meetings before adding again.
+
+Reasons for choosing Alternative 1:
+
+* Overall, it is more efficient for the user as the original meeting will be successfully added to the list. The implemented
+notification pop-up should suffice in prompting the user to resolve any clashes in timings through editing or removing
+them. This implementation provides the user with more freedom as to how they would want to deal with the clash or simply
+make a mental note of it and not deal with it in the application at all.
 
 ### Undo/redo feature
 
