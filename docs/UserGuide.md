@@ -84,6 +84,7 @@ Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
 * Adds a person into your contact list with given email, phone number, telegram handle.
 * Optionally Tags can also be specified
+* A maximum of 9 tags can be added
 
 Examples:
 * `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags
