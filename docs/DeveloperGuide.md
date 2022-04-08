@@ -393,7 +393,7 @@ upcoming in a fixed number of days will be displayed.
     * Pros:
         * User does not have to manually specify number of days since it is fixed.
     * Cons:
-        * User has no flexibility to specify the time range he wants to receive reminders for.
+        * User has no flexibility to specify the time range to receive reminders for.
         
 
 
@@ -401,9 +401,9 @@ upcoming in a fixed number of days will be displayed.
 
 #### 1. Archive
 
-This section describes how the archive feature can be used for users to be archive meetings that they do not
-want to appear in the meeting list , but still want to save the data. This feature also has the unarchive command
-reverts the archive command.
+This section describes how the archive feature can be used to be archive meetings that users do not
+want to appear in the meeting list , but still want to save the data. There is an unarchive command
+which is used to revert the archive command.
 
 ### Implementation
 
@@ -411,7 +411,7 @@ reverts the archive command.
 ![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
 
 Users can archive a specific meeting by entering the `archive index` command. The following steps describe how this 
-behaviour is implemented
+behaviour is implemented.
 
 The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
 is already archived or not.
@@ -441,7 +441,7 @@ the lifeline reaches the end of diagram.
 #### 2. Unarchive
 
 This section shows how the archive feature can be reverted. The user can use the unarchive command so
-that the unarchived  meeting appear in the meeting list. 
+that the unarchived meeting appear in the meeting list. 
 
 ### Implementation
 
@@ -449,7 +449,7 @@ that the unarchived  meeting appear in the meeting list.
 ![UnArchiveActivityDiagram](images/UnArchiveActivityDiagram.png)
 
 Users can unarchive a specific meeting by entering the `unarchive index` command. The following steps describe how this
-behaviour is implemented
+behaviour is implemented.
 
 The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
 is already archived or not.
