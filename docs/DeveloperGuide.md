@@ -187,6 +187,10 @@ The activity diagram below shows the execution of the above example:
 
 ![Add Meeting activity diagram](images/AddMeetingActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The Create Participant ⋔ references the Create Participant
+Activity Diagram in the Managing meeting participants section below.
+</div>
+
 #### Design Considerations
 
 **Aspect: How `Participant` is constructed**
@@ -198,18 +202,35 @@ The activity diagram below shows the execution of the above example:
   * Pros: `Participant` has less dependence on `Contact`. Better flexibility as each `Participant` no longer needs to be a `Contact`.
   * Cons: Less extensibility as `Participant` does not have any link to `Contact`. Changes to each `Contact` that is in a `Meeting` will require a separate command to change the `Participant` as well.
 
+**Aspect: How to deal with clash in `Meeting` timings**
 
-### \[Proposed\] Undo/redo feature
+* **Alternative 1 (current choice):** A clash in timings will notify the user of the clash.
+  * Pros: User is still allowed to add meetings regardless of the timing of other meetings in the list.
+  * Cons: Clash in meetings are left in the meeting list until the user deals with it. May cause confusion for the user if not dealt with.
+* **Alternative 2** A clash in timings will throw an exception.
+  * Pros: Meetings that clash will not be added and will not cause confusion for the user. The user can edit or remove clashing meetings before attempting to add the meeting again.
+  * Cons: Will require more steps to adding a meeting with time clash. User will have to edit or remove clashing meetings before adding again.
 
-#### Proposed Implementation
+Reasons for choosing Alternative 1:
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+* Overall, it is more efficient for the user as the original meeting will be successfully added to the list. The implemented
+notification pop-up should suffice in prompting the user to resolve any clashes in timings through editing or removing
+them. This implementation provides the user with more freedom as to how they would want to deal with the clash or simply
+make a mental note of it and not deal with it in the application at all.
+
+### Undo/redo feature
+
+#### Implementation
+
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It keeps track of AddressBook states, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#canUndo()` — Checks that `currentStatePointer` is not pointing to the first state in the `addressBookStateList`.
+* `VersionedAddressBook#canRedo()` — Checks that `currentStatePointer` is not pointing to the last state in the `addressBookStateList`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`, `Model#redoAddressBook()`, `Model#canUndo` and `Model#canRedo` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -276,8 +297,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Managing meeting participants
 
