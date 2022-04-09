@@ -12,7 +12,7 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_INVALID_UNDO = "There are no more changes to be reverted.";
-    public static final String MESSAGE_SUCCESS = "Previous change to AddresSoc has been reverted.";
+    public static final String MESSAGE_SUCCESS = "Previous change has been reverted.";
 
 
     @Override
