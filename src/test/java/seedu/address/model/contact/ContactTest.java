@@ -33,23 +33,27 @@ public class ContactTest {
         // null -> returns false
         assertFalse(ALICE.isSameContact(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Contact editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSameContact(editedAlice));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
+        assertTrue(ALICE.isSameContact(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Contact editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameContact(editedBob));
+        assertTrue(BOB.isSameContact(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameContact(editedBob));
+        assertTrue(BOB.isSameContact(editedBob));
+
+        // different name, same phone number, all other attributes different -> returns true
+        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertTrue(BOB.isSameContact(editedAlice));
     }
 
     @Test

@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -65,7 +64,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
                 .ifPresent((editMeetingDescriptor::setParticipantsIndex));
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditMeetingCommand(index, editMeetingDescriptor);
