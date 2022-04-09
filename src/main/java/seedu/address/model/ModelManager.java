@@ -23,7 +23,7 @@ import seedu.address.model.meeting.Meeting;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedAddresSoc versionedAddresSoc;
+    private final VersionedAddressBook versionedAddressBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
 
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
         this.addressBook = new AddressBook(addressBook);
-        this.versionedAddresSoc = new VersionedAddresSoc(this.addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), Model.PREDICATE_SHOW_ALL_MEETINGS);
@@ -97,27 +97,27 @@ public class ModelManager implements Model {
 
     @Override
     public void commitAddressBook() {
-        versionedAddresSoc.commit(this.addressBook);
+        versionedAddressBook.commit(this.addressBook);
     }
 
     @Override
     public void undoAddressBook() {
-        versionedAddresSoc.undo();
+        versionedAddressBook.undo();
     }
 
     @Override
     public void redoAddressBook() {
-        versionedAddresSoc.redo();
+        versionedAddressBook.redo();
     }
 
     @Override
     public boolean canUndoAddressBook() {
-        return versionedAddresSoc.canUndo();
+        return versionedAddressBook.canUndo();
     }
 
     @Override
     public boolean canRedoAddressBook() {
-        return versionedAddresSoc.canRedo();
+        return versionedAddressBook.canRedo();
     }
 
     @Override

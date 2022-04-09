@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NAME;
@@ -73,13 +74,7 @@ public class AddMeetingCommand extends Command {
     public AddMeetingCommand(MeetingName meetingName, MeetingDate meetingDate, StartTime startTime,
                              EndTime endTime, MeetingArchiveStatus archiveStatus,
             Set<Index> participantsIndex, Set<Tag> tagList) {
-        requireNonNull(meetingName);
-        requireNonNull(meetingDate);
-        requireNonNull(startTime);
-        requireNonNull(endTime);
-        requireNonNull(archiveStatus);
-        requireNonNull(tagList);
-        requireNonNull(participantsIndex);
+        requireAllNonNull(meetingName, startTime, endTime, archiveStatus, tagList, participantsIndex);
 
         this.meetingName = meetingName;
         this.meetingDate = meetingDate;

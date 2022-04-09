@@ -23,25 +23,25 @@ import seedu.address.model.tag.Tag;
 public class TypicalMeetings {
 
     public static final String CS2103T_NAME = "CS2103T project";
-    public static final String CS2103T_DATE = "12/03/2022";
+    public static final String CS2103T_DATE = "30/04/2022";
     public static final String CS2103T_TAG = "v1point2";
     public static final String NUSSU_NAME = "NUSSU meeting";
-    public static final String NUSSU_DATE = "20/03/2022";
+    public static final String NUSSU_DATE = "20/06/2022";
     public static final String NUSSU_TAG = "important";
 
     public static final Meeting CS2103T = new MeetingBuilder().withName(CS2103T_NAME).withDate(CS2103T_DATE)
             .withStartTime("1600").withEndTime("1700").withArchiveStatus("false")
             .withParticipants(ALICE, BENSON).withTags(CS2103T_TAG).build();
-    public static final Meeting CS2101 = new MeetingBuilder().withName("CS2101 project").withDate("15/03/2022")
+    public static final Meeting CS2101 = new MeetingBuilder().withName("CS2101 project").withDate("15/05/2022")
             .withStartTime("1900").withEndTime("2000").withArchiveStatus("false")
             .withParticipants(BENSON, CARL).withTags("OP2").build();
     public static final Meeting NUSSU = new MeetingBuilder().withName(NUSSU_NAME).withDate(NUSSU_DATE)
             .withStartTime("1600").withEndTime("1700").withArchiveStatus("false")
             .withParticipants(DANIEL, ELLE).withTags(NUSSU_TAG).build();
-    public static final Meeting DANCE_CLUB = new MeetingBuilder().withName("Dance exco meeting").withDate("22/03/2022")
+    public static final Meeting DANCE_CLUB = new MeetingBuilder().withName("Dance exco meeting").withDate("22/07/2022")
             .withStartTime("1700").withEndTime("1800").withArchiveStatus("false").build();
     public static final Meeting COMPUTING_CLUB = new MeetingBuilder().withName("Computing club meeting")
-            .withDate("30/03/2022").withStartTime("1600").withEndTime("1700")
+            .withDate("30/08/2022").withStartTime("1600").withEndTime("1700")
             .withArchiveStatus("false").withParticipants(ELLE, FIONA).build();
 
     public static final MeetingName MEETING_NAME_MATCHING_CS2103T = new MeetingName(CS2103T_NAME);

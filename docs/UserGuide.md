@@ -16,7 +16,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressoc.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-3/tp/releases).
+2. Download the latest `addressoc.jar` from [here](https://github.com/AY2122S2-CS2103T-W12-3/tp/releases/latest).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddresSoC.
 
@@ -26,7 +26,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all your contacts.
+   * **`listc`** : Lists all your contacts.
 
    * **`addc`**` n/John Doe e/johnd@u.nus.edu p/98076034 th/johnd` : Adds a contact named `John Doe` to your contact list.
 
@@ -63,18 +63,18 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `listc`, `listm`, `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ## Contact
 
-### Listing all contacts : `list`
+### Listing all contacts : `listc`
 
 Shows you a list of all contacts in your contact list.
 
-Format: `list`
+Format: `listc`
 
 ### Adding a contact : `addc`
 
@@ -164,6 +164,12 @@ Format: `sortc`
 
 
 ## Meeting
+
+### Listing all meetings : `listm`
+
+Shows you a list of all meetings in your meeting list.
+
+Format: `listm`
 
 ### Adding a meeting : `addm`
 
@@ -379,16 +385,17 @@ If your changes to the data file makes its format invalid, AddressSoC will disca
 
 Action | Format, Examples
 --------|------------------
+**List contacts** | `listc`
 **Add contact** | `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...` <br> e.g., `addc n/Alice Lee e/alice.lee@u.nus.edu p/76054673 th/alicey76 t/database expert t/CS2103 teammate`
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
 **Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
-**Add Meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
-**Delete Meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
-**Edit Meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
-**Find Meeting** | `findm [d/DATES]... [n/NAMES]... [t/TAGS]...` <br>e.g., `findm n/project n/event d/18-06-2022` 
+**List meetings** | `listm`
+**Add meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Delete meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
+**Edit meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
+**Find meeting** | `findm [d/DATES]... [n/NAMES]... [t/TAGS]...` <br>e.g., `findm n/project n/event d/18-06-2022` 
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
-**List** | `list`
 **Help** | `help`
