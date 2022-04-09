@@ -187,6 +187,10 @@ The activity diagram below shows the execution of the above example:
 
 ![Add Meeting activity diagram](images/AddMeetingActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The Create Participant ⋔ references the Create Participant
+Activity Diagram in the Managing meeting participants section below.
+</div>
+
 #### Design Considerations
 
 **Aspect: How `Participant` is constructed**
