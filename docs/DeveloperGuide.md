@@ -200,10 +200,10 @@ The activity diagram below shows the execution of the above example:
 
 **Aspect: How to deal with clash in `Meeting` timings**
 
-* **Alternative 1 (current choice)** A clash in timings will notify the user of the clash
+* **Alternative 1 (current choice):** A clash in timings will notify the user of the clash.
   * Pros: User is still allowed to add meetings regardless of the timing of other meetings in the list.
   * Cons: Clash in meetings are left in the meeting list until the user deals with it. May cause confusion for the user if not dealt with.
-* **Alternative 2** A clash in timings will throw an exception
+* **Alternative 2** A clash in timings will throw an exception.
   * Pros: Meetings that clash will not be added and will not cause confusion for the user. The user can edit or remove clashing meetings before attempting to add the meeting again.
   * Cons: Will require more steps to adding a meeting with time clash. User will have to edit or remove clashing meetings before adding again.
 
