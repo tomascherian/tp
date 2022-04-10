@@ -72,8 +72,9 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons have at least one identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both contacts have at least one identity field that is the same and
+     * neither contacts are being edited.
+     * This defines a weaker notion of equality between two contacts.
      */
     public boolean isSameContact(Contact otherContact) {
         if (otherContact == this) {
@@ -89,8 +90,8 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both contacts have the same identity and data fields.
+     * This defines a stronger notion of equality between two contacts.
      */
     @Override
     public boolean equals(Object other) {
