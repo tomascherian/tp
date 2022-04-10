@@ -68,4 +68,4 @@ Given below are my contributions to the project.
       during team meetings
 * 
 * **Review/mentoring contributions**:
-    * PRs reviewed (with non-trivial review comments): (PR #191)
+    * PRs reviewed (with non-trivial review comments): [PR #191](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/191)
