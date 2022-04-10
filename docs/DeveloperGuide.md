@@ -722,6 +722,55 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a meeting
+
+Prerequisites: Default list of meetings are loaded into the application.
+
+1. Test case: `addm n/Lunch with Friends d/30-04-2022 st/1100 et/1300 t/important` <br>
+Expected: New meeting is added to the list. Details of added meeting is shown in status message.
+
+2. Test case: `addm n/Project Meeting with Advisor d/30-04-2022 st/1200 et/1400` <br>
+Expected: New meeting is added to the list. Warning notification pop up due to clash in timing with previously added
+meeting. Details of added meeting and meeting it clashes with is shown in status message.
+
+3. Test case: `addm n/Project Meeting with Advisor d/30-04-2022 st/1600 et/1800` <br>
+Expected: No meeting is added due to duplicate meeting with meeting added in previous test case. Error details shown in the status message.
+
+Other incorrect `addm` commands to try: `addm n/Dinner with Family d/24-05-2022`, `addm n/2103 Exam d/23-04-2022 st/1500 et/1400`, `addm`
+
+### Deleting a meeting
+
+Deleting a meeting while all meetings are being shown
+
+Prerequisites: List all meetings using the `listm` command. Multiple meetings in the list.
+
+1. Test case: `deletem 1` <br>
+Expected: First meeting is deleted from the list. Details of the deleted meeting is shown in the status message.
+
+2. Test case: `deletem 0` <br>
+Expected: No meeting is deleted. Error details shown in the status message.
+
+Other incorrect `deletem` commands to try: `deletem`, `deletem x`, (where x is larger than the list size)<br>
+Expected: Similar to previous.
+
+### Undo/Redo
+
+Prerequisites: No contacts sharing any of the fields with contact to be added in test case.
+
+1. Test case: `addc n/Bobby Tan p/98127492 e/Bobby01@gmail.com th/Bobby012` followed by `undo` <br>
+Expected: Contact will first be added to the list and details of the added contact is shown in the status message.
+The contact will be removed after `undo` is executed and a successful `undo` message is shown.
+
+2. Test case: `addc n/Bobby Tan p/98127492 e/Bobby01@gmail.com th/Bobby012` followed by `undo`, then `redo` <br>
+Expected: Similar to previous test case. However, contact will be added back to the list after execution of
+`redo`, and a successful `redo` message is shown.
+
+3. Test case: `undo` without any prior changes to the lists <br>
+Expected: No change to the lists. Error details are shown in the status message.
+
+4. Test case: `redo` without any prior `undo` command <br>
+Expected: No change to the lists. Error details are shown in the status message.
+   
 ### Saving data
 
 1. Dealing with missing/corrupted data files
