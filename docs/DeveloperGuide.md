@@ -395,6 +395,103 @@ The following sequence diagram shows how this works:
 **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
+#### Design considerations:
+
+##### Aspect: How to allow users to receive reminders
+
+* **Alternative 1 (current choice):** Create a `reminder` command that allows users to specify the number of days to
+  return the result of upcoming meetings.
+    * Pros:
+        * Gives users flexibility in specifying the time frame they want to receive reminders for
+        * Easy to implement.
+    * Cons:
+        * User has to manually specify number of days.
+
+* **Alternative 2:** Set number of days reminders, so that when user call reminder command meetings 
+upcoming in a fixed number of days will be displayed.
+    * Pros:
+        * User does not have to manually specify number of days since it is fixed.
+    * Cons:
+        * User has no flexibility to specify the time range to receive reminders for.
+        
+
+
+### Archive
+
+#### 1. Archive
+
+This section describes how the archive feature can be used to be archive meetings that users do not
+want to appear in the meeting list , but still want to save the data. There is an unarchive command
+which is used to revert the archive command.
+
+### Implementation
+
+
+![ArchiveActivityDiagram](images/ArchiveActivityDiagram.png)
+
+Users can archive a specific meeting by entering the `archive index` command. The following steps describe how this 
+behaviour is implemented.
+
+The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
+is already archived or not.
+The meetings in AddresSoc are extracted and stored in the `FilteredList`.
+It is then used to update `FilteredList` using `FilteredList#PREDICATE_SHOW_ALL_MEETINGS`.
+The updated `FilteredList` is then displayed.
+This operation uses the `Model` for `Model#UpdateFilteredMeetingList`.
+
+The following sequence diagram shows how this works:
+
+![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
+
+**Note:** The lifeline for `ArchiveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+
+1. The user archives a `Meeting` in the observable `MeetingList` with command `archive index`.The index is parsed and
+ archive command is executed.
+
+2. The meeting's `ArchiveStatus` will be checked . If it is true, an error message will be displayed.
+
+3. Otherwise the meeting's `ArchiveStatus` will be set to true by the `Meeting#archive()` method.
+
+4. The current `FilteredList` will be updated showing only the unarchived meetings, facilitated by 
+`Model#PREDICATE_SHOW_ALL_MEETINGS`
+
+#### 2. Unarchive
+
+This section shows how the archive feature can be reverted. The user can use the unarchive command so
+that the unarchived meeting appear in the meeting list. 
+
+### Implementation
+
+
+![UnArchiveActivityDiagram](images/UnArchiveActivityDiagram.png)
+
+Users can unarchive a specific meeting by entering the `unarchive index` command. The following steps describe how this
+behaviour is implemented.
+
+The archive feature uses the `ArchiveStatus`.The condition to is used to check whether the meeting
+is already archived or not.
+The meetings in AddresSoc are extracted and stored in the `FilteredList`.
+It is then used to update `FilteredList` using `FilteredList#PREDICATE_SHOW_ALL_MEETINGS`.
+The updated `FilteredList` is then displayed.
+This operation uses the `Model` for `Model#UpdateFilteredMeetingList`.
+
+
+1. The user unarchives a `Meeting` in the observable `archivelist` with command `unarchive index`.The index is parsed and
+   unarchive command is executed.
+
+2. The meeting's `ArchiveStatus` will be checked . If it is false, an error message will be displayed.
+
+3. Otherwise the meeting's `ArchiveStatus` will be set to false by the `Meeting#archive()` method.
+
+4. The current `FilteredList` will be updated showing all the unarchived meetings, facilitated by
+   `Model#PREDICATE_SHOW_ALL_MEETINGS`
+
+
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------

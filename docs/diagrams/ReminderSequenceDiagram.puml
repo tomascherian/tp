@@ -5,13 +5,13 @@
 
  box Logic LOGIC_COLOR_T1
  participant ":ReminderCommandParser" as ReminderCommandParser LOGIC_COLOR
- participant ":ReminderDatePredicate" as ReminderDatePredicate LOGIC_COLOR
  participant ":ReminderCommand" as ReminderCommand LOGIC_COLOR
  participant ":CommandResult" as CommandResult LOGIC_COLOR
  end box
 
  box Model MODEL_COLOR_T1
- participant ":Model" as Model MODEL_COLOR
+  participant ":ReminderDatePredicate" as ReminderDatePredicate MODEL_COLOR
+  participant ":Model" as Model MODEL_COLOR
  end box
 
  [-> ReminderCommandParser : parse("userInput")
