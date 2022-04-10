@@ -86,13 +86,17 @@ public class EditMeetingCommand extends Command {
         }
 
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
+        assert !meetingToEdit.getEditStatus();
+        meetingToEdit.setEditStatus();
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, contactList);
 
-        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
+        if (model.hasMeeting(editedMeeting)) {
+            meetingToEdit.setEditStatus();
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         ArrayList<Meeting> clashingMeetings = model.checkMeetingClash(editedMeeting);
+        meetingToEdit.setEditStatus();
 
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
