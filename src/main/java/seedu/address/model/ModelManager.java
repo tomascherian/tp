@@ -161,7 +161,7 @@ public class ModelManager implements Model {
         ArrayList<Meeting> clashingMeetings = new ArrayList<Meeting>();
         for (Meeting otherMeeting : meetingList) {
             if (toAdd.isTimingClash(otherMeeting) && !otherMeeting.getArchiveStatus().isArchive
-                    && !toAdd.isSameMeeting(otherMeeting)) {
+                    && !otherMeeting.getEditStatus()) {
                 clashingMeetings.add(otherMeeting);
             }
         }

@@ -78,11 +78,16 @@ public class EditContactCommand extends Command {
         }
 
         Contact personToEdit = lastShownList.get(index.getZeroBased());
+        assert !personToEdit.getEditStatus();
+        personToEdit.setEditStatus();
         Contact editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSameContact(editedPerson) && model.hasPerson(editedPerson)) {
+        if (model.hasPerson(editedPerson)) {
+            personToEdit.setEditStatus();
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        personToEdit.setEditStatus();
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
