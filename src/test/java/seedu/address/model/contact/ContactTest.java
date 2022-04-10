@@ -33,10 +33,10 @@ public class ContactTest {
         // null -> returns false
         assertFalse(ALICE.isSameContact(null));
 
-        // same name, all other attributes different -> returns false
+        // same name, all other attributes different -> returns true
         Contact editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
+        assertTrue(ALICE.isSameContact(editedAlice));
 
         // different name, all other attributes same -> returns true
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();

@@ -72,7 +72,7 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both persons have at least one identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherContact) {
@@ -83,6 +83,7 @@ public class Contact {
         return otherContact != null
                 && otherContact.getEditStatus() == getEditStatus()
                 && (otherContact.getEmail().equals(getEmail())
+                        || otherContact.getName().equals(getName())
                         || otherContact.getPhone().equals(getPhone())
                         || otherContact.getTelegram().equals(getTelegram()));
     }
