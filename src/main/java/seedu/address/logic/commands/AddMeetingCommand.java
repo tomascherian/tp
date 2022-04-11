@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -88,31 +87,21 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Contact> lastShownList = model.getFilteredPersonList();
         final Set<Participant> participants = new HashSet<>();
+        addParticipants(participants, lastShownList);
 
         if (!startTime.isBefore(endTime)) {
             throw new CommandException(MESSAGE_INVALID_TIME);
         }
-        ObservableList<Meeting> meetingList = model.getFilteredMeetingList();
-
-        for (Index targetIndex : participantsIndex) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-            Contact participatingContact = lastShownList.get(targetIndex.getZeroBased());
-            participants.add(new Participant(participatingContact));
-        }
 
         toAdd = new Meeting(meetingName, meetingDate, startTime, endTime, participants, archiveStatus, tagList);
-
-        ArrayList<Meeting> clashingMeetings = model.checkMeetingClash(toAdd);
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
+        ArrayList<Meeting> clashingMeetings = model.checkMeetingClash(toAdd);
         model.addMeeting(toAdd);
         model.commitAddressBook();
 
@@ -123,6 +112,16 @@ public class AddMeetingCommand extends Command {
                     .collect(Collectors.joining(",\n"));
             return new CommandResult(String.format(MESSAGE_SUCCESS_WITH_CLASH, toAdd, clashMessage),
                     false, true, false);
+        }
+    }
+
+    private void addParticipants(Set<Participant> participants, List<Contact> lastShownList) throws CommandException {
+        for (Index targetIndex : participantsIndex) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            Contact participatingContact = lastShownList.get(targetIndex.getZeroBased());
+            participants.add(new Participant(participatingContact));
         }
     }
 
