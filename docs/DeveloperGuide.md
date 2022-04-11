@@ -767,6 +767,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Finding contacts
+
+Prerequisites: List all contacts using the `listc` command. Multiple contacts in the list.
+
+1. Test case: `findc n/alex t/friends` <br>
+Expected: Contacts named `alex` with a tag called `friends` will be displayed. The number of contacts with the name
+   `alex` and the tag `friends` is shown in the status message.
+
+2. Test case: `findc p/12345678`  <br>
+Expected: No contacts are searched. Error details shown in status message.
+
+Other incorrect `findc` commands to try: `findc th/john_01`, `findc alex`
+Expected: Similar to previous.
+
 ### Adding a meeting
 
 Prerequisites: Default list of meetings are loaded into the application.
@@ -782,6 +796,19 @@ meeting. Details of added meeting and meeting it clashes with is shown in status
 Expected: No meeting is added due to duplicate meeting with meeting added in previous test case. Error details shown in the status message.
 
 Other incorrect `addm` commands to try: `addm n/Dinner with Family d/24-05-2022`, `addm n/2103 Exam d/23-04-2022 st/1500 et/1400`, `addm`
+
+### Editing a meeting
+
+Prerequisites: List all meetings using the `listm` command. Multiple meetings in the list.
+
+1. Test case: `editm 1 d/30-04-2022 st/1630 et/1730` <br>
+   Expected: The first meeting in the list is edited. Details of the edited meeting is shown in the status message.
+
+2. Test case: `editm 0 d/30-04-2022` <br>
+   Expected: No meeting is edited. Error details shown in the status message.
+
+Other incorrect `editm` commands to try: `editm d/10-04-2022`, `editm 2`
+Expected: Similar to previous.
 
 ### Deleting a meeting
 
