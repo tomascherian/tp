@@ -25,8 +25,8 @@ public class VersionedAddressBook {
 
     /**
      * Commits current AddressBook to the StateList as a State.
-     * 
-     * @param currentAddressBook to be saved in the StateList
+     *
+     * @param currentAddressBook to be saved in the StateList.
      */
     public void commit(ReadOnlyAddressBook currentAddressBook) {
         ReadOnlyAddressBook currentState = new AddressBook(currentAddressBook);
