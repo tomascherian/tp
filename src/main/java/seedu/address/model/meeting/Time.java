@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Time implements Comparable<Time> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be of the format hhmm";
+    public static final String MESSAGE_CONSTRAINTS = "Incorrect time format. Time should be in the format hhmm";
 
     public static final String VALIDATION_REGEX = "([0-1][0-9]|2[0-3])[0-5][0-9]";
 
