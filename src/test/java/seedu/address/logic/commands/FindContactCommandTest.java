@@ -4,16 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalMeetings.MEETING_DATE_MATCHING_CS2103T;
-import static seedu.address.testutil.TypicalMeetings.MEETING_NAME_MATCHING_CS2103T;
-import static seedu.address.testutil.TypicalMeetings.MEETING_NAME_MATCHING_NUSSU;
-import static seedu.address.testutil.TypicalMeetings.TAG_MATCHING_CS2103T;
-import static seedu.address.testutil.TypicalMeetings.TAG_MATCHING_NUSSU;
 
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -25,25 +17,23 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.ContactTagContainsKeywordsPredicate;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
-import seedu.address.model.meeting.MeetingNameHasKeywordsPredicate;
-import seedu.address.model.meeting.MeetingOccursOnDatesPredicate;
-import seedu.address.model.meeting.MeetingTagHasKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindContactCommand}.
  */
 public class FindContactCommandTest {
+
+    private static final Name NAME_MATCHING_ALICE = new Name("Alice Pauline");
+    private static final Name NAME_MATCHING_BENSON = new Name("Benson Meier");
+    private static final Tag TAG_MATCHING_ALICE = new Tag("friends");
+    private static final Tag TAG_MATCHING_BENSON = new Tag("owesMoney");
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final NameContainsKeywordsPredicate emptyNamePredicate =
             new NameContainsKeywordsPredicate(Collections.emptySet());
     private final ContactTagContainsKeywordsPredicate emptyTagPredicate =
             new ContactTagContainsKeywordsPredicate(Collections.emptySet());
-    private static final Name NAME_MATCHING_ALICE = new Name("Alice Pauline");
-    private static final Name NAME_MATCHING_BENSON = new Name("Benson Meier");
-    private static final Tag TAG_MATCHING_ALICE = new Tag("friends");
-    private static final Tag TAG_MATCHING_BENSON = new Tag("owesMoney");
 
     @Test
     public void equals() {

@@ -83,7 +83,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_TELEGRAM + "#"; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby/husband"; // '/' not allowed in tags
-    public static final String INVALID_MEETING_NAME_DESC = " " + PREFIX_MEETING_NAME + "&"; // '&' not allowed in meeting names
+    public static final String INVALID_MEETING_NAME_DESC =
+            " " + PREFIX_MEETING_NAME + "&"; // '&' not allowed in meeting names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "09-11-2022aB"; // 'ab' not allowed in dates
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + ":"; // empty string not allowed
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + ":"; // empty string not allowed

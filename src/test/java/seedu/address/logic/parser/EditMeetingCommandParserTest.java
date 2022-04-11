@@ -1,49 +1,41 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.EditContactCommand;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.END_TIME_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NUSSU;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NUSSU;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEETING;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Phone;
-import seedu.address.model.contact.Telegram;
+import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.tag.Tag;
-
-import java.util.Date;
-
-import org.junit.jupiter.api.Test;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.START_TIME_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NUSSU;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 
 public class EditMeetingCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -100,7 +92,80 @@ public class EditMeetingCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_CS2103 + TAG_DESC_NUSSU, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_MEETING_NAME_DESC + INVALID_START_TIME_DESC + VALID_END_TIME_CS2103 + VALID_DATE_CS2103,
+        assertParseFailure(parser, "1" + INVALID_MEETING_NAME_DESC + INVALID_START_TIME_DESC
+                        + VALID_END_TIME_CS2103 + VALID_DATE_CS2103,
                 MeetingName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_allFieldsSpecified_success() {
+        Index targetIndex = INDEX_SECOND_MEETING;
+        String userInput = targetIndex.getOneBased() + MEETING_NAME_DESC_CS2103 + TAG_DESC_CS2103
+                + DATE_DESC_CS2103 + START_TIME_DESC_CS2103 + END_TIME_DESC_CS2103 + TAG_DESC_NUSSU;
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withName(VALID_MEETING_NAME_CS2103)
+                .withDate(VALID_DATE_CS2103).withStartTime(VALID_START_TIME_CS2103).withEndTime(VALID_END_TIME_CS2103)
+                .withTags(VALID_TAG_CS2103, VALID_TAG_NUSSU).build();
+        EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_someFieldsSpecified_success() {
+        Index targetIndex = INDEX_FIRST_MEETING;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_CS2103 + START_TIME_DESC_CS2103;
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDate(VALID_DATE_CS2103)
+                .withStartTime(VALID_START_TIME_CS2103).build();
+        EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_oneFieldSpecified_success() {
+        // name
+        Index targetIndex = INDEX_THIRD_MEETING;
+        String userInput = targetIndex.getOneBased() + MEETING_NAME_DESC_CS2103;
+        EditMeetingDescriptor descriptor =
+                new EditMeetingDescriptorBuilder().withName(VALID_MEETING_NAME_CS2103).build();
+        EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // date
+        userInput = targetIndex.getOneBased() + DATE_DESC_CS2103;
+        descriptor = new EditMeetingDescriptorBuilder().withDate(VALID_DATE_CS2103).build();
+        expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // start time
+        userInput = targetIndex.getOneBased() + START_TIME_DESC_CS2103;
+        descriptor = new EditMeetingDescriptorBuilder().withStartTime(VALID_START_TIME_CS2103).build();
+        expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // end time
+        userInput = targetIndex.getOneBased() + END_TIME_DESC_CS2103;
+        descriptor = new EditMeetingDescriptorBuilder().withEndTime(VALID_END_TIME_CS2103).build();
+        expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags
+        userInput = targetIndex.getOneBased() + TAG_DESC_CS2103;
+        descriptor = new EditMeetingDescriptorBuilder().withTags(VALID_TAG_CS2103).build();
+        expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetTags_success() {
+        Index targetIndex = INDEX_THIRD_MEETING;
+        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withTags().build();
+        EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

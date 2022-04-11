@@ -1,15 +1,15 @@
 package seedu.address.model.contact;
 
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import seedu.address.model.tag.Tag;
+import seedu.address.testutil.PersonBuilder;
 
 public class ContactTagContainsKeywordsPredicateTest {
     private final String firstTagName = "Family";
@@ -60,7 +60,8 @@ public class ContactTagContainsKeywordsPredicateTest {
     @Test
     public void test_tagHasKeywords_returnsTrue() {
         // One keyword, one tag
-        ContactTagContainsKeywordsPredicate predicate = new ContactTagContainsKeywordsPredicate(Collections.singleton(firstTag));
+        ContactTagContainsKeywordsPredicate predicate =
+                new ContactTagContainsKeywordsPredicate(Collections.singleton(firstTag));
         assertTrue(predicate.test(new PersonBuilder().withTags(firstTagName).build()));
 
         // One keyword, multiple tags
