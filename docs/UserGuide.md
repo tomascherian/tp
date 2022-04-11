@@ -273,10 +273,10 @@ Format: `findm [d/DATES]... [n/NAMES]... [t/TAGS]...`
   **and** at least one of `TAGS` will be returned.
 
 Examples:
-* `findc n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc.
-* `findc n/event d/18-06-2022 t/important` returns a meeting that occurs on `18-06-2022`, is named `event planning` 
+* `findm n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc.
+* `findm n/event d/18-06-2022 t/important` returns a meeting that occurs on `18-06-2022`, is named `event planning` 
   **and** has a tag called `important`.
-* `findc n/event n/project d/01-06-2022` returns meetings that occur on `01-06-2022` and are named `event planning` or  `project`, etc.
+* `findm n/event n/project d/01-06-2022` returns meetings that occur on `01-06-2022` and are named `event planning` or  `project`, etc.
 
 ### Sorting meetings : `sortm`
 
