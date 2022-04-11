@@ -55,7 +55,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
   e.g.  `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as `t/` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -83,12 +83,15 @@ Adds the specified contact to your contact list.
 Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
 * Adds a person into your contact list with given email, phone number, telegram handle.
-* Optionally Tags can also be specified
-* A maximum of 9 tags can be added
+* Optionally, tags can also be specified for the contact.
 
 Examples:
-* `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags
-* `addc n/Bob Tan p/91234567` gives an error message as e/EMAIL and th/TELEGRAM is not optional
+* `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags.
+* `addc n/Bob Tan p/91234567` gives an error message as e/EMAIL and th/TELEGRAM is not optional.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Duplicate contacts with the same name, phone number, email or telegram handle cannot be added into the app.
+</div>
 
 
 ### Deleting a contact : `deletec`
@@ -121,13 +124,16 @@ Format: `editc CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [th/TELEGRAM_HANDLE] [
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 </div>
 
 Examples:
-* `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-* `editc 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+* `editc 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+* `editc 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The new edited contact follows the same constraints as a new contact to be added using `addc` command.
+</div>
 
 ### Locating contacts by name and tag: `findc`
 
@@ -141,16 +147,16 @@ Format: `findc [n/NAMES]... [t/TAGS]...`
 * If you specify only `n/NAMES`, contacts matching at least one of `n/NAMES` will be returned.
 * If you specify only `t/TAGS`, contacts matching at least one of `t/TAGS` will be returned.
 * If you specify both `n/NAMES` and `t/TAGS`, contacts matching at least one of `n/NAMES`
-  and at least one of `t/TAGS` will be returned.
+  **and** at least one of `t/TAGS` will be returned.
 
 Examples:
-* `findc n/alex n/roy` returns the contacts named `alex` or `roy`
-  ![example](images/Find_Contact_example1.png)
-* `findc t/friends t/family` returns the contacts matching the `friends` tag or the `family` tag or both 
-  ![example](images/Find_Contact_example2.png)
-* `findc n/alex t/friends` returns `Alex Yeoh` if the Contact contains `friends` tag
-* `findc n/Alex n/David t/family t/friends` will return `Hans Gruber`, `Bo Yang` if both Contacts contain either
-  the `family` tag or the `friends` tag or both.
+* `findc n/alex n/roy` returns the contacts with `alex` or `roy` in their names.
+  ![example](images/Find_Contact_example1.png) <br>
+* `findc t/friends t/family` returns the contacts matching the `friends` tag or the `family` tag or both .
+  ![example](images/Find_Contact_example2.png) <br>
+* `findc n/alex t/friends` returns `Alex Yeoh` as the contact's name contains `alex` and the contact is tagged with `friends`.
+* `findc n/Alex n/David t/family t/friends` will return `Alex Yeoh`, `David Li` as both contacts' names contain either `alex` or `david`
+and both contacts are labelled with either the `family` tag or the `friends` tag or both.
   ![example](images/Find_Contact_example3.png)
   
 
@@ -178,16 +184,21 @@ Format: `listm`
 
 Adds a meeting to your meeting list.
 
-Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`
+Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/TAGS]...`
 
 * Adds a meeting with a specified date, start time and end time to your meeting list.
 * `DATE` requires the format **DD/MM/YYYY** or **DD-MM-YYYY** e.g. 20/02/2022 or 20-02-2022.
 * `START_TIME` and `END_TIME` requires the format **hhmm** e.g. 2359.
 * `START_TIME` needs to be earlier than `END_TIME`.
-* Optionally, the contacts involved in the meeting can also be specified by a `PARTICIPANTS_INDEX`.
-* `PARTICIPANTS_INDEX` refers to the index number shown in your currently displayed contact list.
-* `PARTICIPANTS_INDEX` **must be a positive integer** 1, 2, 3, …​ 
+* Optionally, the contacts involved in the meeting can also be specified by a `CONTACT_INDEX`.
+* `CONTACT_INDEX` refers to the index number shown in your currently displayed contact list.
+* `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* Optionally, tags can also be specified for the meeting.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting. You
+may find information regarding the meetings involved in the clash in the status message given.
+</div>
 Examples:
 * `addm n/CS2103 Project Discussion d/23-02-2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
   Adds the meeting "CS2103 Project Discussion" with your given date, time and participants.
@@ -198,6 +209,9 @@ Examples:
 * `addm n/CS2102 Project Discussion d/25/03/2022 st/1500 et/1400`
   Returns error message as your end time input `et/1400` is earlier than your start time input `st/1500`.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Duplicate meetings with the same name and date cannot be added into the app.
+</div>
 
 ### Deleting a meeting : `deletem`
 
@@ -237,18 +251,22 @@ Examples:
 * `editm 1 n/cs2103 project et/1930` Edits the meeting name and end time of the 1st meeting to be `cs2103 project` and  `1930` respectively.
 * `editm 2 pt/ t/` Clears all existing participants and all existing tags of the 2nd meeting.
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** The new edited meeting follows the same constraints as a new meeting to be added using `addm` command.
+</div>
+
 ### Locating meetings by date, name and tag: `findm`
 
 Finds meetings that match your search criteria as explained below:
 
 Format: `findm [d/DATES]... [n/NAMES]... [t/TAGS]...`
-* If you specify only `d/DATES`, meetings occurring on any of the `DATES` will be returned.
-  Note that the `DATES` must be specified in either the **DD-MM-YYYY** or **DD/MM/YYYY** format
-* If you specify only `n/NAMES`, meetings matching at least one of `n/NAME` will be returned.
-* If you specify only `t/TAGS`, meetings matching at least one of `t/TAGS` will be returned.
+* If you specify only `d/DATES`, meetings occurring on any of the `DATES` will be shown.
+  Note that the `DATES` must be specified in either the **DD-MM-YYYY** or **DD/MM/YYYY** format.
+* If you specify only `n/NAMES`, meetings matching at least one of `n/NAME` will be shown.
+* If you specify only `t/TAGS`, meetings matching at least one of `t/TAGS` will be shown.
 * For `NAMES` and `TAGS`: 
-    * The search is case-insensitive e.g. `t/planning` matches `Planning`
-    * Only full words are matched e.g. `n/proj` matches `proj meeting` but not `project meeting`
+    * The search is case-insensitive e.g. `t/planning` matches `Planning`.
+    * Only full words are matched e.g. `n/proj` matches `proj meeting` but not `project meeting`.
 * If you specify more than one type of input, meetings matching at least **one of each type** will be returned. 
   
   eg. If you specify both `n/NAMES` and `t/TAGS`, meetings matching at least one of `NAMES`
@@ -257,7 +275,7 @@ Format: `findm [d/DATES]... [n/NAMES]... [t/TAGS]...`
 Examples:
 * `findc n/event n/project` returns meetings titled `Event`, `event planning`, `Project Meeting`, etc.
 * `findc n/event d/18-06-2022 t/important` returns a meeting that occurs on `18-06-2022`, is named `event planning` 
-  **and** has a tag called `important`
+  **and** has a tag called `important`.
 * `findc n/event n/project d/01-06-2022` returns meetings that occur on `01-06-2022` and are named `event planning` or  `project`, etc.
 
 ### Sorting meetings : `sortm`
@@ -266,51 +284,62 @@ Sorts meetings in the displayed meeting list according to date and time.
 
 Format: `sortm`
 
-* Sorts meeting according to date
-* Meetings on same day are sorted according to time
+* Sorts meeting according to date.
+* Meetings with the same date are sorted according to time.
 
 ### Reminder : `reminder`
 
 Format: `reminder NUM_OF_DAYS`
 
-Reminds you of meetings that occur within the given number of days
+Reminds you of meetings that occur within the given number of days.
 
 Examples:
-* `Reminder 2` lists meetings that occur within 2 days
-* `Reminder 100` lists meetings that occur within 100 days
+* `Reminder 2` lists meetings that occur within 2 days.
+* `Reminder 100` lists meetings that occur within 100 days.
 
 ![example](images/reminder_example.png)
 
 
 ### Archive : `archive`
 
+Archives the meeting specified by the meeting index. The archived meetings are stored separately in an archived meeting list.
+
 Format: `archive MEETING_INDEX`
 
-Archives the meeting specified by the meeting index
-
+* Archives the meeting at the specified `MEETING_INDEX`.
+* `MEETING_INDEX` refers to the index number shown in your currently displayed meetings list.
+* `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
 Examples:
 * `archive 2` archives 2nd meeting in the displayed meeting list
-* `archive 10` archives 10th meeting in the displayed meeting list
+* `archive 0` returns an error for invalid input as 0 is not a positive integer.
 
 ![example](images/archive-example.png)
 
 
 ### Unarchive : `unarchive`
 
+Unarchives the meeting specified by the meeting index. The unarchived meeting is placed back into the regular meeting list.
+
 Format: `unarchive MEETING_INDEX`
 
-Unarchives the meeting specified by the meeting index
-
+* Unarchives the meeting at the specified `MEETING_INDEX`.
+* `MEETING_INDEX` refers to the index number shown in your currently displayed meetings list.
+* `MEETING_INDEX` **must be a positive integer** 1, 2, 3, …​
 Examples:
-* `unarchive 2` archives 2nd meeting in the archive meeting list
-* `unarchive 5` archives 5th meeting in the archive meeting list
+* `unarchive 2` unarchives 2nd meeting in the archive meeting list.
+* `unarchive -2` returns an error for invalid input as 0 is not a positive integer.
 
 
 ### Archive list : `archivelist`
 
+Shows you all the archived meetings in your archived meeting list.
+
 Format: `archivelist`
 
-Lists the archived meetings.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+If you would like to return to view the regular meeting list, use the `listm` command.
+</div>
 
 ## Common
 
@@ -322,14 +351,14 @@ Format: `clear`
 
 ### Undoing a change : `undo`
 
-You can use the `undo` command to revert a change to your meeting or contact lists.
+Revert a previous change to your meeting or contact lists.
 
 Format: `undo`
 
 Examples:
 * `undo` after `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9` 
 removes the added contact from your contact list.
-* `undo` after `deletem 3` restores the Meeting that was deleted.
+* `undo` after `deletem 3` restores the meeting that was deleted.
 * `undo` after `findc t/family` will not revert the filtering of the contact list as
 `findc` does not change your contact list.
 
@@ -340,7 +369,7 @@ If you would like to revert a `findc` command, you may use `listc` to return to 
 
 ### Redoing an undo : `redo`
 
-You can use the `redo` command to revert an `undo` command.
+Reverts a previous `undo` command.
 
 Format: `redo`
 
@@ -393,12 +422,19 @@ Action | Format, Examples
 **Delete contact** | `deletec CONTACT_INDEX` <br> e.g., `deletec 2`
 **Edit contact** | `editc CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [th/TELEGRAM_HANDLE] [t/TAG]…​`<br> e.g.,`editc 2 n/James Lee e/jameslee@example.com`
 **Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
+**Sort contact** | `sortc`
 **List meetings** | `listm`
-**Add meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Add meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Edit meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
 **Find meeting** | `findm [d/DATES]... [n/NAMES]... [t/TAGS]...` <br>e.g., `findm n/project n/event d/18-06-2022`
+**Sort meeting** | `sortm`
+**Reminder** | `reminder NUM_OF_DAYS` <br>e.g., `reminder 5`
+**Archive meeting** | `archive MEETING_INDEX`
+**Unarchive meeting** | `unarchive MEETING_INDEX`
+**List archived meetings** | `archivelist`
 **Clear** | `clear`
 **Undo** | `undo`
 **Redo** | `redo`
 **Help** | `help`
+**Exit** | `exit`
