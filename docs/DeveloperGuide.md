@@ -815,7 +815,38 @@ Expected: No change to the lists. Error details are shown in the status message.
 
 4. Test case: `redo` without any prior `undo` command <br>
 Expected: No change to the lists. Error details are shown in the status message.
+
+### Archiving a meeting
+
+1. Archiving a meeting while all meetings are being shown
+
+    1. Prerequisites: List all meetings using the `listm` command. Multiple meetings in the list.
+
+    2. Test case: `archive 1`<br>
+       Expected: First meeting is archived from the list. Details of the archived contact shown in the status message. 
+
+    3. Test case: `archive 0`<br>
+       Expected: No meeting is archived. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Unarchiving a meeting
+
+1. Unarchiving a meeting while all archived meetings are being shown
+
+    1. Prerequisites: List all archived meetings using the `archivelist` command. Multiple meetings in the list.
+
+    1. Test case: `unarchive 1`<br>
+       Expected: First meeting is archived from the list. Details of the archived contact shown in the status message.
+
+    1. Test case: `unarchive 0`<br>
+       Expected: No meeting is archived. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect archive commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
    
+### 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
