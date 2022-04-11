@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * What it does: Allows the meeting's participant list to automatically sync with any updates to the contact participating in the meeting.
   * Justification: This feature makes it significantly more convenient for the user when managing meeting participants, eg. if the delete a contact, 
     they do not have to manually delete this contact from the meetings that it participated in.
-  * Highlights: It was challenging to consider how best to link Meetings and Participants to Contacts that exist in the Contact list, as explained in the DG.
+  * Highlights: It was challenging to consider how best to link Meetings and Participants to Contacts that exist in the Contact list in order to balance performance and testability, as explained in the DG.
 * **Enhancement to existing feature**: Improved the GUI.
   * What it does: Allows the user to see both the meeting and contact lists on one screen. Also allows the user to read results from executing commands with minimal scrolling. 
   * Justification: Showing the meeting and contact lists on one screen rather than separate tabs allows users to more 
@@ -37,20 +37,20 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=cpwill01&breakdown=true)
 * **Documentation**:
   * User Guide:
-    * Introduction, quick start & command format notes
-    * "Saving the data" and "Editing the data files" features
+    * Updated the introduction, quick start & command format notes
+    * Updated documentation for "Saving the data" and "Editing the data files" features
     * Added documentation for `findm` feature
     * Improved the overall structure of the User Guide (separation into sections & subsections)
   * Developer Guide:
     * Added target user profile, value proposition [\#35](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/35)
-    * Periodically updated user stories [\#35](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/35), [\#85](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/85), 
-    * Added implementation details for how meeting participants are managed [\#111](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/111)
-    * Added use case for `findm` feature
-    * Updated class diagrams for Storage and UI components [\#111](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/111)
+    * Periodically updated user stories [\#35](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/35), [\#85](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/85), [\#204](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/204)
+    * Added details for how meeting participants are managed [\#111](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/111)
+    * Added details for find meeting feature [\#204](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/204) 
+    * Updated class diagrams for Storage and UI components [\#111](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/111), [\#204](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/204)
 * **Contributions to team-based tasks**:
   * Set up the GitHub team org and part of the team repo (CodeCov integration)
   * Reviewed most PRs
   * Overall maintenance of issue tracker (creating and assigning issues, ensuring issues are linked to the relevant PRs, etc.)
   * Milestone management (creation, setting deadlines, release of JAR file, closing)
 * **Review/mentoring contributions**:
-  * PRs reviewed (with non-trivial review comments): [\#70](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/70), [\#106](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/106), [\#139](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/139)
+  * PRs reviewed (with non-trivial review comments): [\#70](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/70), [\#106](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/106), [\#139](https://github.com/AY2122S2-CS2103T-W12-3/tp/pull/139), etc.
