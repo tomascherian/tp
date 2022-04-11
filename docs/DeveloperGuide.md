@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-W12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![Model Class Diagram](images/ModelClassDiagram.png)
 
 
 The `Model` component,
@@ -127,9 +127,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has two `Tag` lists in the `AddressBook`, which `Person` and `Meeting` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` and each `Meeting` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has two `Tag` lists in the `AddressBook`, which `Person` and `Meeting` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` and each `Meeting` needing their own `Tag` objects.<br><br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+![Better](images/BetterModelClassDiagram.png)
 
 </div>
 
@@ -217,6 +217,51 @@ Reasons for choosing Alternative 1:
 notification pop-up should suffice in prompting the user to resolve any clashes in timings through editing or removing
 them. This implementation provides the user with more freedom as to how they would want to deal with the clash or simply
 make a mental note of it and not deal with it in the application at all.
+  
+
+### Find Contact feature
+
+#### Implementation
+
+The contacts of AddresSoc are stored in a `FilteredList`. The `FilteredList` is updated using `FilteredList#setPredicate`.
+The feature uses a combination of `NameContainsKeywordsPredicate` and `ContactTagContainsKeywordsPredicate` as a predicate. 
+Upon the ```findc``` command being called with the relevant fields provided, the ```FilteredList``` object is updated in accordance with the predicate and then displayed.
+
+Given below is an example usage scenario and how the ```findc``` command behaves at each step.
+1. The user inputs the command ```findc n/alex t/friends```
+2. The user input is passed into ```AddressBookParser``` which matches the ```findc``` command word and passes the arguments to ```FindContactCommandParser```.
+3. ```FindContactCommandParser``` parses the arguments according to the prefixes and constructs a ```FindContactCommand``` object.
+4. The ```FindContactCommand``` object is returned to ```LogicManager``` to be executed. During execution, the ```FilteredList<Contact>``` object is updated and displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows the execution of the above example:
+
+![Find Contact Sequence Diagram](images/FindContactSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:**The arguments for methods and constructors have been shortened for clarity in the diagram.
+</div>
+
+#### Activity Diagram
+
+The activity diagram below shows the execution of the above example:
+
+![Find Contact activity diagram](images/FindContactActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How `names` and `tags` matches:**
+
+* **Alternative 1 (current choice):** Only full names are matched
+    * Pros: Filtered List will look less cluttered and allows users to easily look up a particular contact 
+    * Cons: Users have less flexibility to search the contacts
+
+* **Alternative 2:** Names that contain the input phrase is matched
+  itself.
+    * Pros: Users have more flexibility to search the contacts
+    * Cons: The filtered list will be bloated and makes it difficult to look up a particular contact.
+    
 
 ### Undo/redo feature
 
