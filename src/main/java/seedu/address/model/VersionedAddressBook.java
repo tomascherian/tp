@@ -3,19 +3,19 @@ package seedu.address.model;
 import java.util.ArrayList;
 
 /**
- * Keeps track of changes to AddresSoc and implements
+ * Keeps track of changes to the AddressBook and implements
  * the Undo and Redo functions.
  */
-public class VersionedAddresSoc {
+public class VersionedAddressBook {
     private final ArrayList<ReadOnlyAddressBook> addressBookStateList;
     private final AddressBook initialAddressBook;
     private int currentStatePointer;
 
 
     /**
-     * Initializes VersionedAddresSoc with the initial AddressBook.
+     * Initializes VersionedAddressBook with the initial AddressBook.
      */
-    public VersionedAddresSoc(AddressBook initialAddressBook) {
+    public VersionedAddressBook(AddressBook initialAddressBook) {
         this.initialAddressBook = initialAddressBook;
         ReadOnlyAddressBook initialState = new AddressBook(initialAddressBook);
         addressBookStateList = new ArrayList<ReadOnlyAddressBook>();
@@ -42,7 +42,7 @@ public class VersionedAddresSoc {
      * {@code addressBookStateList} must contain previous states to revert to.
      */
     public void undo() {
-        assert(canUndo()) : "AddresSoc has no states to undo!";
+        assert(canUndo()) : "The addressbook has no states to undo!";
         currentStatePointer--;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);
@@ -54,7 +54,7 @@ public class VersionedAddresSoc {
      * {@code addressBookStateList} must contain undone states to revert to.
      */
     public void redo() {
-        assert(canRedo()) : "AddresSoc has no states to redo!";
+        assert(canRedo()) : "The addressbook has no states to redo!";
         currentStatePointer++;
         ReadOnlyAddressBook newState = addressBookStateList.get(currentStatePointer);
         initialAddressBook.resetData(newState);

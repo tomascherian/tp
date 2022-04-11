@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -15,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -111,7 +111,7 @@ public class EditContactCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY)
@@ -154,8 +154,8 @@ public class EditContactCommandParserTest {
         expectedCommand = new EditContactCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
+        // telegram
+        userInput = targetIndex.getOneBased() + TELEGRAM_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withTelegram(VALID_TELEGRAM_AMY).build();
         expectedCommand = new EditContactCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -170,9 +170,9 @@ public class EditContactCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + TELEGRAM_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + TELEGRAM_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
@@ -193,7 +193,7 @@ public class EditContactCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + TELEGRAM_DESC_BOB
                 + PHONE_DESC_BOB;
         descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).build();

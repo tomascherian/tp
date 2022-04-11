@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+scale 938*462
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindContactCommandParser" as FindContactCommandParser LOGIC_COLOR
+participant "f:FindContactCommand" as FindContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate MODEL_COLOR
+participant ":ContactTagContainsKeywordsPredicate" as ContactTagContainsKeywordsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(userInput)
+activate AddressBookParser
+
+create FindContactCommandParser
+AddressBookParser -> FindContactCommandParser
+activate FindContactCommandParser
+
+
+FindContactCommandParser --> AddressBookParser
+deactivate FindContactCommandParser
+
+AddressBookParser -> FindContactCommandParser : parse(inputArguments)
+activate FindContactCommandParser
+
+create NameContainsKeywordsPredicate
+FindContactCommandParser -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> FindContactCommandParser : n
+deactivate NameContainsKeywordsPredicate
+
+create ContactTagContainsKeywordsPredicate
+FindContactCommandParser -> ContactTagContainsKeywordsPredicate
+activate ContactTagContainsKeywordsPredicate
+
+ContactTagContainsKeywordsPredicate --> FindContactCommandParser : t
+deactivate ContactTagContainsKeywordsPredicate
+
+create FindContactCommand
+FindContactCommandParser -> FindContactCommand : FindContactCommand(n, t)
+activate FindContactCommand
+
+FindContactCommand --> FindContactCommandParser : f
+deactivate FindContactCommand
+
+FindContactCommandParser --> AddressBookParser : f
+deactivate FindContactCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindContactCommandParser -[hidden]-> AddressBookParser
+destroy FindContactCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindContactCommand : execute()
+activate FindContactCommand
+
+
+FindContactCommand -> Model : updateFilteredPersonList(predicate)
+activate Model
+
+Model --> FindContactCommand
+deactivate Model
+
+create CommandResult
+FindContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindContactCommand
+deactivate CommandResult
+
+FindContactCommand --> LogicManager : result
+deactivate FindContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

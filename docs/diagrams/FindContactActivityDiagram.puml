@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+scale 898 width
+
+start
+:User enters findc command in the command box;
+:AddressBookParser parses the command;
+:FindContactCommandParser parses the arguments;
+if () then ([arguments are valid])
+    :Creates FindContactCommand object for execution;
+    :LogicManager calls FindContactCommand::execute();
+    :FindContactCommand calls Model::updateFilteredPersonList();
+    :FilteredList is updated in accordance with the predicate and the displayed;
+else ([else])
+:Throws ParseException with invalid command\nformat message and command usage;
+endif
+stop
+
+@enduml

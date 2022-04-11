@@ -22,6 +22,7 @@ public class Meeting {
     private final StartTime startTime;
     private final EndTime endTime;
     private final MeetingArchiveStatus archiveStatus;
+    private boolean isBeingEdited;
 
     // Data fields
     private final Set<Participant> participants = new HashSet<>();
@@ -39,6 +40,7 @@ public class Meeting {
         this.endTime = endTime;
         this.participants.addAll(participants);
         this.archiveStatus = archiveStatus;
+        this.isBeingEdited = false;
         this.tags.addAll(tags);
     }
 
@@ -64,6 +66,14 @@ public class Meeting {
 
     public MeetingArchiveStatus getArchiveStatus() {
         return archiveStatus;
+    }
+
+    public boolean getEditStatus() {
+        return isBeingEdited;
+    }
+
+    public void setEditStatus() {
+        this.isBeingEdited = !isBeingEdited;
     }
 
     /**
@@ -125,6 +135,7 @@ public class Meeting {
         }
 
         return otherMeeting != null
+                && otherMeeting.getEditStatus() == getEditStatus()
                 && otherMeeting.getName().equals(getName())
                 && otherMeeting.getDate().equals(getDate());
     }
