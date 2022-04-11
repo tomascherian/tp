@@ -55,7 +55,7 @@ If you're a student who can type fast, AddresSoC can get your contact and schedu
   e.g.  `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as `t/` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -83,7 +83,7 @@ Adds the specified contact to your contact list.
 Format: `addc n/NAME e/EMAIL p/PHONE_NUMBER th/TELEGRAM_HANDLE [t/TAGS]...`
 
 * Adds a person into your contact list with given email, phone number, telegram handle.
-* Optionally, up to a maximum of 9 tags can also be specified.
+* Optionally, tags can also be specified for the contact.
 
 Examples:
 * `addc n/Alice Lee e/alice.lee@u.nus.edu p/786454454 th/theor9 t/database expert t/CS2103 teammate` adds the contact Alice Lee with the given email, phone, telegram and tags.
@@ -132,9 +132,7 @@ Examples:
 * `editc 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Note:** The new edited contact follows the same constraints as a new contact to be added using `addc` command.
-
 </div>
 
 ### Locating contacts by name and tag: `findc`
@@ -195,11 +193,11 @@ Format: `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/T
 * Optionally, the contacts involved in the meeting can also be specified by a `CONTACT_INDEX`.
 * `CONTACT_INDEX` refers to the index number shown in your currently displayed contact list.
 * `CONTACT_INDEX` **must be a positive integer** 1, 2, 3, …​
-<div markdown="block" class="alert alert-info">
+* Optionally, tags can also be specified for the meeting.
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Note:** The app will notify you in case of any clash in meeting timings upon adding a meeting. You
 may find information regarding the meetings involved in the clash in the status message given.
-
 </div>
 Examples:
 * `addm n/CS2103 Project Discussion d/23-02-2022 st/1800 et/1930 pt/1 pt/2 pt/3 pt/4 pt/5`
@@ -254,9 +252,7 @@ Examples:
 * `editm 2 pt/ t/` Clears all existing participants and all existing tags of the 2nd meeting.
 
 <div markdown="block" class="alert alert-info">
-
 **:information_source: Note:** The new edited meeting follows the same constraints as a new meeting to be added using `addm` command.
-
 </div>
 
 ### Locating meetings by date, name and tag: `findm`
