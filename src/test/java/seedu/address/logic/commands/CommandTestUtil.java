@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -21,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 
@@ -51,17 +56,45 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String VALID_MEETING_NAME_CS2103 = "CS2103 Project";
+    public static final String VALID_MEETING_NAME_NUSSU = "Nussu meeting";
+    public static final String VALID_DATE_CS2103 = "11-04-2022";
+    public static final String VALID_DATE_NUSSU = "22-04-2022";
+    public static final String VALID_START_TIME_CS2103 = "1630";
+    public static final String VALID_START_TIME_NUSSU = "1530";
+    public static final String VALID_END_TIME_CS2103 = "1800";
+    public static final String VALID_END_TIME_NUSSU = "1730";
+    public static final String VALID_TAG_CS2103 = "V1point4";
+    public static final String VALID_TAG_NUSSU = "important";
+
+    public static final String MEETING_NAME_DESC_CS2103 = " " + PREFIX_MEETING_NAME + VALID_MEETING_NAME_CS2103;
+    public static final String MEETING_NAME_DESC_NUSSU = " " + PREFIX_MEETING_NAME + VALID_MEETING_NAME_NUSSU;
+    public static final String DATE_DESC_CS2103 = " " + PREFIX_DATE + VALID_DATE_CS2103;
+    public static final String DATE_DESC_NUSSU = " " + PREFIX_DATE + VALID_DATE_NUSSU;
+    public static final String START_TIME_DESC_CS2103 = " " + PREFIX_START_TIME + VALID_START_TIME_CS2103;
+    public static final String START_TIME_DESC_NUSSU = " " + PREFIX_START_TIME + VALID_START_TIME_NUSSU;
+    public static final String END_TIME_DESC_CS2103 = " " + PREFIX_END_TIME + VALID_END_TIME_CS2103;
+    public static final String END_TIME_DESC_NUSSU = " " + PREFIX_END_TIME + VALID_END_TIME_NUSSU;
+    public static final String TAG_DESC_CS2103 = " " + PREFIX_TAG + VALID_TAG_CS2103;
+    public static final String TAG_DESC_NUSSU = " " + PREFIX_TAG + VALID_TAG_NUSSU;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_TELEGRAM + "#"; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby/husband"; // '/' not allowed in tags
+    public static final String INVALID_MEETING_NAME_DESC = " " + PREFIX_MEETING_NAME + "&"; // '&' not allowed in meeting names
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "09-11-2022aB"; // 'ab' not allowed in dates
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + ":"; // empty string not allowed
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END_TIME + ":"; // empty string not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
     public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_CS2103;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_NUSSU;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -70,6 +103,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CS2103 = new EditMeetingDescriptorBuilder().withName(VALID_MEETING_NAME_CS2103)
+                .withDate(VALID_DATE_CS2103).withStartTime(VALID_START_TIME_CS2103)
+                .withEndTime(VALID_END_TIME_CS2103).withTags(VALID_TAG_CS2103).build();
+        DESC_NUSSU = new EditMeetingDescriptorBuilder().withName(VALID_MEETING_NAME_NUSSU)
+                .withDate(VALID_DATE_NUSSU).withStartTime(VALID_START_TIME_NUSSU)
+                .withEndTime(VALID_END_TIME_NUSSU).withTags(VALID_TAG_NUSSU).build();
     }
 
     /**
