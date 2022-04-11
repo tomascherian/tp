@@ -424,7 +424,7 @@ Action | Format, Examples
 **Find contact** | `findc [n/NAME]... [t/TAGS]...`<br> e.g., `findc n/James n/Jake`
 **Sort contact** | `sortc`
 **List meetings** | `listm`
-**Add meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/PARTICPANTS_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
+**Add meeting** | `addm n/NAME d/DATE st/START_TIME et/END_TIME [pt/CONTACT_INDEX]... [t/TAGS]...` <br>e.g., `addm n/CS2103 Project Discussion d/20/02/2022 st/1800 et/1930 pt/1 pt/2 pt/3`
 **Delete meeting** | `deletem MEETING_INDEX`<br> e.g., `deletem 2`
 **Edit meeting** | `editm MEETING_INDEX [n/NAME] [d/DATE] [st/START_TIME] [et/END_TIME] [pt/PARTICIPANTS_INDEX]... [t/TAGS]...`<br> e.g., `editm 1 et/1930 pt/1 pt/2 pt/3`
 **Find meeting** | `findm [d/DATES]... [n/NAMES]... [t/TAGS]...` <br>e.g., `findm n/project n/event d/18-06-2022`
