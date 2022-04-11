@@ -24,9 +24,6 @@ import seedu.address.model.contact.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 
-
-
-
 /**
  * Contains helper methods for testing commands.
  */
